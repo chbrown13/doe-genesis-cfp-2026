@@ -1,6 +1,6 @@
 % ============================================================
 % DOE Genesis Mission CFP 2026 — Pre-Proposal
-% SVF: Structured Validation Framework for Trustworthy AI in Scientific Software
+% PA-AKG: Provenance-Aware Agentic Knowledge Graphs
 % Focus Area: 18E — Trustworthy AI for Scientific Software
 % ============================================================
 
@@ -13,8 +13,6 @@
 \usepackage{microtype}
 \usepackage{cite}
 \usepackage{enumitem}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning}
 \setlist{nosep, leftmargin=1.5em, topsep=0.2em}
 
 \input{files/code_world}
@@ -34,96 +32,53 @@
 
 \subsubsection*{Project Summary / Abstract}
 
-Trustworthy AI for scientific software demands systematic guarantees of \textit{numerical correctness, reproducibility, provenance tracking, interpretable diagnostics, and uncertainty quantification}---the five properties explicitly enumerated in DOE 18E. Yet existing evaluation frameworks for AI-assisted software development assess these properties only in isolation. Retrieval-augmented generation (RAG) benchmarks~\cite{Lewis2020RAG} measure retrieval accuracy but not claim provenance. Frameworks such as RAGAS~\cite{Es2023RAGAS}, ARES~\cite{SaadFalcon2023ARES}, and TruLens~\cite{TruEra2023TruLens} evaluate individual RAG pipeline components but do not address compound agentic systems---those where multiple agents coordinate over heterogeneous knowledge, invoke external tools, and produce cumulative outputs such as scientific code artifacts. As AI-assisted HPC code development matures, this evaluation gap becomes a reliability gap: there is no principled way to certify that an AI-generated scientific code is grounded in correct evidence, reproducibly derived, or accompanied by meaningful uncertainty estimates~\cite{Ji2023HallucinationSurvey}.
+The Genesis Mission's 18E challenge is precise: AI tools for scientific software must provide provenance tracking, reproducibility, interpretable performance diagnostics, and uncertainty quantification~\cite{EO14363}. The same Executive Order establishing the Genesis Mission explicitly mandates ``digitization, standardization, metadata, and \textit{provenance tracking}'' as foundational requirements of the American Science and Security Platform. Yet current AI systems generating scientific content cannot provide these guarantees. They may cite documents but cannot generate the fine-grained evidence chains that link specific output claims to the entities, relationships, and source passages that support them~\cite{Ji2023HallucinationSurvey}. Without such chains, AI-generated scientific content cannot be audited, reproduced, or trusted---and the gap between AI capability and AI accountability widens with every deployment.
 
-\begin{figure}[t]
-    \centering
-    \resizebox{\columnwidth}{!}{%
-    \begin{tikzpicture}[
-        node distance=0.4cm and 0.3cm,
-        dimbox/.style={rectangle, rounded corners=3pt, draw=gray!60, fill=gray!8, minimum width=2.8cm, minimum height=1.6cm, align=center, font=\scriptsize},
-        centerbox/.style={rectangle, rounded corners=4pt, draw=black!70, fill=blue!8, minimum width=2.6cm, minimum height=0.9cm, align=center, font=\scriptsize\bfseries},
-        sysbox/.style={rectangle, rounded corners=3pt, draw=gray!50, fill=orange!6, minimum width=2.0cm, minimum height=0.6cm, align=center, font=\tiny},
-        arr/.style={-{Stealth[length=4pt]}, thick, gray!60},
-        dimarr/.style={-{Stealth[length=4pt]}, thick, black!50},
-    ]
-        % Center
-        \node[centerbox] (svf) {SVF\\Evaluation\\Engine};
+The vision of this project is \textbf{provenance enforcement as a foundational architectural requirement, not a post-hoc annotation, for trustworthy AI in scientific research}. \textbf{PA-AKG (Provenance-Aware Agentic Knowledge Graph Systems)} builds provenance into the architecture at every layer. At the knowledge representation layer, a persistent research KG encodes scientific knowledge as first-class entities with structured semantic relations, providing an explicit substrate against which AI-generated claims can be verified. At the automation layer, \textit{span-level evidence alignment} links every extracted claim to the specific source passage that licenses it, and \textit{canonicalization auditing} resolves entity references to canonical KG nodes---enabling partial automated verification of whether cited evidence actually supports the derived claims. At the agentic orchestration layer, a provenance inheritance constraint requires every agent handoff to carry and extend the accumulated evidence chain, so provenance is never silently discarded as reasoning progresses through multi-step workflows.
 
-        % Four dimensions
-        \node[dimbox, above left=0.5cm and 0.4cm of svf] (gi) {\textbf{Grounding}\\\textbf{Integrity}\\[2pt]Retrieval relevance\\Evidence sufficiency\\Attribution accuracy};
-        \node[dimbox, above right=0.5cm and 0.4cm of svf] (pt) {\textbf{Provenance}\\\textbf{Traceability}\\[2pt]Span-level citation\\Audit trail depth\\Source verification};
-        \node[dimbox, below left=0.5cm and 0.4cm of svf] (rr) {\textbf{Reasoning}\\\textbf{Robustness}\\[2pt]Retrieval noise\\Contradictory sources\\Adversarial inputs};
-        \node[dimbox, below right=0.5cm and 0.4cm of svf] (cr) {\textbf{Coordination}\\\textbf{Reliability}\\[2pt]Agent consistency\\Failure recovery\\Cascade prevention};
+AI enhances trustworthy scientific research in three ways that address the 18E requirements directly. First, \textbf{provenance tracking}: span-level alignment and canonicalization auditing produce a \textit{provenance completeness score}---the fraction of generated claims linked to specific source passages---turning an aspirational requirement into a measurable metric that can be monitored, improved, and audited by human reviewers. Second, \textbf{reproducibility}: canonical KG nodes ensure entity resolution is consistent across sessions, reviewers, and model versions, enabling independent reproduction of AI-derived research results against a stable, versioned knowledge substrate. Third, \textbf{interpretable diagnostics}: an evaluation framework with four quantitative axes (E1--E4) operationalizes trustworthiness as concrete measurements---extraction reliability, canonicalization consistency, traceability completeness, and persistence under evolving literature---providing actionable diagnostic signals when AI output quality degrades rather than opaque pass/fail judgments.
 
-        % Systems under test (bottom)
-        \node[sysbox, below=1.6cm of svf, xshift=-1.8cm] (rag) {Vector RAG};
-        \node[sysbox, below=1.6cm of svf] (hybrid) {Hybrid Retrieval};
-        \node[sysbox, below=1.6cm of svf, xshift=1.8cm] (graph) {GraphRAG Agents};
-
-        % Arrows from dimensions to SVF
-        \draw[dimarr] (gi) -- (svf);
-        \draw[dimarr] (pt) -- (svf);
-        \draw[dimarr] (rr) -- (svf);
-        \draw[dimarr] (cr) -- (svf);
-
-        % Arrows from systems to SVF
-        \draw[arr] (rag) -- (svf);
-        \draw[arr] (hybrid) -- (svf);
-        \draw[arr] (graph) -- (svf);
-
-        % Labels
-        \node[font=\tiny\itshape, gray!70, below=0.05cm of rag, xshift=0.9cm] {Systems under evaluation};
-    \end{tikzpicture}
-    }%
-    \caption{\textbf{SVF Evaluation Framework.} The Structured Validation Framework evaluates knowledge-grounded agentic systems across four dimensions directly aligned with DOE 18E requirements. Systems under test are assessed via OpenTelemetry GenAI-instrumented execution traces~\cite{OpenTelemetryGenAI2024}.}
-    \label{fig:framework}
-    \vspace{-0.5em}
-\end{figure}
-
-This project proposes the \textbf{Structured Validation Framework (SVF)}, systematic evaluation infrastructure for knowledge-grounded and multi-agent AI systems operating on scientific software tasks. SVF evaluates along four complementary dimensions that directly operationalize 18E requirements (Figure~\ref{fig:framework}): (1)~\textbf{grounding integrity}---whether retrieved evidence is relevant, sufficient, and correctly attributed to generated claims (correctness proxy); (2)~\textbf{provenance traceability}---whether reasoning chains can be audited from output back to specific source spans (reproducibility and audit trail); (3)~\textbf{reasoning robustness}---whether systems degrade gracefully under retrieval noise, contradictory sources, and adversarial perturbations (diagnostic signal for failure modes); and (4)~\textbf{coordination reliability}---whether multi-agent systems maintain consistency under component failures and cascade error propagation (uncertainty quantification for system-level behavior). Unlike post-hoc benchmarks, SVF embeds validation as a first-class component of agent execution pipelines using OpenTelemetry GenAI semantic conventions~\cite{OpenTelemetryGenAI2024}, producing structured trace signals consumable by existing observability infrastructure.
-
-Our prior work motivates SVF directly. Brown \& Cusati~\cite{brown2025esem} demonstrate that generative AI tools propagate evidence inconsistently in software engineering contexts; Cusati \& Brown~\cite{cusati2026fose} show that research knowledge accumulates without structured tracking mechanisms. SVF builds the measurement infrastructure needed to make AI-assisted scientific software development systematically trustworthy---and to identify precisely \textit{where} and \textit{why} it fails.
-
-Expected outcomes include: the SVF evaluation toolkit with OpenTelemetry instrumentation; a benchmark suite for scientific software tasks targeting all four dimensions; empirical comparison of vector RAG, hybrid retrieval, and graph-augmented agent systems~\cite{Edge2024GraphRAG}; and deployment guidelines for embedding SVF in production AI-assisted HPC code development workflows.
+Our prior work establishes both the problem and the path forward~\cite{cusati2026fose, brown2025esem}. Cusati \& Brown demonstrate that current AI systems lack the infrastructure for persistent, traceable knowledge accumulation; Brown \& Cusati show empirically that AI tools propagate evidence inconsistently, motivating the need for architectural enforcement rather than post-hoc checking. The proposed system is designed to integrate with DOE's American Science and Security Platform, contributing provenance-enforcing AI infrastructure that can serve as a model for trustworthy AI assistance across the Genesis Mission's scientific domains.
 
 \subsubsection*{Research Plan}
 
 \paragraph{Introduction.}
-HPC scientific software development is central to DOE's scientific mission. The 18E challenge identifies the core problem: existing AI coding tools lack trustworthiness---they cannot provide numerical correctness guarantees, reproducibility of outputs, provenance of generated code back to authoritative knowledge, interpretable diagnostics when they fail, or principled uncertainty estimates. This is not merely an accuracy problem. A scientific code generated by an AI agent may produce plausible-looking results while silently violating physical conservation laws, introducing non-reproducible nondeterminism, or deriving logic from a hallucinated source~\cite{Ji2023HallucinationSurvey}. Without systematic evaluation infrastructure, practitioners cannot distinguish trustworthy AI assistance from fluent-but-wrong output.
+The 18E challenge identifies a structural problem with current AI for scientific software: capability has outpaced accountability. Agentic AI systems can now execute multi-step research workflows, synthesize literature, and generate scientific content at significant scale~\cite{Park2023GenerativeAgents}---but the infrastructure for verifying that their outputs are grounded in correct evidence, reproducible across sessions, and diagnosable when they fail has not kept pace. This is not a problem of model accuracy alone. It is a problem of architecture: current systems are not designed to produce outputs whose correctness can be systematically audited.
 
-Existing evaluation frameworks do not close this gap. RAGAS~\cite{Es2023RAGAS} and ARES~\cite{SaadFalcon2023ARES} evaluate retrieval quality and answer faithfulness for single-turn RAG pipelines. TruLens~\cite{TruEra2023TruLens} extends this to simple agent chains. None address compound multi-agent systems where agents coordinate over heterogeneous scientific knowledge, invoke domain simulation tools, and produce cumulative artifacts spanning code, data, and documentation. Self-RAG~\cite{Asai2024SelfRAG} introduces retrieval self-reflection but does not measure coordination failure or uncertainty propagation. SVF is designed to fill this gap: it provides the evaluation substrate that makes trustworthy AI-assisted scientific software development measurable, comparable, and improvable.
+The consequences are concrete. A researcher using an AI assistant to synthesize literature receives claims that may cite documents but cannot show \textit{which specific sentence or passage} in those documents supports each claim. A reviewer attempting to verify an AI-assisted analysis cannot trace the reasoning back to primary sources without re-reading every cited document manually. A system exhibiting systematic failure modes---consistently over-attributing, conflating related but distinct entities, or citing sources that do not actually support the derived conclusions---has no mechanism to surface these patterns before they propagate into scientific publications~\cite{Ji2023HallucinationSurvey}.
+
+Prior work surveying the agentic AI research landscape identifies three interdependent gaps that jointly produce this accountability deficit~\cite{cusati2026fose}: (a) no existing system tightly integrates persistent structured knowledge representation with autonomous multi-agent research workflows; (b) no validated evaluation framework addresses AI-generated research outputs at the granularity of individual claims and evidence chains; and (c) no generalizable mechanism enforces the traceable linkage between generated claims and specific supporting evidence as an architectural constraint. PA-AKG addresses all three simultaneously, treating them as a cycle that must be broken at the architectural level.
 
 \paragraph{Objectives.}
 \begin{enumerate}
-    \item Design and implement the SVF evaluation toolkit with formal operational specifications for all four dimensions.
-    \item Develop OpenTelemetry GenAI instrumentation for capturing structured execution traces from agent workflows.
-    \item Construct a benchmark suite of scientific software tasks targeting grounding integrity, provenance traceability, reasoning robustness, and coordination reliability.
-    \item Validate SVF against RAGAS, ARES, and TruLens to characterize the evaluation gap for compound agentic systems.
-    \item Demonstrate that SVF signals predict real-world trustworthiness failures in AI-generated scientific software.
+    \item Design and implement the PA-AKG three-layer architecture with provenance enforcement as an architectural invariant: knowledge representation, automation and extraction, agentic orchestration.
+    \item Implement span-level evidence alignment producing structured claim--evidence pairs with character-level source passage linkage, enabling partial automated verification of claim grounding.
+    \item Implement canonicalization auditing with normalization, validation, and deduplication pipelines, ensuring entity resolution is consistent across sessions and reviewers.
+    \item Develop the E1--E4 evaluation framework as a quantitative trustworthiness measurement system: extraction reliability (E1), canonicalization consistency (E2), traceability completeness (E3), persistence over time (E4).
+    \item Validate that E1--E4 metrics provide actionable diagnostic signals---that low scores on individual axes correspond to identifiable, correctable failure modes in AI-generated scientific content.
 \end{enumerate}
 
 \paragraph{Research Questions.}
 \begin{itemize}
-    \item \textbf{RQ1:} What evaluation dimensions are necessary and sufficient to assess trustworthiness of compound agentic AI systems producing scientific software artifacts?
-    \item \textbf{RQ2:} How do existing frameworks (RAGAS, ARES, TruLens) fail to capture reliability properties that SVF measures, and at what rate do these gaps produce false positive trustworthiness assessments?
-    \item \textbf{RQ3:} How do SVF metrics correlate with detected errors in AI-generated scientific code when validated against domain expert review and automated testing?
-    \item \textbf{RQ4:} How can validation loops be embedded within agent orchestration to detect and recover from grounding failures in real time?
+    \item \textbf{RQ1 (E1):} Does span-level evidence alignment produce claim--evidence links that match human expert annotations, and what fraction of AI-generated claims can be automatically linked to specific supporting passages?
+    \item \textbf{RQ2 (E2):} Does canonicalization auditing produce entity cluster assignments that agree with expert judgment (Cohen's $\kappa$), enabling reproducible cross-session entity resolution?
+    \item \textbf{RQ3 (E3):} What fraction of knowledge graph nodes maintain complete provenance chains as the research corpus scales, and how does this fraction degrade without architectural enforcement?
+    \item \textbf{RQ4:} Do E1--E4 metric scores predict identifiable failure modes in AI-generated scientific content, and do improvements in scores correspond to measurable improvements in output trustworthiness?
 \end{itemize}
 
 \paragraph{Detailed Research Plan.}
 
-\textit{Phase 1 (Months 1--3): Framework Design and Instrumentation.}
-We will formally specify each SVF dimension with quantitative metrics: grounding integrity as retrieval precision/recall against human-annotated relevance judgments; provenance traceability as audit trail depth (fraction of output tokens traceable to specific source spans); reasoning robustness as accuracy degradation under adversarial retrieval perturbations; and coordination reliability as cascade failure rate and mean time to recovery under fault injection. We will implement an OpenTelemetry GenAI instrumentation layer that intercepts agent execution at tool-call and LLM-inference boundaries, emitting structured spans aligned with emerging GenAI semantic conventions~\cite{OpenTelemetryGenAI2024}. We will survey the existing evaluation landscape (RAGAS, ARES, TruLens, and related frameworks) and systematically characterize which 18E properties each covers and which it leaves unmeasured, building the theoretical foundation for SVF's gap-filling contribution.
+\textit{Phase 1 (Months 1--3): Architecture Design and Knowledge Representation Layer.}
+We will design the research KG schema with first-class entity types (\textsc{Problem}, \textsc{Dataset}, \textsc{Method}, \textsc{Constraint}, \textsc{Evidence}) and typed semantic relations. Each entity node carries structured attributes including assumptions, constraints, metrics, and evidence spans anchored to source documents via character-level identifiers and quoted text. This architecture supports three 18E requirements directly: provenance tracking (every node carries its origin evidence spans), reproducibility (canonical node identifiers are stable across sessions), and interpretable diagnostics (entity relationships expose the structure of AI reasoning for human inspection). We will implement a hybrid symbolic--semantic design pairing a property graph store with a vector index, and establish baseline provenance completeness measurements on an initial SE research corpus to characterize the gap before and after PA-AKG enforcement.
 
-\textit{Phase 2 (Months 4--6): Benchmark Construction and Baseline Comparison.}
-We will construct a fault injection benchmark for multi-agent scientific software systems, implementing three fault types: (1)~\textit{tool drop}---silently discard tool responses to measure recovery behavior; (2)~\textit{retrieval corruption}---inject incorrect or contradictory documents into retrieved context; and (3)~\textit{response delay}---introduce latency to surface timeout and cascade failure modes. We will construct an adversarial retrieval test set specifically targeting reasoning robustness in scientific code generation contexts, where adversarial documents contain physically plausible but incorrect numerical values. We will then run baseline comparison: apply RAGAS, ARES, and TruLens to the same benchmark tasks and compare coverage, false positive rate, and actionable diagnostic signal against SVF. We predict SVF will detect trustworthiness failures invisible to component-level metrics, particularly in the provenance traceability and coordination reliability dimensions.
+\textit{Phase 2 (Months 4--6): Automation Layer and Provenance Enforcement.}
+We will implement the extraction pipeline using structured prompting to produce claim--evidence pairs, followed by span-level alignment assigning character-level source passage references to each extracted claim. Canonicalization auditing normalizes entity mentions through embedding-based clustering, validates cluster assignments against KG-encoded entity constraints, and deduplicates to canonical nodes. The agentic orchestration layer enforces provenance inheritance: each agent receives a provenance context object carrying accumulated evidence chain references, and may only produce outputs that extend---not discard---the inherited chain. Synthesis agents generate hypothesis artifacts with structured provenance metadata; evaluation agents execute reproducible workflows and write results back to the KG as versioned evidence nodes. All agent logs, extraction prompts, KG snapshots, and provenance chains are archived as reproducibility artifacts, extending the reporting protocol of Baltes et al.~\cite{Baltes2025LLM} to the specific case of multi-agent research assistance.
 
-\textit{Phase 3 (Months 7--9): Evaluation, Generalization, and Deployment Guidelines.}
-We will apply SVF to evaluate three AI system architectures on scientific software tasks: vector-only RAG, hybrid dense+sparse retrieval, and graph-augmented agentic systems~\cite{Edge2024GraphRAG}. For each system, we will correlate SVF dimension scores with ground-truth error rates identified through expert review and automated test suites. Longitudinal evaluation will test whether SVF predicts downstream code correctness and reproducibility across software evolution cycles. We will develop deployment guidelines for embedding SVF in production AI-assisted HPC code development pipelines, including minimal instrumentation overhead targets and threshold calibration procedures. All SVF toolkit components, benchmarks, and results will be released as open-source artifacts.
+\textit{Phase 3 (Months 7--9): Evaluation Framework and Diagnostic Validation.}
+We will evaluate PA-AKG along the E1--E4 axes. \textbf{E1} (extraction reliability): precision and recall of span-level claim--evidence links against 500 human-annotated gold pairs from the SE research corpus. \textbf{E2} (canonicalization consistency): Cohen's $\kappa$ between PA-AKG entity cluster assignments and expert-labeled canonical clusters, establishing inter-rater reliability. \textbf{E3} (traceability completeness): percentage of KG nodes maintaining complete provenance chains as a function of corpus size, compared against a standard RAG baseline without structured provenance. \textbf{E4} (persistence): longitudinal stability score across six corpus update cycles, measuring whether provenance completeness degrades as new evidence enters the system. A diagnostic analysis will characterize failure modes associated with low E-axis scores---identifying whether degradation corresponds to extraction errors, canonicalization failures, or agent handoff violations---to validate that the metrics are actionable.
 
 \paragraph{Team Roles.}
-\textbf{PI Chris Brown} leads framework design, evaluation methodology, and SE-domain benchmark task construction. \textbf{Co-PI Xuan Wang} leads ML systems instrumentation, multi-agent coordination evaluation design, and adversarial robustness benchmarking. \textbf{Co-PI Scott T. Steinmetz} (Sandia National Labs) provides HPC scientific software domain expertise and validates SVF signals against DOE-relevant code correctness benchmarks. \textbf{GRA Jason Cusati} implements the SVF toolkit, constructs benchmark suites, and executes experimental evaluation and baseline comparisons.
+\textbf{PI Chris Brown} leads framework design, evaluation methodology (E1--E4), and SE-domain corpus curation. \textbf{Co-PI Xuan Wang} leads the extraction pipeline, embedding-based canonicalization, and multi-agent orchestration design. \textbf{Co-PI Scott T. Steinmetz} (Sandia National Labs) leads provenance infrastructure design, formal verification of evidence chains, and validation against DOE scientific software corpora. \textbf{GRA Jason Cusati} implements PA-AKG end-to-end, annotates the evaluation corpus, and executes all experimental comparisons.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
