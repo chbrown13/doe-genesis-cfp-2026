@@ -1,0 +1,90 @@
+% ============================================================
+% Amazon-VT CFP 2026-2027 — 1-Page Abstract v3
+% Provenance-Aware Agentic Knowledge Graph Systems
+% Format: proposalnsf
+% ============================================================
+
+\documentclass{files/proposalnsf}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{cite}
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=1.5em, topsep=0.2em}
+
+\input{files/code_world}
+
+\begin{document}
+
+\begin{center}
+    \large{\proposalNineteen} \\ \vspace{0.5pt}
+\footnotesize{PI: Chris Brown, Computer Science, Virginia Tech} \\ 
+\footnotesize{Co-PI: Xuan Wang, Computer Science, Virginia Tech} \\
+\footnotesize{Co-PI: Scott T. Steinmetz, Sandia National Labs}
+\end{center}
+
+\small{\noindent\textbf{Focus Area:} 19 -- AI for Scientific Reasoning} \hfill \\
+\small{\textbf{Topic:} B. Hypothesis Generation from Multi-Modal Data}
+
+\subsubsection*{Project Summary/Abstract}
+
+Knowledge-grounded and agentic AI systems are rapidly deployed in production settings, yet evaluation infrastructure has not kept pace. Standard benchmarks assess answer accuracy or safety robustness in isolation, but fail to measure the properties that determine reliability in compound AI systems: \textit{Is the retrieved evidence actually relevant? Does the cited source support the claim? Can the reasoning chain be traced and audited?} Recent work reveals that even retrieval-augmented generation (RAG) systems with valid-looking citations can produce references that do not fully support all statements~\cite{Ji2023HallucinationSurvey}, and that retrieval quality varies dramatically across query types, with naive top-$k$ retrieval degrading factuality when results are noisy or contradictory~\cite{Yan2024CRAG}. As systems move from single-model inference to multi-agent orchestration with heterogeneous retrieval~\cite{AWSBedrockHybridSearch2024,Edge2024GraphRAG}, the evaluation gap widens: there are no established benchmarks for measuring grounding integrity, provenance traceability, or coordination reliability across agent workflows.
+
+\begin{figure}[t]
+    \centering
+    \resizebox{\columnwidth}{!}{%
+    \begin{tikzpicture}[
+        node distance=0.4cm and 0.3cm,
+        dimbox/.style={rectangle, rounded corners=3pt, draw=gray!60, fill=gray!8, minimum width=2.8cm, minimum height=1.6cm, align=center, font=\scriptsize},
+        centerbox/.style={rectangle, rounded corners=4pt, draw=black!70, fill=blue!8, minimum width=2.6cm, minimum height=0.9cm, align=center, font=\scriptsize\bfseries},
+        sysbox/.style={rectangle, rounded corners=3pt, draw=gray!50, fill=orange!6, minimum width=2.0cm, minimum height=0.6cm, align=center, font=\tiny},
+        arr/.style={-{Stealth[length=4pt]}, thick, gray!60},
+        dimarr/.style={-{Stealth[length=4pt]}, thick, black!50},
+    ]
+        % Center
+        \node[centerbox] (svf) {SVF\\Evaluation\\Engine};
+
+        % Four dimensions
+        \node[dimbox, above left=0.5cm and 0.4cm of svf] (gi) {\textbf{Grounding}\\\textbf{Integrity}\\[2pt]Retrieval relevance\\Evidence sufficiency\\Attribution accuracy};
+        \node[dimbox, above right=0.5cm and 0.4cm of svf] (pt) {\textbf{Provenance}\\\textbf{Traceability}\\[2pt]Span-level citation\\Audit trail depth\\Source verification};
+        \node[dimbox, below left=0.5cm and 0.4cm of svf] (rr) {\textbf{Reasoning}\\\textbf{Robustness}\\[2pt]Retrieval noise\\Contradictory sources\\Adversarial inputs};
+        \node[dimbox, below right=0.5cm and 0.4cm of svf] (cr) {\textbf{Coordination}\\\textbf{Reliability}\\[2pt]Agent consistency\\Failure recovery\\Cascade prevention};
+
+        % Systems under test (bottom)
+        \node[sysbox, below=1.6cm of svf, xshift=-1.8cm] (rag) {Vector RAG};
+        \node[sysbox, below=1.6cm of svf] (hybrid) {Hybrid Retrieval};
+        \node[sysbox, below=1.6cm of svf, xshift=1.8cm] (graph) {GraphRAG Agents};
+
+        % Arrows from dimensions to SVF
+        \draw[dimarr] (gi) -- (svf);
+        \draw[dimarr] (pt) -- (svf);
+        \draw[dimarr] (rr) -- (svf);
+        \draw[dimarr] (cr) -- (svf);
+
+        % Arrows from systems to SVF
+        \draw[arr] (rag) -- (svf);
+        \draw[arr] (hybrid) -- (svf);
+        \draw[arr] (graph) -- (svf);
+
+        % Labels
+        \node[font=\tiny\itshape, gray!70, below=0.05cm of rag, xshift=0.9cm] {Systems under evaluation};
+    \end{tikzpicture}
+    }%
+    \caption{\textbf{SVF Evaluation Framework.} The Structured Validation Framework evaluates knowledge-grounded agent systems across four dimensions. Systems under test (vector RAG, hybrid retrieval, graph-augmented agents) are assessed for grounding integrity, provenance traceability, reasoning robustness, and coordination reliability. Evaluation signals align with OpenTelemetry GenAI conventions~\cite{OpenTelemetryGenAI2024}.}
+    \label{fig:framework}
+    \vspace{-0.5em}
+\end{figure}
+
+This project proposes a \textbf{Structured Validation Framework (SVF)} that provides systematic evaluation infrastructure for knowledge-grounded and multi-agent AI systems. Unlike point-accuracy benchmarks, SVF evaluates along four complementary dimensions: (1)~\textbf{grounding integrity}---whether retrieved evidence is relevant, sufficient, and correctly attributed to claims; (2)~\textbf{provenance traceability}---whether reasoning chains can be audited from output back to specific source spans; (3)~\textbf{reasoning robustness}---whether systems degrade gracefully under retrieval noise, contradictory sources, and adversarial perturbations; and (4)~\textbf{coordination reliability}---whether multi-agent systems maintain consistency under component failures, measured through fault injection, cascading error propagation analysis, and recovery latency. Unlike post-hoc benchmarks, SVF embeds validation as a first-class component of agent execution pipelines, producing structured evaluation signals aligned with emerging observability standards~\cite{OpenTelemetryGenAI2024}.
+
+This research investigates: (1)~what evaluation dimensions define reliable knowledge-grounded agent behavior beyond accuracy; (2)~how structured grounding mechanisms (knowledge graphs, hybrid retrieval) impact measurable robustness compared to vector-only RAG~\cite{Lewis2020RAG}; (3)~how validation loops can be embedded within agent orchestration to detect and recover from grounding failures in real time~\cite{Asai2024SelfRAG}; and (4)~how multi-agent coordination failures propagate and can be systematically benchmarked.
+
+We will develop the SVF evaluation toolkit with benchmark tasks targeting retrieval-grounded question answering, multi-step agent workflows, and multi-agent coordination scenarios---each assessed across all four dimensions. Experiments compare vector-only RAG, hybrid retrieval, and graph-augmented~\cite{Edge2024GraphRAG} agent systems, including workflows built on production agent platforms~\cite{AWSBedrockHybridSearch2024}. Expected outcomes include a systematic evaluation framework addressing critical gaps in knowledge-grounded agent assessment, reproducible benchmark suites, and metrics for \textbf{grounding integrity, provenance traceability, and multi-agent reliability} that advance evaluation standards for responsible deployment of compound AI systems.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

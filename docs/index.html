@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon-VT CFP 2026-2027</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        :root {
+            --amazon-orange: #FF9900;
+            --vt-maroon: #861F41;
+            --vt-orange: #E5751F;
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --border: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--vt-maroon), #4a1128);
+            border-bottom: 3px solid var(--amazon-orange);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .subtitle {
+            color: var(--amazon-orange);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .header .partners {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .status-banner {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--amazon-orange);
+            border-radius: 6px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .status-banner .phase {
+            color: var(--amazon-orange);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-banner .detail {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            transition: border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--amazon-orange);
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .card .badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-pending {
+            background: rgba(255,153,0,0.15);
+            color: var(--amazon-orange);
+            border: 1px solid rgba(255,153,0,0.3);
+        }
+
+        .badge-complete {
+            background: rgba(0,200,83,0.15);
+            color: #00c853;
+            border: 1px solid rgba(0,200,83,0.3);
+        }
+
+        .badge-active {
+            background: rgba(33,150,243,0.15);
+            color: #2196f3;
+            border: 1px solid rgba(33,150,243,0.3);
+        }
+
+        .downloads {
+            list-style: none;
+        }
+
+        .downloads li {
+            margin-bottom: 0.5rem;
+        }
+
+        .downloads a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--amazon-orange);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .downloads a:hover {
+            border-color: var(--amazon-orange);
+            background: rgba(255,153,0,0.05);
+        }
+
+        .downloads .dl-icon {
+            font-size: 1.1rem;
+        }
+
+        .downloads .dl-size {
+            margin-left: auto;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.55rem;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+            border: 2px solid var(--bg-dark);
+        }
+
+        .timeline-item.active::before {
+            background: var(--amazon-orange);
+            box-shadow: 0 0 6px rgba(255,153,0,0.4);
+        }
+
+        .timeline-item.done::before {
+            background: #00c853;
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .timeline-label {
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+        }
+
+        .work-plan {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .work-plan th {
+            text-align: left;
+            padding: 0.6rem 0.75rem;
+            border-bottom: 2px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .work-plan td {
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .work-plan tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .work-plan .day-label {
+            color: var(--amazon-orange);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .work-plan .focus-text {
+            font-weight: 500;
+        }
+
+        .work-plan .hours {
+            color: var(--text-secondary);
+            white-space: nowrap;
+            text-align: right;
+        }
+
+        .work-plan .deadline-row td {
+            background: rgba(255,153,0,0.08);
+            font-weight: 600;
+        }
+
+        .critical-path {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            background: rgba(255,153,0,0.08);
+            border: 1px solid rgba(255,153,0,0.2);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--amazon-orange);
+        }
+
+        /* Daily Task Tracker */
+        .day-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .day-block.today {
+            border-color: var(--amazon-orange);
+            box-shadow: 0 0 8px rgba(255,153,0,0.15);
+        }
+
+        .day-block.past .day-header {
+            opacity: 0.6;
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .day-header:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .day-header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .day-name {
+            font-weight: 700;
+            color: var(--amazon-orange);
+            min-width: 2.5rem;
+        }
+
+        .day-date {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .day-focus {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .day-header-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .day-progress {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar {
+            width: 60px;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 2px;
+            background: var(--amazon-orange);
+            transition: width 0.3s;
+        }
+
+        .progress-fill.complete {
+            background: #00c853;
+        }
+
+        .day-tasks {
+            padding: 0 1rem 0.75rem;
+            display: none;
+        }
+
+        .day-block.open .day-tasks {
+            display: block;
+        }
+
+        .day-block.today .day-tasks {
+            display: block;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            padding: 0.35rem 0;
+            font-size: 0.85rem;
+        }
+
+        .task-check {
+            color: var(--border);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .task-check.done {
+            color: #00c853;
+        }
+
+        .task-text {
+            color: var(--text-secondary);
+        }
+
+        .task-text.done {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .day-milestone {
+            margin-top: 0.4rem;
+            padding: 0.4rem 0.6rem;
+            background: rgba(255,153,0,0.06);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--amazon-orange);
+            font-weight: 500;
+        }
+
+        .today-label {
+            font-size: 0.65rem;
+            padding: 0.1rem 0.4rem;
+            background: var(--amazon-orange);
+            color: #000;
+            border-radius: 3px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .deadline-label {
+            font-size: 0.65rem;
+            padding: 0.1rem 0.4rem;
+            background: #c62828;
+            color: #fff;
+            border-radius: 3px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .chevron {
+            color: var(--text-secondary);
+            transition: transform 0.2s;
+            font-size: 0.8rem;
+        }
+
+        .day-block.open .chevron {
+            transform: rotate(90deg);
+        }
+
+        /* Proposal detail blocks */
+        .proposal-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1.25rem;
+            overflow: hidden;
+        }
+
+        .proposal-block.recommended {
+            border-color: var(--amazon-orange);
+            box-shadow: 0 0 12px rgba(255,153,0,0.1);
+        }
+
+        .proposal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .proposal-header:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .proposal-header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex: 1;
+        }
+
+        .proposal-rank {
+            font-size: 1.2rem;
+            min-width: 2rem;
+        }
+
+        .proposal-title-group {
+            flex: 1;
+        }
+
+        .proposal-title {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .proposal-categories {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.15rem;
+        }
+
+        .proposal-body {
+            padding: 0 1.25rem 1.25rem;
+            display: none;
+        }
+
+        .proposal-block.open .proposal-body {
+            display: block;
+        }
+
+        .proposal-block.open .chevron {
+            transform: rotate(90deg);
+        }
+
+        .proposal-section-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--amazon-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin: 1rem 0 0.4rem;
+        }
+
+        .proposal-section-title:first-child {
+            margin-top: 0;
+        }
+
+        .proposal-body p, .proposal-body li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        .proposal-body ul, .proposal-body ol {
+            padding-left: 1.25rem;
+            margin: 0.25rem 0;
+        }
+
+        .proposal-body li {
+            margin-bottom: 0.2rem;
+        }
+
+        .strategy-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .strategy-box h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .strategy-box p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .alignment-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin: 0.5rem 0;
+        }
+
+        .alignment-table th {
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            border-bottom: 2px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .alignment-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .alignment-table tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .nav-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 0.6rem 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-bar a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.82rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-bar a:hover { color: var(--amazon-orange); background: rgba(255,153,0,0.08); }
+        .nav-bar a.active { color: var(--amazon-orange); background: rgba(255,153,0,0.12); font-weight: 600; }
+
+        .fit-fire { color: #ff6b35; font-weight: 600; }
+        .fit-strong { color: var(--amazon-orange); font-weight: 500; }
+        .fit-moderate { color: var(--text-secondary); }
+
+        .action-needed {
+            margin-top: 1.5rem;
+            padding: 1rem 1.25rem;
+            background: rgba(255,153,0,0.08);
+            border: 1px solid rgba(255,153,0,0.25);
+            border-radius: 8px;
+        }
+
+        .action-needed h3 {
+            color: var(--amazon-orange);
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .action-needed p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Amazon-VT CFP 2026-2027</h1>
+        <div class="subtitle">AI Research Proposal</div>
+        <div class="partners">Amazon-Virginia Tech Initiative</div>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="index.html" class="active">Dashboard</a>
+        <a href="proposal-pakg.html">PA-AKG</a>
+        <a href="proposal-akge.html">AKG-E</a>
+        <a href="proposal-svf.html">SVF</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="devils-advocate.html">Devil's Advocate</a>
+        <a href="topic-analysis.html">Topic Analysis</a>
+        <a href="deep-research-report.html">Deep Research</a>
+        <a href="deep-research-akge.html">AKG-E Research</a>
+        <a href="svf-deep-research.html">SVF Deep Research</a>
+    </nav>
+
+    <div class="container">
+        <div class="status-banner">
+            <div class="phase">Current Phase: Polish All 3 Abstracts &rarr; Review &rarr; Select &rarr; Submit</div>
+            <div class="detail">Polishing all three proposals. Each will go through a reviewer process before final selection. Due March 17, 2026.</div>
+        </div>
+
+        <!-- Downloads link -->
+        <div class="section">
+            <p style="font-size:0.9rem;"><a href="downloads.html" style="color:var(--amazon-orange); font-weight:500;">All Downloads &amp; Resources &rarr;</a> &nbsp; Abstract PDFs, analysis pages, CFP instructions, strategy notes</p>
+        </div>
+
+        <!-- Proposals: Ranked Cards -->
+        <div class="section">
+            <h2>Proposals</h2>
+            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1rem;">All three proposals will be polished to submission quality, then reviewed before final selection.</p>
+
+            <a href="proposal-pakg.html" style="text-decoration:none; display:block;">
+                <div class="proposal-block recommended" style="cursor:pointer;">
+                    <div class="proposal-header">
+                        <div class="proposal-header-left">
+                            <span class="proposal-rank" style="font-size:1.4rem; color:#4caf50;">#1</span>
+                            <div class="proposal-title-group">
+                                <div class="proposal-title">PA-AKG &mdash; Provenance-Aware Agentic Knowledge Graphs</div>
+                                <div class="proposal-categories">Knowledge Grounding + Agentic AI &middot; Highest ranked &middot; Most feasible</div>
+                            </div>
+                        </div>
+                        <span class="badge badge-active">Polishing</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="proposal-akge.html" style="text-decoration:none; display:block;">
+                <div class="proposal-block" style="cursor:pointer; margin-top:0.75rem;">
+                    <div class="proposal-header">
+                        <div class="proposal-header-left">
+                            <span class="proposal-rank" style="font-size:1.4rem; color:#42a5f5;">#2</span>
+                            <div class="proposal-title-group">
+                                <div class="proposal-title">AKG-E &mdash; Agentic Knowledge Graphs for Engineering</div>
+                                <div class="proposal-categories">AI for Science &amp; Engineering + Agentic AI &middot; Most distinctive &middot; Advisor-aligned</div>
+                            </div>
+                        </div>
+                        <span class="badge badge-active">Polishing</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="proposal-svf.html" style="text-decoration:none; display:block;">
+                <div class="proposal-block" style="cursor:pointer; margin-top:0.75rem;">
+                    <div class="proposal-header">
+                        <div class="proposal-header-left">
+                            <span class="proposal-rank" style="font-size:1.4rem; color:#ffc107;">#3</span>
+                            <div class="proposal-title-group">
+                                <div class="proposal-title">SVF &mdash; Structured Validation Framework</div>
+                                <div class="proposal-categories">Agentic Evaluation + Responsible AI &middot; Evaluation-focused</div>
+                            </div>
+                        </div>
+                        <span class="badge badge-active">Polishing</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Submission Strategy Link -->
+        <div class="section">
+            <div class="strategy-box">
+                <h3>Workflow: Polish &rarr; Review &rarr; Select &rarr; Submit</h3>
+                <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:0.75rem;">All three proposals will be polished to submission-ready quality. Each goes through a reviewer process for feedback. Final selection based on review outcomes.</p>
+                <table class="alignment-table">
+                    <tr>
+                        <th>Rank</th>
+                        <th>Proposal</th>
+                        <th>CFP Topics</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td class="fit-fire">#1</td>
+                        <td>PA-AKG (v2)</td>
+                        <td>Knowledge Grounding + Agentic AI</td>
+                        <td>Polishing</td>
+                    </tr>
+                    <tr>
+                        <td class="fit-strong">#2</td>
+                        <td>AKG-E (v4)</td>
+                        <td>AI for Science &amp; Engineering + Agentic AI</td>
+                        <td>Polishing</td>
+                    </tr>
+                    <tr>
+                        <td class="fit-moderate">#3</td>
+                        <td>SVF (v3)</td>
+                        <td>Agentic Evaluation + Responsible AI</td>
+                        <td>Polishing</td>
+                    </tr>
+                </table>
+                <p style="margin-top:0.75rem; font-size:0.85rem;"><a href="devils-advocate.html" style="color:var(--amazon-orange);">View devil's advocate analysis &rarr;</a> &nbsp;|&nbsp; <a href="submission-strategy.html" style="color:var(--text-secondary);">Original strategy analysis</a></p>
+            </div>
+        </div>
+
+        <!-- CFP Alignment Matrix -->
+        <div class="section" id="alignment">
+            <h2>CFP Alignment Matrix</h2>
+            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:0.75rem;">How your research maps to each CFP topic area.</p>
+            <table class="alignment-table">
+                <tr>
+                    <th>CFP Topic</th>
+                    <th>Fit</th>
+                    <th>Key Overlaps</th>
+                </tr>
+                <tr>
+                    <td>Knowledge Grounding</td>
+                    <td class="fit-fire">Extremely Strong</td>
+                    <td>Agentic KG-RAG, multi-source fusion, provenance chains, structured retrieval</td>
+                </tr>
+                <tr>
+                    <td>Agentic AI</td>
+                    <td class="fit-fire">Extremely Strong</td>
+                    <td>Multi-agent orchestration, research agents, validation loops, agent governance</td>
+                </tr>
+                <tr>
+                    <td>AI for Science &amp; Engineering</td>
+                    <td class="fit-fire">Very Strong</td>
+                    <td>Construction AI, digital twins, PDE simulation, physics-grounded reasoning</td>
+                </tr>
+                <tr>
+                    <td>Agentic Evaluation</td>
+                    <td class="fit-strong">Strong</td>
+                    <td>Validation frameworks, provenance-backed evaluation, agent reliability benchmarks</td>
+                </tr>
+                <tr>
+                    <td>Reasoning</td>
+                    <td class="fit-strong">Strong</td>
+                    <td>Engineering reasoning, temporal/spatial, scientific graph constraints, planning</td>
+                </tr>
+                <tr>
+                    <td>Efficient GenAI &amp; Inference</td>
+                    <td class="fit-moderate">Moderate&ndash;Strong</td>
+                    <td>KG pruning reduces token overhead, structured retrieval efficiency</td>
+                </tr>
+                <tr>
+                    <td>Responsible GenAI</td>
+                    <td class="fit-moderate">Moderate</td>
+                    <td>Provenance + evidence chains, human-in-the-loop validation</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Timeline Section -->
+        <div class="section">
+            <h2>Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item done">
+                    <div class="timeline-date">Feb 24, 2026</div>
+                    <div class="timeline-label">CFP opens</div>
+                </div>
+                <div class="timeline-item active">
+                    <div class="timeline-date">Mar 17, 2026</div>
+                    <div class="timeline-label"><strong>Abstracts due (2 submissions)</strong></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 6, 2026</div>
+                    <div class="timeline-label">Full proposal invitations</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 13-24, 2026</div>
+                    <div class="timeline-label">Amazon feedback sessions</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 27, 2026</div>
+                    <div class="timeline-label">Full proposal due</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Jun 30, 2026</div>
+                    <div class="timeline-label">Acceptance notification</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Aug/Sep 2026</div>
+                    <div class="timeline-label">Projects begin</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Task Tracker -->
+        <div class="section">
+            <h2>Daily Task Tracker (Mar 7 &ndash; Mar 17)</h2>
+
+            <div class="day-block" data-date="2026-03-07" onclick="toggleDay(this)">
+                <div class="day-header">
+                    <div class="day-header-left">
+                        <span class="day-name">SAT</span>
+                        <span class="day-date">Mar 7</span>
+                        <span class="day-focus">Topic Lock-Down</span>
+                    </div>
+                    <div class="day-header-right">
+                        <span class="day-progress">3/3</span>
+                        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+                        <span class="chevron">&#9654;</span>
+                    </div>
+                </div>
+                <div class="day-tasks">
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Deep-dive on top candidate(s): literature scan, novelty gap check</span></div>
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Confirm primary + secondary CFP topic categories</span></div>
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Finalize research direction &mdash; PA-AKG selected</span></div>
+                    <div class="day-milestone">Milestone: Topic selected and committed &#10003;</div>
+                </div>
+            </div>
+
+            <div class="day-block" data-date="2026-03-08" onclick="toggleDay(this)">
+                <div class="day-header">
+                    <div class="day-header-left">
+                        <span class="day-name">SUN</span>
+                        <span class="day-date">Mar 8</span>
+                        <span class="day-focus">Abstract First Draft (v1)</span>
+                    </div>
+                    <div class="day-header-right">
+                        <span class="day-progress">3/3</span>
+                        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+                        <span class="chevron">&#9654;</span>
+                    </div>
+                </div>
+                <div class="day-tasks">
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Write 1-page abstract draft (problem, approach, contributions, impact)</span></div>
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Identify key references (excluded from page count)</span></div>
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Map every paragraph to a CFP topic requirement</span></div>
+                    <div class="day-milestone">Milestone: Abstract v1 complete &#10003;</div>
+                </div>
+            </div>
+
+            <div class="day-block" data-date="2026-03-09" onclick="toggleDay(this)">
+                <div class="day-header">
+                    <div class="day-header-left">
+                        <span class="day-name">MON</span>
+                        <span class="day-date">Mar 9</span>
+                        <span class="day-focus">Deep Research &amp; SOA Review</span>
+                    </div>
+                    <div class="day-header-right">
+                        <span class="day-progress">3/3</span>
+                        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+                        <span class="chevron">&#9654;</span>
+                    </div>
+                </div>
+                <div class="day-tasks">
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Deep research on RAG &amp; Graph Retrieval state of the art (2023-2026)</span></div>
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Identify novelty gaps: provenance-aware KG grounding + validation loops</span></div>
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Curate 2024-2026 citations (GraphRAG, CRAG, AWS, OpenTelemetry)</span></div>
+                    <div class="day-milestone">Milestone: SOA landscape mapped &#10003;</div>
+                </div>
+            </div>
+
+            <div class="day-block" data-date="2026-03-10" onclick="toggleDay(this)">
+                <div class="day-header">
+                    <div class="day-header-left">
+                        <span class="day-name">TUE</span>
+                        <span class="day-date">Mar 10</span>
+                        <span class="day-focus">Abstract Second Draft (v2)</span>
+                    </div>
+                    <div class="day-header-right">
+                        <span class="day-progress">3/3</span>
+                        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+                        <span class="chevron">&#9654;</span>
+                    </div>
+                </div>
+                <div class="day-tasks">
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Revise abstract with SOA-grounded framing (hybrid retrieval as mainstream)</span></div>
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Integrate 2024-2026 citations into abstract_v2</span></div>
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Publish deep research report and CFP on dashboard</span></div>
+                    <div class="day-milestone">Milestone: Abstract v2 complete &#10003;</div>
+                </div>
+            </div>
+
+            <div class="day-block" data-date="2026-03-11" onclick="toggleDay(this)">
+                <div class="day-header">
+                    <div class="day-header-left">
+                        <span class="day-name">WED</span>
+                        <span class="day-date">Mar 11</span>
+                        <span class="day-focus">Expand to 3 Proposals</span>
+                    </div>
+                    <div class="day-header-right">
+                        <span class="day-progress">4/4</span>
+                        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+                        <span class="chevron">&#9654;</span>
+                    </div>
+                </div>
+                <div class="day-tasks">
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Deep research on CFP topics &mdash; due diligence across all 5 candidate categories</span></div>
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Create abstract v3 (SVF) &mdash; Evaluation Framework, new TikZ diagram</span></div>
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Create abstract v4 (AKG-E) &mdash; Engineering Framework with AlphaFold3/GNoME anchoring</span></div>
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Convert all abstracts to IEEE 2-column format</span></div>
+                    <div class="day-milestone">Milestone: Three proposal directions drafted &#10003;</div>
+                </div>
+            </div>
+
+            <div class="day-block" data-date="2026-03-12" onclick="toggleDay(this)">
+                <div class="day-header">
+                    <div class="day-header-left">
+                        <span class="day-name">THU</span>
+                        <span class="day-date">Mar 12</span>
+                        <span class="day-focus">Publish &amp; Fix CI</span>
+                    </div>
+                    <div class="day-header-right">
+                        <span class="day-progress">3/3</span>
+                        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+                        <span class="chevron">&#9654;</span>
+                    </div>
+                </div>
+                <div class="day-tasks">
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Revise v4 with deep-research-topics insights (measurable targets, reviewer risk)</span></div>
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Fix CI pipeline &mdash; pdflatex exit codes + poppler-utils</span></div>
+                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Publish all PDFs to GitHub Pages dashboard</span></div>
+                    <div class="day-milestone">Milestone: All 4 abstracts live on dashboard &#10003;</div>
+                </div>
+            </div>
+
+            <div class="day-block" data-date="2026-03-14" onclick="toggleDay(this)">
+                <div class="day-header">
+                    <div class="day-header-left">
+                        <span class="day-name">SAT</span>
+                        <span class="day-date">Mar 14</span>
+                        <span class="day-focus">Strategy Pivot &amp; Analysis</span>
+                    </div>
+                    <div class="day-header-right">
+                        <span class="day-progress">4/4</span>
+                        <div class="progress-bar"><div class="progress-fill complete" style="width:100%"></div></div>
+                        <span class="chevron">&#9654;</span>
+                    </div>
+                </div>
+                <div class="day-tasks">
+                    <div class="task-item done"><span class="task-check done">&#9745;</span><span class="task-text done">Analyze best-fit proposals for Amazon CFP vs. other initiatives</span></div>
+                    <div class="task-item done"><span class="task-check done">&#9745;</span><span class="task-text done">Devil's advocate analysis &mdash; stress-test SVF + AKG-E strategy</span></div>
+                    <div class="task-item done"><span class="task-check done">&#9745;</span><span class="task-text done">Strategy pivot: PA-AKG + AKG-E to Amazon, SVF to other venues</span></div>
+                    <div class="task-item done"><span class="task-check done">&#9745;</span><span class="task-text done">Update dashboard, publish analysis pages, create strategy notes</span></div>
+                    <div class="day-milestone">Milestone: Strategy revised to PA-AKG + AKG-E &#10003;</div>
+                </div>
+            </div>
+
+            <div class="day-block" data-date="2026-03-15" onclick="toggleDay(this)">
+                <div class="day-header">
+                    <div class="day-header-left">
+                        <span class="day-name">SUN</span>
+                        <span class="day-date">Mar 15</span>
+                        <span class="day-focus">Polish All 3 Abstracts</span>
+                    </div>
+                    <div class="day-header-right">
+                        <span class="day-progress">0/4</span>
+                        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+                        <span class="chevron">&#9654;</span>
+                    </div>
+                </div>
+                <div class="day-tasks">
+                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Polish PA-AKG (v2) &mdash; tighten prose, sharpen novelty claims</span></div>
+                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Polish AKG-E (v4) &mdash; consider VVUQ reframing, tighten prose</span></div>
+                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Polish SVF (v3) &mdash; address identified weaknesses, tighten prose</span></div>
+                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Verify all three abstracts fit 1 page excluding references</span></div>
+                    <div class="day-milestone">Milestone: All 3 abstracts polished and submission-ready</div>
+                </div>
+            </div>
+
+            <div class="day-block" data-date="2026-03-16" onclick="toggleDay(this)">
+                <div class="day-header">
+                    <div class="day-header-left">
+                        <span class="day-name">MON</span>
+                        <span class="day-date">Mar 16</span>
+                        <span class="day-focus">Reviewer Process &amp; Final Selection</span>
+                    </div>
+                    <div class="day-header-right">
+                        <span class="day-progress">0/5</span>
+                        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+                        <span class="chevron">&#9654;</span>
+                    </div>
+                </div>
+                <div class="day-tasks">
+                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Run reviewer process on all 3 polished abstracts</span></div>
+                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Incorporate reviewer feedback into each abstract</span></div>
+                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Final round: decide which 2 to submit to Amazon</span></div>
+                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Register on Amazon Academic Research Portal (if not done)</span></div>
+                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Upload selected abstracts to portal</span></div>
+                    <div class="day-milestone">Milestone: Abstracts selected and uploaded</div>
+                </div>
+            </div>
+
+            <div class="day-block" data-date="2026-03-17" onclick="toggleDay(this)">
+                <div class="day-header">
+                    <div class="day-header-left">
+                        <span class="day-name">TUE</span>
+                        <span class="day-date">Mar 17</span>
+                        <span class="deadline-label">Deadline</span>
+                        <span class="day-focus">Submit Abstracts</span>
+                    </div>
+                    <div class="day-header-right">
+                        <span class="day-progress">0/3</span>
+                        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+                        <span class="chevron">&#9654;</span>
+                    </div>
+                </div>
+                <div class="day-tasks">
+                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Final review of submissions on portal</span></div>
+                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Submit selected abstracts via Amazon research portal</span></div>
+                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Confirm submission receipts</span></div>
+                    <div class="day-milestone">Milestone: Abstracts submitted</div>
+                </div>
+            </div>
+
+            <div class="critical-path">
+                Critical path: Mar 14 (strategy &#10003;) &#8594; Mar 15 (polish all 3) &#8594; Mar 16 (review + select + upload) &#8594; Mar 17 (submit)
+            </div>
+        </div>
+
+        <!-- (Alignment matrix is now in the Topic Analysis section above) -->
+    </div>
+
+    <div class="footer">
+        Amazon-Virginia Tech Initiative 2026-2027 &middot; Research Proposal
+    </div>
+
+    <script>
+        function toggleDay(block) {
+            block.classList.toggle('open');
+        }
+
+        function toggleProposal(block) {
+            block.classList.toggle('open');
+        }
+
+        // Auto-detect today and mark days accordingly
+        (function() {
+            const blocks = document.querySelectorAll('.day-block');
+            const today = new Date();
+            today.setHours(0,0,0,0);
+
+            blocks.forEach(block => {
+                const dateStr = block.getAttribute('data-date');
+                if (!dateStr) return;
+                const blockDate = new Date(dateStr + 'T00:00:00');
+
+                // Remove static today label
+                block.classList.remove('today');
+                const existingLabel = block.querySelector('.today-label');
+                if (existingLabel) existingLabel.remove();
+
+                if (blockDate.getTime() === today.getTime()) {
+                    block.classList.add('today', 'open');
+                    const dateSpan = block.querySelector('.day-date');
+                    const label = document.createElement('span');
+                    label.className = 'today-label';
+                    label.textContent = 'Today';
+                    dateSpan.after(label);
+                } else if (blockDate < today) {
+                    block.classList.add('past');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

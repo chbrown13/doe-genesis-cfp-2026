@@ -1,0 +1,57 @@
+% ============================================================
+% Amazon-VT CFP 2026-2027 — 1-Page Abstract v1
+% Provenance-Aware Agentic Knowledge Graph Systems
+% Format: proposalnsf
+% ============================================================
+
+\documentclass{files/proposalnsf}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{cite}
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=1.5em, topsep=0.2em}
+
+\input{files/code_world}
+
+\begin{document}
+
+\begin{center}
+    \large{\proposalEleven} \\ \vspace{0.5pt}
+\footnotesize{PI: Chris Brown, Computer Science, Virginia Tech} \\ 
+\footnotesize{Co-PI: Xuan Wang, Computer Science, Virginia Tech} \\
+\footnotesize{Co-PI: Scott T. Steinmetz, Sandia National Labs}
+\end{center}
+
+\small{\noindent\textbf{Focus Area:} 11 -- Achieving AI-Driven Autonomous Laboratories} \hfill \\
+\small{\textbf{Topic:} C. AI-Accelerated Science: Correlation to Understanding}
+
+\subsubsection*{Project Summary/Abstract}
+
+Large Language Models (LLMs) increasingly rely on retrieval mechanisms to incorporate external knowledge during inference. Most current retrieval-augmented generation (RAG) systems rely on vector similarity search over unstructured documents~\cite{Lewis2020RAG}. While effective for relevance, these systems provide limited support for structured reasoning, provenance tracking, and verifiable evidence chains. As agentic AI systems become capable of autonomous planning and decision-making~\cite{Park2023GenerativeAgents}, this lack of grounded traceability introduces risks including hallucinated outputs~\cite{Ji2023HallucinationSurvey}, unverifiable reasoning, and brittle performance when operating across heterogeneous knowledge sources.
+
+This project proposes \textbf{Provenance-Aware Agentic Knowledge Graph Systems (PA-AKG)}, a hybrid architecture that integrates knowledge graphs~\cite{Hogan2021KnowledgeGraphs}, multi-source retrieval, and agent orchestration to support reliable grounded reasoning. The core idea is to combine structured knowledge representations with generative models so that agent workflows can reason over entities, relationships, and constraints while maintaining explicit links to supporting evidence. Agents dynamically select between vector-based retrieval and structured knowledge graph queries, enabling hybrid reasoning workflows that balance semantic retrieval with symbolic structure.
+
+% \begin{figure}[t]
+%     \centering
+%     \includegraphics[width=\columnwidth]{images/architecture-diagram.png}
+%     \caption{\textbf{PA-AKG Architecture.} Heterogeneous knowledge sources feed a hybrid retrieval layer (vector search + KG queries). An agent orchestration layer coordinates planning, retrieval, and validation agents. A provenance engine records evidence links enabling traceable verification of outputs.}
+%     \label{fig:architecture}
+%     \vspace{-0.5em}
+% \end{figure}
+
+The proposed system enables \textbf{multi-source knowledge grounding} across knowledge graphs, relational databases, scientific literature, and domain-specific document collections. Agents generate reasoning chains that explicitly reference structured entities and supporting evidence. A key component is an automated \textbf{provenance generation and validation layer} that produces traceable reasoning paths linking model outputs to underlying knowledge sources, enabling both automated and human verification of agent outputs.
+
+This research investigates: (1)~how heterogeneous knowledge sources can be integrated into a unified grounding framework for generative systems; (2)~how agent workflows should dynamically select between structured and unstructured retrieval pathways; (3)~what mechanisms enable scalable provenance generation and verification; and (4)~how structured grounding affects reasoning accuracy, robustness, and efficiency relative to conventional RAG systems.
+
+We will design a \textbf{hybrid KG--RAG architecture}, implement agent orchestration workflows combining structured reasoning with generative models, and develop benchmarks measuring grounded reasoning quality, provenance completeness, and efficiency. Experimental evaluation will compare vector-based RAG, hybrid structured retrieval, and fully KG-driven agentic reasoning across \textbf{scientific research discovery and engineering decision-support} domains.
+
+Expected outcomes include the PA-AKG architecture and open research prototype, evaluation benchmarks for grounded reasoning and provenance validation in agentic systems, and reproducible experimental baselines improving the \textbf{reliability, transparency, and robustness of agentic AI systems} operating over complex real-world knowledge environments.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

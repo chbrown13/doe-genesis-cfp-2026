@@ -1,0 +1,55 @@
+% ============================================================
+% Amazon-VT CFP 2026-2027 — 1-Page Abstract v2
+% Provenance-Aware Agentic Knowledge Graph Systems
+% Format: proposalnsf
+% ============================================================
+
+\documentclass{files/proposalnsf}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{cite}
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=1.5em, topsep=0.2em}
+
+\input{files/code_world}
+
+\begin{document}
+
+\begin{center}
+    \large{\proposalEighteen} \\ \vspace{0.5pt}
+\footnotesize{PI: Chris Brown, Computer Science, Virginia Tech} \\ 
+\footnotesize{Co-PI: Xuan Wang, Computer Science, Virginia Tech} \\
+\footnotesize{Co-PI: Scott T. Steinmetz, Sandia National Labs}
+\end{center}
+
+\small{\noindent\textbf{Focus Area:} 18 -- HPC Code Curation, Translation, and Development for Accelerated Scientific Discoveries} \hfill \\
+\small{\textbf{Topic:} E. Trustworthy AI for Scientific Software}
+
+\subsubsection*{Project Summary/Abstract}
+
+Retrieval-augmented generation (RAG)~\cite{Lewis2020RAG} has become a foundational technique for grounding large language model (LLM) inference in external knowledge. Production systems have matured substantially: hybrid retrieval combining semantic (dense) and keyword (sparse) search is now standard practice~\cite{AWSBedrockHybridSearch2024}, and retrieval is increasingly exposed as a tool within agentic workflows where models decide \textit{when} and \textit{what} to retrieve~\cite{OpenAIFunctionCalling2025}. Recent industrial work, including Amazon's research on commonsense knowledge graphs for improving recommendation systems~\cite{Yu2024COSMO}, further demonstrates the value of structured knowledge representations for enhancing downstream AI reasoning tasks.
+
+However, reliability remains a fundamental challenge. Consider a student using an AI research assistant to synthesize literature across multiple papers. While modern RAG systems can retrieve relevant documents, they often fail to provide verifiable reasoning chains explaining how individual claims were derived. This limitation arises from two key gaps. First, even advanced retrieval systems lack structured reasoning substrates capable of multi-hop synthesis across heterogeneous knowledge sources---an issue that graph-based approaches such as GraphRAG~\cite{Edge2024GraphRAG} begin to address but do not fully resolve. Second, current systems provide limited provenance: they may cite documents but cannot generate fine-grained evidence chains linking specific outputs to the entities, relationships, and source spans that support them, nor can they reliably detect or recover from retrieval failures~\cite{Yan2024CRAG,Ji2023HallucinationSurvey}.
+
+This project proposes \textbf{Provenance-Aware Agentic Knowledge Graph Systems (PA-AKG)}, a framework that integrates structured knowledge graphs, adaptive retrieval, and agent-based validation to produce verifiable grounded reasoning. PA-AKG constructs a \textit{provenance graph} linking each generated output span to knowledge graph entities, relationships, and source passages with associated confidence scores. We define \textit{provenance} as the structured tracking of how each generated claim flows from retrieval through reasoning to output, linking it to originating sources, intermediate transformations, and agent decisions for auditability and verifiable grounding. Agents dynamically route queries across dense vector search, sparse retrieval, and structured knowledge graph pathways, while validation agents analyze provenance completeness and evidence consistency to detect weak grounding or contradictory signals~\cite{Asai2024SelfRAG}. This research directly addresses the \textit{Knowledge Grounding} area of the CFP, particularly efficient retrieval across heterogeneous knowledge sources, blending structured and unstructured knowledge, and improving interaction between LLMs and external knowledge systems.
+
+% \begin{figure}[t]
+%     \centering
+%     \includegraphics[width=0.48\textwidth]{images/architecture-diagram.png}
+%     \caption{\textbf{PA-AKG Architecture.} Heterogeneous knowledge sources feed a hybrid retrieval layer (vector search + knowledge graph (KG) queries). An agent orchestration layer coordinates planning, retrieval, and validation agents. A provenance engine records evidence links aligned with observability standards~\cite{OpenTelemetryGenAI2024} for traceable verification.}
+%     \label{fig:architecture}
+%     \vspace{-0.5em}
+% \end{figure}
+
+The methodology combines automated claim extraction, provenance-linked knowledge graph construction, and agentic orchestration for retrieval and validation. To evaluate the approach, we will prototype PA-AKG using Amazon Bedrock Knowledge Bases~\cite{AWSBedrockHybridSearch2024} and compare it against vector-based RAG, hybrid retrieval, and GraphRAG-style reasoning across \textbf{multi-hop question answering over heterogeneous knowledge sources} and \textbf{claim verification with evidence-chain reconstruction}. Evaluation metrics include answer accuracy, provenance completeness, reasoning consistency, and failure recovery under incomplete or conflicting retrieval conditions. These experiments will reveal when provenance-aware knowledge graphs provide measurable improvements in reliability and traceability relative to existing retrieval-based grounding approaches.
+
+This effort will extend our prior work, which investigates how LLMs propagate evidence in software development contexts~\cite{brown2025esem} and demonstrates software engineering researchers desire knowledge synthesis and tracking across research outcomes---proposing a novel framework~\cite{cusati2026fose}. Expected outcomes include an open PA-AKG prototype, evaluation benchmarks, and empirical evidence that \textbf{structured provenance-aware grounding} improves reliability, traceability, and robustness for agentic AI systems over heterogeneous knowledge environments.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
