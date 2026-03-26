@@ -14,12 +14,12 @@ PA-AKG (abstract_v2) is confirmed as submission #1, pending final citation revie
 
 **~~Polish All 3~~ → ~~Run Reviewer Process~~ → ~~Incorporate Feedback~~ → Finalize Citations → Select AKG-E Variant → Submit by Mar 17**
 
-| Rank | Proposal | CFP Topics | Status |
+| Rank | Proposal | DOE Focus Areas | Status |
 |---|---|---|---|
-| **#1** | **PA-AKG** (v2) | Knowledge Grounding + Agentic AI | SUBMISSION-READY — advisor edits applied (motivating example, Amazon KG context, CFP alignment, eval rationale, title fix); PR #12 merged; citation review in progress |
-| **#2** | **AKG-E** (v4c) | AI for Science & Engineering + Agentic AI | SUBMISSION-READY — construction-only, VVUQ backbone, BIM/IFC, FEA, falsifiable hypothesis, Bedrock hook; PR #6 merged |
-| **#2b** | **AKG-E** (v4b) | AI for Science & Engineering + Agentic AI | SUBMISSION-READY — 2 focused domains (construction + transportation) + VVUQ backbone; advisor comparing vs v4c |
-| **#3** | **SVF** (v5) | Agentic Evaluation + Responsible AI | SUBMISSION-READY — new synthesis from deep-research-svf.md, RAGAS/ARES/TruLens baselines, falsifiable hypotheses; PR #5 merged |
+| **#1** | **PA-AKG** (v2) | 19B (Hypothesis Generation) + 18E (Trustworthy AI) | SUBMISSION-READY — provenance-first KG architecture; span-level evidence alignment + canonicalization auditing; E1–E4 evaluation framework (djjay-qualifier); PR #12 merged |
+| **#2** | **AKG-E** (v4c) | 11C (Autonomous Labs) + 19B (Hypothesis Generation) | SUBMISSION-READY — construction-only, VVUQ backbone, BIM/IFC, FEA (OpenSeesPy), falsifiable hypothesis; PR #6 merged |
+| **#2b** | **AKG-E** (v4b) | 11C (Autonomous Labs) + 19B (Hypothesis Generation) | SUBMISSION-READY — 2 focused domains (construction + transportation) + VVUQ backbone; advisor comparing vs v4c |
+| **#3** | **SVF** (v5) | 18E (Trustworthy AI) + 11C (Autonomous Labs) | SUBMISSION-READY — four evaluation dimensions (grounding integrity, provenance traceability, reasoning robustness, coordination reliability); RAGAS/ARES/TruLens baselines; PR #5 merged |
 
 ## Current Focus
 
@@ -60,21 +60,23 @@ All abstracts have been polished to submission quality with the following change
 ## Research Directions
 
 ### PA-AKG — Provenance-Aware Agentic Knowledge Graph Systems (Rank #1)
-- Primary Topic: Knowledge Grounding
-- Secondary Topic: Agentic AI
-- Key framing: Hybrid retrieval (sparse+dense) is now mainstream. Novelty is in provenance-aware KG grounding + validation loops — addressing gaps in multi-hop structured reasoning and fine-grained verifiable evidence chains.
+- Primary DOE Topic: 19B — Hypothesis Generation from Multi-Modal Data
+- Secondary DOE Topic: 18E — Trustworthy AI for Scientific Software
+- Key framing: Addresses three gaps from qualifying research (djjay-qualifier.pdf): no persistent KG + agentic reasoning, no validated evaluation framework, no generalizable provenance enforcement. Span-level evidence alignment and canonicalization auditing are architectural invariants, not post-hoc annotations. Evaluation axes E1–E4 directly map to 19B's synthesis/hypothesis goals and 18E's trustworthiness requirements.
+- Prior work: Brown & Cusati ESEM 2025 (evidence-based beliefs of GenAI tools); Cusati & Brown ICSE-FoSE 2026 (knowledge accumulation in SE research — direct precursor)
 
 ### AKG-E — Agentic Knowledge Graphs for Engineering (Rank #2)
-- Primary Topic: AI Accelerated Science & Engineering
-- Secondary Topic: Agentic AI
-- Key framing: Reframed around 2 concrete applications (construction material takeoff with CV, transportation digital twin) with VVUQ as unifying validation backbone. Aligns with advisor's construction.ai initiative.
-- **v4b variant**: Further reframed with 2 focused domains (construction + transportation) and VVUQ as the backbone rather than a component.
-- **v4c variant**: Construction-only version of AKG-E — drops transportation domain entirely, tightens focus to construction material takeoff with VVUQ backbone. Based on v4b.
+- Primary DOE Topic: 11C — AI-Accelerated Science: Correlation to Understanding
+- Secondary DOE Topic: 19B — Hypothesis Generation from Multi-Modal Data
+- Key framing: VVUQ backbone + simulation-in-the-loop implements 11C's closed-loop discovery paradigm in DOE-relevant engineering domains. CV-based material takeoff (construction) and traffic digital twin (transportation) provide concrete, measurable engineering hypothesis generation tasks aligned with 19B.
+- **v4b variant**: 2 focused domains (construction + transportation) + VVUQ as backbone
+- **v4c variant**: Construction-only — BIM/IFC, CV material takeoff, OpenSeesPy FEA, tightest 11C alignment
 
 ### SVF — Structured Validation Framework (Rank #3)
-- Primary Topic: Foundation Model/Agentic Evaluation
-- Secondary Topic: Responsible Generative AI
-- Status: May be reserved for other venues.
+- Primary DOE Topic: 18E — Trustworthy AI for Scientific Software
+- Secondary DOE Topic: 11C — AI-Accelerated Science
+- Key framing: Fills the evaluation gap identified in qualifying research — no existing framework evaluates compound agentic systems (RAGAS/ARES/TruLens only cover RAG components). Four dimensions operationalize 18E's requirements: grounding integrity (correctness), provenance traceability (reproducibility), reasoning robustness (diagnostics), coordination reliability (uncertainty quantification).
+- Status: May be reserved for other venues if only one submission allowed.
 
 ## What's Working
 

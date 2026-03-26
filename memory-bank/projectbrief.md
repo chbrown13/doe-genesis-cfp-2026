@@ -72,7 +72,7 @@ Full-time tenure-track, research-track, and teaching faculty at VT eligible as P
 
 ## Contact
 
-- **Portal**: Amazon Academic Research Portal
+- **Portal**: DOE Genesis Mission Portal (grants.gov / PAMS)
 - **Questions**: GenesisMissionNOFO@science.doe.gov
 
 ---
