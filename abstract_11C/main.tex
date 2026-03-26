@@ -1,7 +1,7 @@
 % ============================================================
-% Amazon-VT CFP 2026-2027 — 1-Page Abstract v1
-% Provenance-Aware Agentic Knowledge Graph Systems
-% Format: proposalnsf
+% DOE Genesis Mission CFP 2026 — Pre-Proposal
+% AKG-E: Agentic Knowledge Graph Digital Twins for AI-Driven Autonomous Laboratories
+% Focus Area: 11C — AI-Accelerated Science: Correlation to Understanding
 % ============================================================
 
 \documentclass{files/proposalnsf}
@@ -21,35 +21,63 @@
 
 \begin{center}
     \large{\proposalEleven} \\ \vspace{0.5pt}
-\footnotesize{PI: Chris Brown, Computer Science, Virginia Tech} \\ 
+\footnotesize{PI: Chris Brown, Computer Science, Virginia Tech} \\
 \footnotesize{Co-PI: Xuan Wang, Computer Science, Virginia Tech} \\
-\footnotesize{Co-PI: Scott T. Steinmetz, Sandia National Labs}
+\footnotesize{Co-PI: Scott T. Steinmetz, Sandia National Labs} \\
+\footnotesize{GRA: Jason Cusati, Computer Science, Virginia Tech}
 \end{center}
 
 \small{\noindent\textbf{Focus Area:} 11 -- Achieving AI-Driven Autonomous Laboratories} \hfill \\
 \small{\textbf{Topic:} C. AI-Accelerated Science: Correlation to Understanding}
 
-\subsubsection*{Project Summary/Abstract}
+\subsubsection*{Project Summary / Abstract}
 
-Large Language Models (LLMs) increasingly rely on retrieval mechanisms to incorporate external knowledge during inference. Most current retrieval-augmented generation (RAG) systems rely on vector similarity search over unstructured documents~\cite{Lewis2020RAG}. While effective for relevance, these systems provide limited support for structured reasoning, provenance tracking, and verifiable evidence chains. As agentic AI systems become capable of autonomous planning and decision-making~\cite{Park2023GenerativeAgents}, this lack of grounded traceability introduces risks including hallucinated outputs~\cite{Ji2023HallucinationSurvey}, unverifiable reasoning, and brittle performance when operating across heterogeneous knowledge sources.
+The pace of scientific and engineering discovery is fundamentally constrained by human-driven design-analysis cycles. In DOE-relevant engineering domains---construction and transportation---AI systems capable of autonomously integrating high-throughput simulation data, identifying correlations inconsistent with current models, and generating testable hypotheses remain underdeveloped. Current AI approaches either produce ungrounded text without queryable structure or perform narrow optimization without the domain-grounded knowledge infrastructure needed for open-ended hypothesis generation~\cite{Ji2023HallucinationSurvey}. Closing this gap requires \textit{integrating AI directly into the engineering experimental workflow}---the core objective of DOE 11C.
 
-This project proposes \textbf{Provenance-Aware Agentic Knowledge Graph Systems (PA-AKG)}, a hybrid architecture that integrates knowledge graphs~\cite{Hogan2021KnowledgeGraphs}, multi-source retrieval, and agent orchestration to support reliable grounded reasoning. The core idea is to combine structured knowledge representations with generative models so that agent workflows can reason over entities, relationships, and constraints while maintaining explicit links to supporting evidence. Agents dynamically select between vector-based retrieval and structured knowledge graph queries, enabling hybrid reasoning workflows that balance semantic retrieval with symbolic structure.
+This project proposes \textbf{AKG-E (Agentic Knowledge Graph Digital Twins for Engineering)}, a framework that embeds persistent, domain-specific knowledge graphs (KGs) into AI-driven engineering workflows, unified by a Verification, Validation, and Uncertainty Quantification (VVUQ) backbone. AKG-E implements DOE 11C's closed-loop discovery paradigm across two concrete engineering domains: (1)~\textbf{Construction}---a computer vision (CV) pipeline automatically extracts structured material and geometry information from Building Information Model (BIM/IFC) drawings and populates a KG encoding domain constraints (materials, assemblies, structural properties, building codes). Agents invoke OpenSeesPy finite element analysis (FEA) to simulate structural behavior, run VVUQ harnesses to verify convergence and validate against domain benchmarks, and generate hypotheses when simulation outputs diverge from KG-encoded expectations~\cite{ZhuOpenSeesPy2018}. (2)~\textbf{Transportation}---a traffic digital twin maintains a live KG of network topology, flow constraints, and sensor observations. Agents invoke SUMO traffic flow simulation~\cite{Lopez2018SUMO}, apply the VVUQ harness to validate flow predictions against measured throughput, and generate hypotheses about system behaviors---\textit{e.g.,} congestion anomalies not predicted by current flow models.
 
-% \begin{figure}[t]
-%     \centering
-%     \includegraphics[width=\columnwidth]{images/architecture-diagram.png}
-%     \caption{\textbf{PA-AKG Architecture.} Heterogeneous knowledge sources feed a hybrid retrieval layer (vector search + KG queries). An agent orchestration layer coordinates planning, retrieval, and validation agents. A provenance engine records evidence links enabling traceable verification of outputs.}
-%     \label{fig:architecture}
-%     \vspace{-0.5em}
-% \end{figure}
+The VVUQ layer is the unifying scientific contribution: it ensures that agent-generated hypotheses are grounded in simulation outputs that are numerically correct (verification), physically valid against benchmark data (validation), and carry explicit uncertainty estimates (uncertainty quantification). This distinguishes AKG-E from LLM-only approaches---agents cannot accept simulation-backed claims that fail VVUQ gates, enforcing a rigorous scientific standard on every generated hypothesis. Our prior work establishes the knowledge synthesis infrastructure motivating this architecture: Cusati \& Brown~\cite{cusati2026fose} demonstrate that research knowledge accumulates in disconnected artifacts, motivating persistent structured knowledge infrastructure; Brown \& Cusati~\cite{brown2025esem} demonstrate that AI tools propagate evidence inconsistently without structured grounding.
 
-The proposed system enables \textbf{multi-source knowledge grounding} across knowledge graphs, relational databases, scientific literature, and domain-specific document collections. Agents generate reasoning chains that explicitly reference structured entities and supporting evidence. A key component is an automated \textbf{provenance generation and validation layer} that produces traceable reasoning paths linking model outputs to underlying knowledge sources, enabling both automated and human verification of agent outputs.
+Expected outcomes include: the AKG-E architecture and open prototype; CV-to-KG ingestion pipeline for BIM/IFC; VVUQ harness connecting agent reasoning to domain simulations; evaluation benchmarks measuring hypothesis quality, VVUQ pass rate, and KG coverage; and empirical evidence that simulation-grounded agentic reasoning produces higher-quality, falsifiable engineering hypotheses than LLM-only approaches.
 
-This research investigates: (1)~how heterogeneous knowledge sources can be integrated into a unified grounding framework for generative systems; (2)~how agent workflows should dynamically select between structured and unstructured retrieval pathways; (3)~what mechanisms enable scalable provenance generation and verification; and (4)~how structured grounding affects reasoning accuracy, robustness, and efficiency relative to conventional RAG systems.
+\subsubsection*{Research Plan}
 
-We will design a \textbf{hybrid KG--RAG architecture}, implement agent orchestration workflows combining structured reasoning with generative models, and develop benchmarks measuring grounded reasoning quality, provenance completeness, and efficiency. Experimental evaluation will compare vector-based RAG, hybrid structured retrieval, and fully KG-driven agentic reasoning across \textbf{scientific research discovery and engineering decision-support} domains.
+\paragraph{Introduction.}
+DOE's 11C challenge identifies a central scientific bottleneck: high-throughput data from experiments and simulations increasingly outpaces human capacity for interpretation, and existing AI tools can identify statistical correlations but cannot autonomously distinguish them from theoretically meaningful phenomena or generate plausible new explanations as testable hypotheses. The missing capability is \textit{structured domain knowledge integration}---AI must reason over what is \textit{known} about a domain (constraints, physical laws, prior experimental results) to identify when new data is genuinely surprising and to hypothesize why.
 
-Expected outcomes include the PA-AKG architecture and open research prototype, evaluation benchmarks for grounded reasoning and provenance validation in agentic systems, and reproducible experimental baselines improving the \textbf{reliability, transparency, and robustness of agentic AI systems} operating over complex real-world knowledge environments.
+In engineering domains, this challenge is acute. A structural engineer reviewing BIM drawings and FEA outputs must simultaneously reason over material specifications, assembly constraints, building codes, load models, and prior design precedents---a knowledge synthesis task that current AI handles only through unstructured text generation. AKG-E addresses this by making domain knowledge explicit, persistent, and queryable as a KG, then connecting autonomous agents to simulation tools via a VVUQ harness that enforces scientific rigor on every inference. This directly operationalizes 11C's vision: ``AI integrated directly into the experimental workflow, combining real-time analysis, intelligent feedback, and hypothesis generation.''
+
+Our prior work provides both motivation and foundation. Cusati \& Brown~\cite{cusati2026fose} show that software engineering research knowledge accumulates in ways that are structurally disconnected, motivating persistent KG infrastructure as the substrate for AI-accelerated discovery. Brown \& Cusati~\cite{brown2025esem} empirically demonstrate that generative AI tools propagate evidence inconsistently, establishing the need for structured grounding mechanisms. AKG-E extends this line of work into engineering domains, where the stakes of unverified AI hypotheses include physical safety and infrastructure reliability.
+
+\paragraph{Objectives.}
+\begin{enumerate}
+    \item Design and implement the AKG-E architecture with persistent engineering KGs, agent orchestration, and VVUQ backbone for two engineering domains.
+    \item Build a CV-based ingestion pipeline for automated material takeoff from BIM/IFC construction drawings into the construction KG~\cite{Eastman2011BIM}.
+    \item Integrate domain simulations (OpenSeesPy FEA~\cite{ZhuOpenSeesPy2018} for structural analysis; SUMO~\cite{Lopez2018SUMO} for traffic flow) as agent-invokable tools with VVUQ validation harnesses.
+    \item Implement autonomous hypothesis generation from VVUQ-flagged simulation divergences.
+    \item Evaluate hypothesis quality, VVUQ enforcement, and KG grounding against LLM-only and hybrid baselines.
+\end{enumerate}
+
+\paragraph{Research Questions.}
+\begin{itemize}
+    \item \textbf{RQ1:} How accurately can CV-based material takeoff from BIM/IFC drawings populate a domain KG with sufficient fidelity for downstream structural simulation?
+    \item \textbf{RQ2:} Does VVUQ-backed simulation integration improve the quality and falsifiability of AI-generated engineering hypotheses compared to LLM-only generation?
+    \item \textbf{RQ3:} Can the AKG-E architecture generalize across engineering domains (construction, transportation) with domain-specific KG schemas and simulation backends?
+\end{itemize}
+
+\paragraph{Detailed Research Plan.}
+
+\textit{Phase 1 (Months 1--3): KG Schema Design and Data Ingestion.}
+We will design unified KG schemas for the construction domain (materials, assemblies, structural properties, building code constraints, simulation parameters) and transportation domain (network topology, link capacities, signal timing, flow constraints, sensor observations). For construction, we will implement a CV pipeline using state-of-the-art object detection and semantic segmentation models~\cite{Hogan2021KnowledgeGraphs} to extract structured material and component information from BIM/IFC drawings, mapping extracted entities to KG nodes. We will populate an initial construction KG from representative publicly available building datasets and validate extraction accuracy against manually annotated ground-truth KGs. The transportation KG will be populated from open traffic network data (OpenStreetMap, GTFS) and sensor logs from publicly available urban traffic datasets.
+
+\textit{Phase 2 (Months 4--6): Simulation Integration and VVUQ Harness.}
+We will integrate OpenSeesPy for structural FEA, connecting KG-encoded material and geometry specifications to simulation input generation. The VVUQ harness will implement three gates: (1)~\textit{verification}---simulation convergence checks and numerical stability tests; (2)~\textit{validation}---output comparison against domain benchmarks (structural load-deflection curves, traffic flow fundamental diagrams); and (3)~\textit{uncertainty quantification}---Monte Carlo propagation of input uncertainty (material variability, measurement error) through simulation outputs to agent-visible confidence intervals. For transportation, we will integrate SUMO traffic simulation with the transportation KG, implementing analogous VVUQ gates. We will implement four agent types: constraint checkers (flag KG violations before simulation), simulation invokers (parameterize and execute domain simulations from KG state), hypothesis generators (propose explanations for VVUQ-flagged divergences), and validation reporters (write VVUQ-certified artifacts back to the KG).
+
+\textit{Phase 3 (Months 7--9): Evaluation and Hypothesis Quality Assessment.}
+We will evaluate AKG-E against two baselines: (B1)~prompt-only LLM given the same information without KG structure or simulation; (B2)~KG retrieval without simulation integration. Evaluation metrics include: hypothesis generation rate per simulation run; VVUQ pass rate (fraction of agent-accepted hypotheses backed by verified simulation); KG coverage (fraction of simulation inputs traceable to KG-encoded domain knowledge); and hypothesis quality (expert evaluation of specificity, falsifiability, and domain correctness). We will conduct ablation studies isolating the contribution of each component (KG structure, VVUQ gates, simulation integration). Case studies will include structural integrity hypothesis generation from material takeoff errors in construction and traffic optimization hypotheses from flow anomalies in transportation.
+
+\paragraph{Team Roles.}
+\textbf{PI Chris Brown} leads project direction, KG architecture design, agentic orchestration design, and evaluation methodology. \textbf{Co-PI Xuan Wang} leads the computer vision pipeline for automated material takeoff and multimodal data integration from BIM/IFC sources. \textbf{Co-PI Scott T. Steinmetz} (Sandia National Labs) leads VVUQ methodology, simulation integration, and validation of VVUQ harnesses against Sandia-developed engineering benchmarks. \textbf{GRA Jason Cusati} implements the AKG-E system, constructs the engineering KGs, and executes experimental evaluation.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

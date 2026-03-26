@@ -1,7 +1,7 @@
 % ============================================================
-% Amazon-VT CFP 2026-2027 — 1-Page Abstract v3
-% Provenance-Aware Agentic Knowledge Graph Systems
-% Format: proposalnsf
+% DOE Genesis Mission CFP 2026 — Pre-Proposal
+% PA-AKG: Provenance-Aware Agentic Knowledge Graphs for Scientific Discovery
+% Focus Area: 19B — Hypothesis Generation from Multi-Modal Data
 % ============================================================
 
 \documentclass{files/proposalnsf}
@@ -21,68 +21,64 @@
 
 \begin{center}
     \large{\proposalNineteen} \\ \vspace{0.5pt}
-\footnotesize{PI: Chris Brown, Computer Science, Virginia Tech} \\ 
+\footnotesize{PI: Chris Brown, Computer Science, Virginia Tech} \\
 \footnotesize{Co-PI: Xuan Wang, Computer Science, Virginia Tech} \\
-\footnotesize{Co-PI: Scott T. Steinmetz, Sandia National Labs}
+\footnotesize{Co-PI: Scott T. Steinmetz, Sandia National Labs} \\
+\footnotesize{GRA: Jason Cusati, Computer Science, Virginia Tech}
 \end{center}
 
 \small{\noindent\textbf{Focus Area:} 19 -- AI for Scientific Reasoning} \hfill \\
 \small{\textbf{Topic:} B. Hypothesis Generation from Multi-Modal Data}
 
-\subsubsection*{Project Summary/Abstract}
+\subsubsection*{Project Summary / Abstract}
 
-Knowledge-grounded and agentic AI systems are rapidly deployed in production settings, yet evaluation infrastructure has not kept pace. Standard benchmarks assess answer accuracy or safety robustness in isolation, but fail to measure the properties that determine reliability in compound AI systems: \textit{Is the retrieved evidence actually relevant? Does the cited source support the claim? Can the reasoning chain be traced and audited?} Recent work reveals that even retrieval-augmented generation (RAG) systems with valid-looking citations can produce references that do not fully support all statements~\cite{Ji2023HallucinationSurvey}, and that retrieval quality varies dramatically across query types, with naive top-$k$ retrieval degrading factuality when results are noisy or contradictory~\cite{Yan2024CRAG}. As systems move from single-model inference to multi-agent orchestration with heterogeneous retrieval~\cite{AWSBedrockHybridSearch2024,Edge2024GraphRAG}, the evaluation gap widens: there are no established benchmarks for measuring grounding integrity, provenance traceability, or coordination reliability across agent workflows.
+Generating novel, testable scientific hypotheses from multi-modal data requires synthesizing knowledge across heterogeneous sources---scientific literature, experimental datasets, simulation outputs---while maintaining traceable links between each hypothesis and the specific evidence supporting it. Large language models can fluently generate hypotheses, but cannot enforce \textit{span-level provenance}: the traceable chain from a generated claim back to the source passages, entities, and relations that license it~\cite{Ji2023HallucinationSurvey}. Without such provenance, hypothesis generation produces plausible-sounding text rather than verifiable scientific inference---a fundamental barrier to AI as a true partner in the scientific method~\cite{Asai2024SelfRAG}.
 
-\begin{figure}[t]
-    \centering
-    \resizebox{\columnwidth}{!}{%
-    \begin{tikzpicture}[
-        node distance=0.4cm and 0.3cm,
-        dimbox/.style={rectangle, rounded corners=3pt, draw=gray!60, fill=gray!8, minimum width=2.8cm, minimum height=1.6cm, align=center, font=\scriptsize},
-        centerbox/.style={rectangle, rounded corners=4pt, draw=black!70, fill=blue!8, minimum width=2.6cm, minimum height=0.9cm, align=center, font=\scriptsize\bfseries},
-        sysbox/.style={rectangle, rounded corners=3pt, draw=gray!50, fill=orange!6, minimum width=2.0cm, minimum height=0.6cm, align=center, font=\tiny},
-        arr/.style={-{Stealth[length=4pt]}, thick, gray!60},
-        dimarr/.style={-{Stealth[length=4pt]}, thick, black!50},
-    ]
-        % Center
-        \node[centerbox] (svf) {SVF\\Evaluation\\Engine};
+Our prior work identifies three interdependent gaps that jointly prevent AI-assisted hypothesis generation from achieving scientific rigor (Cusati \& Brown, ICSE-FoSE 2026~\cite{cusati2026fose}): (1)~an \textit{architectural capability gap}---no existing system integrates persistent structured knowledge graphs (KGs) with autonomous multi-agent research workflows; (2)~an \textit{evaluation gap}---no validated framework measures the quality of AI-generated research outputs at the level of evidence grounding and provenance completeness; and (3)~a \textit{provenance gap}---no generalizable mechanism enforces span-level evidence alignment as an architectural invariant across agent operations. These gaps form a cycle: without persistent knowledge infrastructure, provenance is infeasible; without provenance, evaluation is unreliable; without evaluation, architecture design lacks a target to optimize against.
 
-        % Four dimensions
-        \node[dimbox, above left=0.5cm and 0.4cm of svf] (gi) {\textbf{Grounding}\\\textbf{Integrity}\\[2pt]Retrieval relevance\\Evidence sufficiency\\Attribution accuracy};
-        \node[dimbox, above right=0.5cm and 0.4cm of svf] (pt) {\textbf{Provenance}\\\textbf{Traceability}\\[2pt]Span-level citation\\Audit trail depth\\Source verification};
-        \node[dimbox, below left=0.5cm and 0.4cm of svf] (rr) {\textbf{Reasoning}\\\textbf{Robustness}\\[2pt]Retrieval noise\\Contradictory sources\\Adversarial inputs};
-        \node[dimbox, below right=0.5cm and 0.4cm of svf] (cr) {\textbf{Coordination}\\\textbf{Reliability}\\[2pt]Agent consistency\\Failure recovery\\Cascade prevention};
+This project proposes \textbf{PA-AKG (Provenance-Aware Agentic Knowledge Graphs)}, a provenance-first architecture that breaks this cycle by making provenance enforcement \textit{architectural}, not post-hoc. PA-AKG organizes around three layers: (1)~a \textbf{knowledge representation layer}---a persistent research KG where problems, datasets, methods, constraints, and evidence are first-class entities linked by explicit semantic relations~\cite{Hogan2021KnowledgeGraphs}; (2)~an \textbf{automation layer}---span-level evidence alignment (automated claim extraction → source passage linkage) and canonicalization auditing (entity resolution to canonical KG nodes), building structured claim--evidence pairs as the substrate for hypothesis generation; and (3)~an \textbf{agentic orchestration layer}---ranking agents (prioritize research directions by tractability and evidence strength), continuation agents (propose follow-on analyses based on KG gaps), evaluation agents (execute reproducible workflows), and synthesis agents (write back structured artifacts). The key invariant: every agent handoff carries provenance constraints requiring downstream agents to inherit and extend evidence chains.
 
-        % Systems under test (bottom)
-        \node[sysbox, below=1.6cm of svf, xshift=-1.8cm] (rag) {Vector RAG};
-        \node[sysbox, below=1.6cm of svf] (hybrid) {Hybrid Retrieval};
-        \node[sysbox, below=1.6cm of svf, xshift=1.8cm] (graph) {GraphRAG Agents};
+This architecture directly implements DOE 19B's vision: ``AI systems capable of synthesizing information from diverse sources to identify gaps in current knowledge and formulate novel, testable hypotheses.'' Crucially, PA-AKG produces \textit{traceable} hypotheses---each is accompanied by the specific evidence chain that supports it, the KG nodes it derives from, and the span-level citations linking it back to source documents---making AI-generated hypotheses auditable, reproducible, and refutable.
 
-        % Arrows from dimensions to SVF
-        \draw[dimarr] (gi) -- (svf);
-        \draw[dimarr] (pt) -- (svf);
-        \draw[dimarr] (rr) -- (svf);
-        \draw[dimarr] (cr) -- (svf);
+Expected outcomes include: the PA-AKG architecture and open prototype; evaluation framework E1--E4 (span-level alignment precision/recall, canonicalization consistency, traceability completeness, longitudinal stability); empirical benchmarks comparing PA-AKG against vector RAG, GraphRAG~\cite{Edge2024GraphRAG}, and static snapshot baselines; and a generalizable provenance-first infrastructure for traceable AI-assisted scientific discovery.
 
-        % Arrows from systems to SVF
-        \draw[arr] (rag) -- (svf);
-        \draw[arr] (hybrid) -- (svf);
-        \draw[arr] (graph) -- (svf);
+\subsubsection*{Research Plan}
 
-        % Labels
-        \node[font=\tiny\itshape, gray!70, below=0.05cm of rag, xshift=0.9cm] {Systems under evaluation};
-    \end{tikzpicture}
-    }%
-    \caption{\textbf{SVF Evaluation Framework.} The Structured Validation Framework evaluates knowledge-grounded agent systems across four dimensions. Systems under test (vector RAG, hybrid retrieval, graph-augmented agents) are assessed for grounding integrity, provenance traceability, reasoning robustness, and coordination reliability. Evaluation signals align with OpenTelemetry GenAI conventions~\cite{OpenTelemetryGenAI2024}.}
-    \label{fig:framework}
-    \vspace{-0.5em}
-\end{figure}
+\paragraph{Introduction.}
+DOE's 19B challenge calls for AI systems capable of synthesizing multi-modal scientific knowledge to identify gaps and formulate testable hypotheses. Existing approaches fail at the fundamental requirement: they generate outputs without enforcing that each claim is traceable to specific supporting evidence. Retrieval-augmented generation~\cite{Lewis2020RAG} improves factual grounding but does not maintain persistent, structured knowledge across sessions, cannot reason over relations between entities, and provides no mechanism for auditing hypothesis derivations. Graph-augmented approaches~\cite{Edge2024GraphRAG} add graph structure but do not enforce provenance as an architectural constraint---provenance is a reporting artifact rather than a prerequisite for agent operations.
 
-This project proposes a \textbf{Structured Validation Framework (SVF)} that provides systematic evaluation infrastructure for knowledge-grounded and multi-agent AI systems. Unlike point-accuracy benchmarks, SVF evaluates along four complementary dimensions: (1)~\textbf{grounding integrity}---whether retrieved evidence is relevant, sufficient, and correctly attributed to claims; (2)~\textbf{provenance traceability}---whether reasoning chains can be audited from output back to specific source spans; (3)~\textbf{reasoning robustness}---whether systems degrade gracefully under retrieval noise, contradictory sources, and adversarial perturbations; and (4)~\textbf{coordination reliability}---whether multi-agent systems maintain consistency under component failures, measured through fault injection, cascading error propagation analysis, and recovery latency. Unlike post-hoc benchmarks, SVF embeds validation as a first-class component of agent execution pipelines, producing structured evaluation signals aligned with emerging observability standards~\cite{OpenTelemetryGenAI2024}.
+Our prior work establishes both the need and the feasibility of PA-AKG. Brown \& Cusati (ESEM 2025~\cite{brown2025esem}) empirically demonstrate that generative AI tools propagate evidence inconsistently across SE contexts, producing outputs that cite sources without verifying that those sources support the specific claims made. Cusati \& Brown (ICSE-FoSE 2026~\cite{cusati2026fose}) demonstrate that research knowledge in software engineering accumulates in structurally disconnected artifacts---individual papers, data files, tool outputs---without persistent structured infrastructure enabling AI to reason over the \textit{relationships} between them. Together, these studies establish that the hypothesis generation problem is fundamentally a knowledge infrastructure problem, and that solving it requires PA-AKG's provenance-first architecture.
 
-This research investigates: (1)~what evaluation dimensions define reliable knowledge-grounded agent behavior beyond accuracy; (2)~how structured grounding mechanisms (knowledge graphs, hybrid retrieval) impact measurable robustness compared to vector-only RAG~\cite{Lewis2020RAG}; (3)~how validation loops can be embedded within agent orchestration to detect and recover from grounding failures in real time~\cite{Asai2024SelfRAG}; and (4)~how multi-agent coordination failures propagate and can be systematically benchmarked.
+\paragraph{Objectives.}
+\begin{enumerate}
+    \item Design and implement the PA-AKG three-layer architecture with provenance enforcement as an architectural invariant across all agent operations.
+    \item Implement span-level evidence alignment: automated claim extraction producing structured claim--evidence pairs with source passage linkage.
+    \item Implement canonicalization auditing: entity normalization, validation, and deduplication producing canonical KG nodes with inter-rater-reliable entity resolution.
+    \item Build multi-agent orchestration with ranking, continuation, evaluation, and synthesis agents operating under provenance inheritance constraints.
+    \item Evaluate PA-AKG using the E1--E4 evaluation framework against vector RAG, GraphRAG, and static snapshot baselines on SE research hypothesis generation tasks.
+\end{enumerate}
 
-We will develop the SVF evaluation toolkit with benchmark tasks targeting retrieval-grounded question answering, multi-step agent workflows, and multi-agent coordination scenarios---each assessed across all four dimensions. Experiments compare vector-only RAG, hybrid retrieval, and graph-augmented~\cite{Edge2024GraphRAG} agent systems, including workflows built on production agent platforms~\cite{AWSBedrockHybridSearch2024}. Expected outcomes include a systematic evaluation framework addressing critical gaps in knowledge-grounded agent assessment, reproducible benchmark suites, and metrics for \textbf{grounding integrity, provenance traceability, and multi-agent reliability} that advance evaluation standards for responsible deployment of compound AI systems.
+\paragraph{Research Questions.}
+\begin{itemize}
+    \item \textbf{RQ1:} How accurately does automated span-level evidence alignment link generated claims to source passages compared to human-annotated gold spans (precision/recall, E1)?
+    \item \textbf{RQ2:} How consistently does canonicalization auditing resolve entities to canonical KG nodes relative to expert entity clusters (Cohen's $\kappa$, E2)?
+    \item \textbf{RQ3:} What fraction of KG nodes maintain complete provenance chains as the research corpus evolves over time (traceability completeness, E3)?
+    \item \textbf{RQ4:} How does PA-AKG's structured provenance enforcement affect hypothesis quality, specificity, and falsifiability compared to vector RAG and GraphRAG baselines?
+\end{itemize}
+
+\paragraph{Detailed Research Plan.}
+
+\textit{Phase 1 (Months 1--3): KG Architecture and Evidence Alignment Pipeline.}
+We will design the research KG schema with first-class entity types: \textsc{Problem}, \textsc{Dataset}, \textsc{Method}, \textsc{Constraint}, \textsc{Evidence}, and \textsc{Hypothesis}, linked by semantic relations (\textsc{supports}, \textsc{contradicts}, \textsc{enables}, \textsc{requires}). We will implement the claim extraction pipeline using structured prompting to produce claim--evidence pairs, followed by span-level alignment that links each extracted claim to its supporting source passages with character-level span annotations. We will implement canonicalization auditing: entity normalization via embedding-based clustering with deduplication, followed by validation against KG-encoded entity constraints. We will build the hybrid retrieval layer combining a property graph store (Neo4j or equivalent) with a vector index, enabling both structured relational queries and approximate semantic similarity search. Primary validation corpus: the software engineering research literature corpus from Cusati \& Brown prior work~\cite{cusati2026fose}, which provides a bounded, well-understood domain for initial evaluation.
+
+\textit{Phase 2 (Months 4--6): Agentic Orchestration with Provenance Inheritance.}
+We will implement the four PA-AKG agent types. \textit{Ranking agents} score candidate research directions using a composite tractability score combining evidence strength (number of supporting spans), coverage (fraction of KG entities referenced), and novelty (distance from existing KG hypotheses). \textit{Continuation agents} propose follow-on analyses by querying the KG for under-evidenced entities and suggesting experiments or literature searches to fill identified gaps. \textit{Evaluation agents} execute reproducible experimental workflows by invoking domain-specific analysis tools and writing structured results back to the KG as evidence nodes with VVUQ-style verification receipts. \textit{Synthesis agents} generate structured hypothesis artifacts (problem statement, supporting evidence chain, proposed experimental test, predicted outcome) and write them back to the KG as \textsc{Hypothesis} nodes with full provenance metadata. The provenance inheritance constraint is enforced at agent handoff: each agent receives a provenance context object carrying accumulated evidence chain references, and may only produce outputs that extend---not discard---this chain.
+
+\textit{Phase 3 (Months 7--9): Evaluation and Generalization.}
+We will evaluate PA-AKG using the E1--E4 framework. \textbf{E1} (span-level alignment): compute precision/recall of PA-AKG span annotations against a human-annotated gold set of 500 claim--evidence pairs from the SE research corpus. \textbf{E2} (canonicalization consistency): measure Cohen's $\kappa$ between PA-AKG entity cluster assignments and expert-produced canonical entity clusters. \textbf{E3} (traceability completeness): measure percentage of KG nodes with complete provenance chains (all required evidence links present) as a function of corpus size and evolution rate. \textbf{E4} (persistence): track longitudinal stability score (fraction of hypotheses remaining valid as corpus evolves) across six simulated corpus update cycles. We will compare against four baselines: (B1) vector RAG without span alignment; (B2) GraphRAG~\cite{Edge2024GraphRAG} without provenance enforcement; (B3) static snapshot system (no cumulative KG); and (B4) LLM-only generation without retrieval. Secondary domain validation will extend the PA-AKG pipeline to one additional research domain to test generalizability of the schema and alignment pipeline.
+
+\paragraph{Team Roles.}
+\textbf{PI Chris Brown} leads project direction, KG architecture design, evaluation methodology (E1--E4), and SE-domain corpus curation. \textbf{Co-PI Xuan Wang} leads multi-agent orchestration design, ranking and continuation agent implementation, and embedding-based canonicalization. \textbf{Co-PI Scott T. Steinmetz} (Sandia National Labs) leads provenance infrastructure design, formal verification of evidence chains, and secondary domain validation against DOE science corpora. \textbf{GRA Jason Cusati} implements the PA-AKG system end-to-end, constructs and annotates the evaluation corpus, and executes experimental evaluation and baseline comparisons.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
