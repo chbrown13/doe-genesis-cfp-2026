@@ -7,9 +7,9 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
         :root {
-            --amazon-orange: #FF9900;
+            --doe-blue: #1a56a0;
+            --doe-gold: #f0a500;
             --vt-maroon: #861F41;
-            --vt-orange: #E5751F;
             --bg-dark: #0a0a0a;
             --bg-card: #141414;
             --text-primary: #e8e8e8;
@@ -17,11 +17,7 @@
             --border: #2a2a2a;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -32,584 +28,14 @@
 
         .header {
             background: linear-gradient(135deg, var(--vt-maroon), #4a1128);
-            border-bottom: 3px solid var(--amazon-orange);
+            border-bottom: 3px solid var(--doe-gold);
             padding: 2rem 1rem;
             text-align: center;
         }
 
-        .header h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .header .subtitle {
-            color: var(--amazon-orange);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .header .partners {
-            margin-top: 0.75rem;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        .status-banner {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--amazon-orange);
-            border-radius: 6px;
-            padding: 1rem 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        .status-banner .phase {
-            color: var(--amazon-orange);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .status-banner .detail {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 0.25rem;
-        }
-
-        .section {
-            margin-bottom: 2rem;
-        }
-
-        .section h2 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1rem;
-        }
-
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.25rem;
-            transition: border-color 0.2s;
-        }
-
-        .card:hover {
-            border-color: var(--amazon-orange);
-        }
-
-        .card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .card .badge {
-            display: inline-block;
-            font-size: 0.7rem;
-            padding: 0.15rem 0.5rem;
-            border-radius: 3px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            margin-bottom: 0.5rem;
-        }
-
-        .badge-pending {
-            background: rgba(255,153,0,0.15);
-            color: var(--amazon-orange);
-            border: 1px solid rgba(255,153,0,0.3);
-        }
-
-        .badge-complete {
-            background: rgba(0,200,83,0.15);
-            color: #00c853;
-            border: 1px solid rgba(0,200,83,0.3);
-        }
-
-        .badge-active {
-            background: rgba(33,150,243,0.15);
-            color: #2196f3;
-            border: 1px solid rgba(33,150,243,0.3);
-        }
-
-        .downloads {
-            list-style: none;
-        }
-
-        .downloads li {
-            margin-bottom: 0.5rem;
-        }
-
-        .downloads a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--amazon-orange);
-            text-decoration: none;
-            font-size: 0.9rem;
-            padding: 0.5rem 0.75rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            transition: all 0.2s;
-            width: 100%;
-        }
-
-        .downloads a:hover {
-            border-color: var(--amazon-orange);
-            background: rgba(255,153,0,0.05);
-        }
-
-        .downloads .dl-icon {
-            font-size: 1.1rem;
-        }
-
-        .downloads .dl-size {
-            margin-left: auto;
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 1rem;
-            padding-left: 1rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -1.55rem;
-            top: 0.5rem;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--border);
-            border: 2px solid var(--bg-dark);
-        }
-
-        .timeline-item.active::before {
-            background: var(--amazon-orange);
-            box-shadow: 0 0 6px rgba(255,153,0,0.4);
-        }
-
-        .timeline-item.done::before {
-            background: #00c853;
-        }
-
-        .timeline-date {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        .timeline-label {
-            font-size: 0.9rem;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 2rem 1rem;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border);
-        }
-
-        .work-plan {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }
-
-        .work-plan th {
-            text-align: left;
-            padding: 0.6rem 0.75rem;
-            border-bottom: 2px solid var(--border);
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .work-plan td {
-            padding: 0.6rem 0.75rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .work-plan tr:hover {
-            background: rgba(255,255,255,0.02);
-        }
-
-        .work-plan .day-label {
-            color: var(--amazon-orange);
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        .work-plan .focus-text {
-            font-weight: 500;
-        }
-
-        .work-plan .hours {
-            color: var(--text-secondary);
-            white-space: nowrap;
-            text-align: right;
-        }
-
-        .work-plan .deadline-row td {
-            background: rgba(255,153,0,0.08);
-            font-weight: 600;
-        }
-
-        .critical-path {
-            margin-top: 1rem;
-            padding: 0.75rem 1rem;
-            background: rgba(255,153,0,0.08);
-            border: 1px solid rgba(255,153,0,0.2);
-            border-radius: 6px;
-            font-size: 0.85rem;
-            color: var(--amazon-orange);
-        }
-
-        /* Daily Task Tracker */
-        .day-block {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-
-        .day-block.today {
-            border-color: var(--amazon-orange);
-            box-shadow: 0 0 8px rgba(255,153,0,0.15);
-        }
-
-        .day-block.past .day-header {
-            opacity: 0.6;
-        }
-
-        .day-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .day-header:hover {
-            background: rgba(255,255,255,0.02);
-        }
-
-        .day-header-left {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .day-name {
-            font-weight: 700;
-            color: var(--amazon-orange);
-            min-width: 2.5rem;
-        }
-
-        .day-date {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
-        .day-focus {
-            font-size: 0.85rem;
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        .day-header-right {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .day-progress {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .progress-bar {
-            width: 60px;
-            height: 4px;
-            background: var(--border);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            border-radius: 2px;
-            background: var(--amazon-orange);
-            transition: width 0.3s;
-        }
-
-        .progress-fill.complete {
-            background: #00c853;
-        }
-
-        .day-tasks {
-            padding: 0 1rem 0.75rem;
-            display: none;
-        }
-
-        .day-block.open .day-tasks {
-            display: block;
-        }
-
-        .day-block.today .day-tasks {
-            display: block;
-        }
-
-        .task-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-            padding: 0.35rem 0;
-            font-size: 0.85rem;
-        }
-
-        .task-check {
-            color: var(--border);
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .task-check.done {
-            color: #00c853;
-        }
-
-        .task-text {
-            color: var(--text-secondary);
-        }
-
-        .task-text.done {
-            text-decoration: line-through;
-            opacity: 0.5;
-        }
-
-        .day-milestone {
-            margin-top: 0.4rem;
-            padding: 0.4rem 0.6rem;
-            background: rgba(255,153,0,0.06);
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--amazon-orange);
-            font-weight: 500;
-        }
-
-        .today-label {
-            font-size: 0.65rem;
-            padding: 0.1rem 0.4rem;
-            background: var(--amazon-orange);
-            color: #000;
-            border-radius: 3px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-
-        .deadline-label {
-            font-size: 0.65rem;
-            padding: 0.1rem 0.4rem;
-            background: #c62828;
-            color: #fff;
-            border-radius: 3px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .chevron {
-            color: var(--text-secondary);
-            transition: transform 0.2s;
-            font-size: 0.8rem;
-        }
-
-        .day-block.open .chevron {
-            transform: rotate(90deg);
-        }
-
-        /* Proposal detail blocks */
-        .proposal-block {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 1.25rem;
-            overflow: hidden;
-        }
-
-        .proposal-block.recommended {
-            border-color: var(--amazon-orange);
-            box-shadow: 0 0 12px rgba(255,153,0,0.1);
-        }
-
-        .proposal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.25rem;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .proposal-header:hover {
-            background: rgba(255,255,255,0.02);
-        }
-
-        .proposal-header-left {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex: 1;
-        }
-
-        .proposal-rank {
-            font-size: 1.2rem;
-            min-width: 2rem;
-        }
-
-        .proposal-title-group {
-            flex: 1;
-        }
-
-        .proposal-title {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .proposal-categories {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-top: 0.15rem;
-        }
-
-        .proposal-body {
-            padding: 0 1.25rem 1.25rem;
-            display: none;
-        }
-
-        .proposal-block.open .proposal-body {
-            display: block;
-        }
-
-        .proposal-block.open .chevron {
-            transform: rotate(90deg);
-        }
-
-        .proposal-section-title {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--amazon-orange);
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            margin: 1rem 0 0.4rem;
-        }
-
-        .proposal-section-title:first-child {
-            margin-top: 0;
-        }
-
-        .proposal-body p, .proposal-body li {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            line-height: 1.65;
-        }
-
-        .proposal-body ul, .proposal-body ol {
-            padding-left: 1.25rem;
-            margin: 0.25rem 0;
-        }
-
-        .proposal-body li {
-            margin-bottom: 0.2rem;
-        }
-
-        .strategy-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.25rem;
-            margin-top: 1rem;
-        }
-
-        .strategy-box h3 {
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .strategy-box p {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-        }
-
-        .alignment-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-            margin: 0.5rem 0;
-        }
-
-        .alignment-table th {
-            text-align: left;
-            padding: 0.5rem 0.75rem;
-            border-bottom: 2px solid var(--border);
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .alignment-table td {
-            padding: 0.5rem 0.75rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .alignment-table tr:hover {
-            background: rgba(255,255,255,0.02);
-        }
+        .header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.35rem; }
+        .header .subtitle { color: var(--doe-gold); font-size: 1rem; font-weight: 500; }
+        .header .team { margin-top: 0.6rem; font-size: 0.82rem; color: rgba(255,255,255,0.65); }
 
         .nav-bar {
             background: var(--bg-card);
@@ -630,489 +56,527 @@
             transition: all 0.2s;
         }
 
-        .nav-bar a:hover { color: var(--amazon-orange); background: rgba(255,153,0,0.08); }
-        .nav-bar a.active { color: var(--amazon-orange); background: rgba(255,153,0,0.12); font-weight: 600; }
+        .nav-bar a:hover, .nav-bar a.active {
+            color: var(--doe-gold);
+            background: rgba(240,165,0,0.1);
+            font-weight: 600;
+        }
 
-        .fit-fire { color: #ff6b35; font-weight: 600; }
-        .fit-strong { color: var(--amazon-orange); font-weight: 500; }
-        .fit-moderate { color: var(--text-secondary); }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
 
-        .action-needed {
-            margin-top: 1.5rem;
+        .status-banner {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--doe-gold);
+            border-radius: 6px;
             padding: 1rem 1.25rem;
-            background: rgba(255,153,0,0.08);
-            border: 1px solid rgba(255,153,0,0.25);
-            border-radius: 8px;
+            margin-bottom: 2rem;
         }
 
-        .action-needed h3 {
-            color: var(--amazon-orange);
-            font-size: 0.95rem;
-            margin-bottom: 0.4rem;
+        .status-banner .phase {
+            color: var(--doe-gold);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .action-needed p {
+        .status-banner .detail {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .section { margin-bottom: 2.5rem; }
+
+        .section h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Research system card */
+        .system-card {
+            background: var(--bg-card);
+            border: 1px solid var(--doe-gold);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 0 16px rgba(240,165,0,0.08);
+        }
+
+        .system-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--doe-gold);
+            margin-bottom: 0.25rem;
+        }
+
+        .system-card .system-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .system-card p {
             font-size: 0.88rem;
             color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 0.75rem;
+        }
+
+        .arch-layers {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 600px) { .arch-layers { grid-template-columns: 1fr; } }
+
+        .arch-layer {
+            background: rgba(240,165,0,0.05);
+            border: 1px solid rgba(240,165,0,0.2);
+            border-radius: 6px;
+            padding: 0.75rem;
+        }
+
+        .arch-layer .layer-name {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--doe-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.3rem;
+        }
+
+        .arch-layer p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        /* Focus area cards */
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .focus-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            transition: border-color 0.2s;
+        }
+
+        .focus-card:hover { border-color: var(--doe-gold); }
+
+        .focus-card .topic-code {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--doe-gold);
+            margin-bottom: 0.2rem;
+        }
+
+        .focus-card .topic-name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+        }
+
+        .focus-card .topic-office {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .focus-card .framing-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--doe-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.3rem;
+        }
+
+        .focus-card p {
+            font-size: 0.83rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        /* Alignment table */
+        .alignment-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin: 0.5rem 0;
+        }
+
+        .alignment-table th {
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            border-bottom: 2px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .alignment-table td {
+            padding: 0.55rem 0.75rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .alignment-table tr:hover { background: rgba(255,255,255,0.02); }
+
+        .fit-primary { color: #ff6b35; font-weight: 700; }
+        .fit-strong  { color: var(--doe-gold); font-weight: 500; }
+
+        /* Prior work */
+        .prior-work {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .prior-work-item {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+
+        .prior-work-item:last-child { border-bottom: none; }
+
+        .pw-tag {
+            flex-shrink: 0;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            height: fit-content;
+            margin-top: 0.1rem;
+        }
+
+        .pw-tag.pub {
+            background: rgba(240,165,0,0.15);
+            color: var(--doe-gold);
+            border: 1px solid rgba(240,165,0,0.3);
+        }
+
+        .pw-tag.basis {
+            background: rgba(33,150,243,0.15);
+            color: #42a5f5;
+            border: 1px solid rgba(33,150,243,0.3);
+        }
+
+        .pw-cite { color: var(--text-secondary); }
+        .pw-title { font-weight: 500; }
+        .pw-role  { color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.1rem; }
+
+        /* Downloads */
+        .downloads { list-style: none; }
+        .downloads li { margin-bottom: 0.5rem; }
+        .downloads a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--doe-gold);
+            text-decoration: none;
+            font-size: 0.88rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.2s;
+            width: 100%;
+        }
+        .downloads a:hover { border-color: var(--doe-gold); background: rgba(240,165,0,0.05); }
+        .downloads .dl-badge {
+            margin-left: auto;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        /* Timeline */
+        .timeline { position: relative; padding-left: 1.5rem; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.55rem;
+            top: 0.45rem;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+            border: 2px solid var(--bg-dark);
+        }
+
+        .timeline-item.active::before {
+            background: var(--doe-gold);
+            box-shadow: 0 0 6px rgba(240,165,0,0.4);
+        }
+
+        .timeline-item.done::before { background: #00c853; }
+
+        .timeline-date { font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; }
+        .timeline-label { font-size: 0.88rem; }
+        .timeline-note { font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.1rem; }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>DOE Genesis Mission CFP 2026</h1>
-        <div class="subtitle">AI Research Proposal</div>
-        <div class="partners">U.S. Department of Energy Genesis Mission</div>
+
+<div class="header">
+    <h1>DOE Genesis Mission CFP 2026</h1>
+    <div class="subtitle">Provenance-Aware Agentic Knowledge Graphs for Scientific Discovery</div>
+    <div class="team">PI: Chris Brown &nbsp;&middot;&nbsp; Co-PI: Xuan Wang &nbsp;&middot;&nbsp; Co-PI: Scott T. Steinmetz (Sandia) &nbsp;&middot;&nbsp; GRA: Jason Cusati &mdash; Virginia Tech</div>
+</div>
+
+<nav class="nav-bar">
+    <a href="index.html" class="active">Dashboard</a>
+</nav>
+
+<div class="container">
+
+    <div class="status-banner">
+        <div class="phase">Current Phase: Pre-Proposal Drafting</div>
+        <div class="detail">Three focus-area framings of PA-AKG in progress. Pre-proposal due <strong>March 27, 2026</strong>. DE-FOA-0003612.</div>
     </div>
 
-    <nav class="nav-bar">
-        <a href="index.html" class="active">Dashboard</a>
-    </nav>
+    <!-- Research System -->
+    <div class="section">
+        <h2>Research System</h2>
+        <div class="system-card">
+            <h3>PA-AKG &mdash; Provenance-Aware Agentic Knowledge Graph Systems</h3>
+            <div class="system-subtitle">A provenance-first architecture integrating persistent knowledge graphs with multi-agent orchestration for accountable, cumulative AI-assisted scientific research</div>
 
-    <div class="container">
-        <div class="status-banner">
-            <div class="phase">Current Phase: Polish All 3 Abstracts &rarr; Review &rarr; Select &rarr; Submit</div>
-            <div class="detail">Polishing all three proposals. Each will go through a reviewer process before final selection. Due March 17, 2026.</div>
+            <p>Current agentic AI systems coordinate multiple agents and execute multi-step research workflows, but lack the infrastructure to persist, trace, and cumulatively build on their outputs. PA-AKG addresses three structural gaps identified in prior work: no existing system tightly integrates persistent structured knowledge with autonomous multi-agent workflows; no validated evaluation framework addresses AI-generated research outputs; and no generalizable mechanism enforces span-level provenance as an architectural constraint across agent operations.</p>
+
+            <p>The key invariant: <strong>provenance enforcement is architectural, not post-hoc</strong>. Every agent handoff carries a provenance context object requiring downstream agents to inherit and extend the accumulated evidence chain. This transforms provenance from a reporting guideline into foundational research infrastructure.</p>
+
+            <div class="arch-layers">
+                <div class="arch-layer">
+                    <div class="layer-name">Knowledge Representation</div>
+                    <p>Persistent research KG encoding problems, datasets, methods, constraints, and evidence as first-class entities with typed semantic relations. Hybrid property graph + vector index.</p>
+                </div>
+                <div class="arch-layer">
+                    <div class="layer-name">Automation &amp; Extraction</div>
+                    <p>Span-level evidence alignment linking each extracted claim to its source passage. Canonicalization auditing resolving entity references to canonical KG nodes across sessions.</p>
+                </div>
+                <div class="arch-layer">
+                    <div class="layer-name">Agentic Orchestration</div>
+                    <p>Ranking, continuation, evaluation, and synthesis agents operating under provenance inheritance constraints. Structured hypothesis artifacts written back to the KG.</p>
+                </div>
+            </div>
+
+            <p style="margin-bottom:0;"><strong>Evaluation framework (E1&ndash;E4):</strong> span-level alignment precision/recall (E1) &middot; canonicalization consistency Cohen's &kappa; (E2) &middot; traceability completeness % (E3) &middot; longitudinal stability score (E4)</p>
         </div>
-
-        <!-- Downloads link -->
-        <div class="section">
-            <p style="font-size:0.9rem;"><a href="downloads.html" style="color:var(--amazon-orange); font-weight:500;">All Downloads &amp; Resources &rarr;</a> &nbsp; Abstract PDFs, analysis pages, CFP instructions, strategy notes</p>
-        </div>
-
-        <!-- Proposals: Ranked Cards -->
-        <div class="section">
-            <h2>Proposals</h2>
-            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1rem;">All three proposals will be polished to submission quality, then reviewed before final selection.</p>
-
-            <a href="proposal-pakg.html" style="text-decoration:none; display:block;">
-                <div class="proposal-block recommended" style="cursor:pointer;">
-                    <div class="proposal-header">
-                        <div class="proposal-header-left">
-                            <span class="proposal-rank" style="font-size:1.4rem; color:#4caf50;">#1</span>
-                            <div class="proposal-title-group">
-                                <div class="proposal-title">PA-AKG &mdash; Provenance-Aware Agentic Knowledge Graphs for Scientific Discovery</div>
-                                <div class="proposal-categories">19B (Hypothesis Generation) + 18E (Trustworthy AI) &middot; Highest ranked &middot; Most feasible</div>
-                                <div style="font-size:0.82rem; color:var(--text-secondary); margin-top:0.3rem;">Provenance-first KG architecture with span-level evidence alignment, canonicalization auditing, and multi-agent orchestration enabling cumulative, traceable research progression across sessions &mdash; directly addresses the architectural capability, evaluation, and provenance gaps identified in prior SE research (Cusati &amp; Brown, ICSE-FoSE 2026).</div>
-                            </div>
-                        </div>
-                        <span class="badge badge-active">Polishing</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="proposal-akge.html" style="text-decoration:none; display:block;">
-                <div class="proposal-block" style="cursor:pointer; margin-top:0.75rem;">
-                    <div class="proposal-header">
-                        <div class="proposal-header-left">
-                            <span class="proposal-rank" style="font-size:1.4rem; color:#42a5f5;">#2</span>
-                            <div class="proposal-title-group">
-                                <div class="proposal-title">AKG-E &mdash; Agentic Knowledge Graph Digital Twins for AI-Driven Autonomous Laboratories</div>
-                                <div class="proposal-categories">11C (Autonomous Labs) + 19B (Hypothesis Generation) &middot; Most distinctive &middot; Simulation-in-the-loop</div>
-                                <div style="font-size:0.82rem; color:var(--text-secondary); margin-top:0.3rem;">Agentic KG digital twins for construction (CV-based material takeoff from BIM/drawings) and transportation, unified by a VVUQ validation backbone &mdash; simulation-in-the-loop closed-loop discovery directly implements 11C&rsquo;s autonomous laboratory paradigm within DOE-relevant engineering domains.</div>
-                            </div>
-                        </div>
-                        <span class="badge badge-active">Polishing</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="proposal-svf.html" style="text-decoration:none; display:block;">
-                <div class="proposal-block" style="cursor:pointer; margin-top:0.75rem;">
-                    <div class="proposal-header">
-                        <div class="proposal-header-left">
-                            <span class="proposal-rank" style="font-size:1.4rem; color:#ffc107;">#3</span>
-                            <div class="proposal-title-group">
-                                <div class="proposal-title">SVF &mdash; Structured Validation Framework for Trustworthy AI in Scientific Software</div>
-                                <div class="proposal-categories">18E (Trustworthy AI) + 11C (Autonomous Labs) &middot; Evaluation-focused &middot; Provenance-driven</div>
-                                <div style="font-size:0.82rem; color:var(--text-secondary); margin-top:0.3rem;">Evaluation harness measuring grounding integrity, provenance traceability, reasoning robustness, and coordination reliability in knowledge-grounded and multi-agent AI systems &mdash; addresses the evaluation gap that existing agentic systems (e.g., Denario, KG-RAG) cannot fill with current benchmarks.</div>
-                            </div>
-                        </div>
-                        <span class="badge badge-active">Polishing</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Submission Strategy Link -->
-        <div class="section">
-            <div class="strategy-box">
-                <h3>Workflow: Polish &rarr; Review &rarr; Select &rarr; Submit</h3>
-                <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:0.75rem;">All three proposals will be polished to submission-ready quality. Each goes through a reviewer process for feedback. Final selection based on review outcomes.</p>
-                <table class="alignment-table">
-                    <tr>
-                        <th>Rank</th>
-                        <th>Proposal</th>
-                        <th>DOE Focus Areas</th>
-                        <th>Status</th>
-                    </tr>
-                    <tr>
-                        <td class="fit-fire">#1</td>
-                        <td>PA-AKG (v2)</td>
-                        <td>19B (Hypothesis Generation) + 18E (Trustworthy AI)</td>
-                        <td>Polishing</td>
-                    </tr>
-                    <tr>
-                        <td class="fit-strong">#2</td>
-                        <td>AKG-E (v4)</td>
-                        <td>11C (Autonomous Labs) + 19B (Hypothesis Generation)</td>
-                        <td>Polishing</td>
-                    </tr>
-                    <tr>
-                        <td class="fit-moderate">#3</td>
-                        <td>SVF (v3)</td>
-                        <td>18E (Trustworthy AI) + 11C (Autonomous Labs)</td>
-                        <td>Polishing</td>
-                    </tr>
-                </table>
-                <p style="margin-top:0.75rem; font-size:0.85rem;"><a href="devils-advocate.html" style="color:var(--amazon-orange);">View devil's advocate analysis &rarr;</a> &nbsp;|&nbsp; <a href="submission-strategy.html" style="color:var(--text-secondary);">Original strategy analysis</a></p>
-            </div>
-        </div>
-
-        <!-- CFP Alignment Matrix -->
-        <div class="section" id="alignment">
-            <h2>DOE Genesis Mission CFP Alignment Matrix</h2>
-            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:0.75rem;">How each proposal maps to the three target DOE focus areas (DE-FOA-0003612).</p>
-            <table class="alignment-table">
-                <tr>
-                    <th>DOE Focus Area</th>
-                    <th>PA-AKG</th>
-                    <th>AKG-E</th>
-                    <th>SVF</th>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>11C</strong> &mdash; AI-Accelerated Science: Correlation to Understanding (BES)<br>
-                        <span style="font-weight:normal; font-size:0.82rem;">Closed-loop process for autonomous scientific knowledge generation; AI-enabled identification of phenomena not predicted by current models from high-throughput integrated data</span>
-                    </td>
-                    <td class="fit-strong">Strong<br><span style="font-weight:normal; font-size:0.82rem;">Persistent research KG accumulates knowledge across sessions; provenance-tracked hypothesis refinement directly addresses the cross-session persistence gap identified in the qualifying research paper</span></td>
-                    <td class="fit-fire">Extremely Strong<br><span style="font-weight:normal; font-size:0.82rem;">Simulation-in-the-loop VVUQ harness + construction &amp; transportation digital twins implement the closed-loop discovery paradigm; BIM/sensor/FEA data integration produces constraint-validated engineering hypotheses</span></td>
-                    <td class="fit-moderate">Moderate<br><span style="font-weight:normal; font-size:0.82rem;">Evaluation infrastructure for AI-driven lab outputs; provenance completeness scores and coordination reliability metrics validate the quality of closed-loop discovery pipelines</span></td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>18E</strong> &mdash; Trustworthy AI for Scientific Software (ASCR)<br>
-                        <span style="font-weight:normal; font-size:0.82rem;">AI tools with numerical correctness guarantees, reproducibility, provenance tracking, interpretable performance diagnostics, and uncertainty quantification</span>
-                    </td>
-                    <td class="fit-fire">Very Strong<br><span style="font-weight:normal; font-size:0.82rem;">Span-level evidence alignment + canonicalization auditing enforce provenance as an architectural invariant (not post-hoc); reproducibility protocol specifies preserved artifacts (KG snapshots, agent logs, provenance chains) for independent verification</span></td>
-                    <td class="fit-strong">Strong<br><span style="font-weight:normal; font-size:0.82rem;">VVUQ backbone ensures numerical correctness and uncertainty quantification for simulation-validated agent outputs; engineering domains (construction codes, structural analysis) require rigorous reproducibility standards</span></td>
-                    <td class="fit-fire">Extremely Strong<br><span style="font-weight:normal; font-size:0.82rem;">SVF&rsquo;s four dimensions directly operationalize 18E requirements: grounding integrity (correctness), provenance traceability (tracking), reasoning robustness (diagnostics), coordination reliability (uncertainty quantification)</span></td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>19B</strong> &mdash; Hypothesis Generation from Multi-Modal Data (ASCR)<br>
-                        <span style="font-weight:normal; font-size:0.82rem;">AI systems synthesizing scientific literature, experimental datasets, simulation outputs, and visual data to identify knowledge gaps and formulate novel, testable hypotheses</span>
-                    </td>
-                    <td class="fit-fire">Extremely Strong<br><span style="font-weight:normal; font-size:0.82rem;">Core contribution of prior research (Cusati &amp; Brown): hybrid KG-RAG synthesizes SE literature + empirical data; canonicalization identifies research gaps; research progression framework generates testable hypotheses with full span-level evidence chains (E1&ndash;E4 evaluation axes)</span></td>
-                    <td class="fit-strong">Strong<br><span style="font-weight:normal; font-size:0.82rem;">Engineering ontologies synthesize BIM/CAD drawings (visual), sensor streams (experimental), FEA simulation outputs, and materials databases to generate novel engineering design hypotheses; CV-driven material takeoff is a direct multi-modal synthesis task</span></td>
-                    <td class="fit-moderate">Moderate&ndash;Strong<br><span style="font-weight:normal; font-size:0.82rem;">Evaluation harness measures claim-evidence faithfulness for hypothesis-generating systems; robustness testing under adversarial or incomplete multi-modal retrieval assesses 19B system reliability at scale</span></td>
-                </tr>
-            </table>
-        </div>
-
-        <!-- Timeline Section -->
-        <div class="section">
-            <h2>Timeline</h2>
-            <div class="timeline">
-                <div class="timeline-item done">
-                    <div class="timeline-date">Mar 27, 2026</div>
-                    <div class="timeline-label">Pre-proposal due</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Apr 1, 2026</div>
-                    <div class="timeline-label">Pre-proposal notification</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Apr 13-24, 2026</div>
-                    <div class="timeline-label">DOE Genesis Mission writing and feedback sessions</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">April 21, 2026</div>
-                    <div class="timeline-label">Team documents, budget finalized, etc.</div>
-                </div>z
-                <div class="timeline-item">
-                    <div class="timeline-date">Apr 28, 2026</div>
-                    <div class="timeline-label">Full proposal due</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Jun 30, 2026</div>
-                    <div class="timeline-label">Acceptance notification</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">July 1, 2026</div>
-                    <div class="timeline-label">Projects begin</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Daily Task Tracker -->
-        <div class="section">
-            <h2>Daily Task Tracker (Mar 7 &ndash; Mar 17)</h2>
-
-            <div class="day-block" data-date="2026-03-07" onclick="toggleDay(this)">
-                <div class="day-header">
-                    <div class="day-header-left">
-                        <span class="day-name">SAT</span>
-                        <span class="day-date">Mar 7</span>
-                        <span class="day-focus">Topic Lock-Down</span>
-                    </div>
-                    <div class="day-header-right">
-                        <span class="day-progress">3/3</span>
-                        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-                        <span class="chevron">&#9654;</span>
-                    </div>
-                </div>
-                <div class="day-tasks">
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Deep-dive on top candidate(s): literature scan, novelty gap check</span></div>
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Confirm primary + secondary CFP topic categories</span></div>
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Finalize research direction &mdash; PA-AKG selected</span></div>
-                    <div class="day-milestone">Milestone: Topic selected and committed &#10003;</div>
-                </div>
-            </div>
-
-            <div class="day-block" data-date="2026-03-08" onclick="toggleDay(this)">
-                <div class="day-header">
-                    <div class="day-header-left">
-                        <span class="day-name">SUN</span>
-                        <span class="day-date">Mar 8</span>
-                        <span class="day-focus">Abstract First Draft (v1)</span>
-                    </div>
-                    <div class="day-header-right">
-                        <span class="day-progress">3/3</span>
-                        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-                        <span class="chevron">&#9654;</span>
-                    </div>
-                </div>
-                <div class="day-tasks">
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Write 1-page abstract draft (problem, approach, contributions, impact)</span></div>
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Identify key references (excluded from page count)</span></div>
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Map every paragraph to a CFP topic requirement</span></div>
-                    <div class="day-milestone">Milestone: Abstract v1 complete &#10003;</div>
-                </div>
-            </div>
-
-            <div class="day-block" data-date="2026-03-09" onclick="toggleDay(this)">
-                <div class="day-header">
-                    <div class="day-header-left">
-                        <span class="day-name">MON</span>
-                        <span class="day-date">Mar 9</span>
-                        <span class="day-focus">Deep Research &amp; SOA Review</span>
-                    </div>
-                    <div class="day-header-right">
-                        <span class="day-progress">3/3</span>
-                        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-                        <span class="chevron">&#9654;</span>
-                    </div>
-                </div>
-                <div class="day-tasks">
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Deep research on RAG &amp; Graph Retrieval state of the art (2023-2026)</span></div>
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Identify novelty gaps: provenance-aware KG grounding + validation loops</span></div>
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Curate 2024-2026 citations (GraphRAG, CRAG, AWS, OpenTelemetry)</span></div>
-                    <div class="day-milestone">Milestone: SOA landscape mapped &#10003;</div>
-                </div>
-            </div>
-
-            <div class="day-block" data-date="2026-03-10" onclick="toggleDay(this)">
-                <div class="day-header">
-                    <div class="day-header-left">
-                        <span class="day-name">TUE</span>
-                        <span class="day-date">Mar 10</span>
-                        <span class="day-focus">Abstract Second Draft (v2)</span>
-                    </div>
-                    <div class="day-header-right">
-                        <span class="day-progress">3/3</span>
-                        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-                        <span class="chevron">&#9654;</span>
-                    </div>
-                </div>
-                <div class="day-tasks">
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Revise abstract with SOA-grounded framing (hybrid retrieval as mainstream)</span></div>
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Integrate 2024-2026 citations into abstract_v2</span></div>
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Publish deep research report and CFP on dashboard</span></div>
-                    <div class="day-milestone">Milestone: Abstract v2 complete &#10003;</div>
-                </div>
-            </div>
-
-            <div class="day-block" data-date="2026-03-11" onclick="toggleDay(this)">
-                <div class="day-header">
-                    <div class="day-header-left">
-                        <span class="day-name">WED</span>
-                        <span class="day-date">Mar 11</span>
-                        <span class="day-focus">Expand to 3 Proposals</span>
-                    </div>
-                    <div class="day-header-right">
-                        <span class="day-progress">4/4</span>
-                        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-                        <span class="chevron">&#9654;</span>
-                    </div>
-                </div>
-                <div class="day-tasks">
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Deep research on CFP topics &mdash; due diligence across all 5 candidate categories</span></div>
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Create abstract v3 (SVF) &mdash; Evaluation Framework, new TikZ diagram</span></div>
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Create abstract v4 (AKG-E) &mdash; Engineering Framework with AlphaFold3/GNoME anchoring</span></div>
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Convert all abstracts to IEEE 2-column format</span></div>
-                    <div class="day-milestone">Milestone: Three proposal directions drafted &#10003;</div>
-                </div>
-            </div>
-
-            <div class="day-block" data-date="2026-03-12" onclick="toggleDay(this)">
-                <div class="day-header">
-                    <div class="day-header-left">
-                        <span class="day-name">THU</span>
-                        <span class="day-date">Mar 12</span>
-                        <span class="day-focus">Publish &amp; Fix CI</span>
-                    </div>
-                    <div class="day-header-right">
-                        <span class="day-progress">3/3</span>
-                        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-                        <span class="chevron">&#9654;</span>
-                    </div>
-                </div>
-                <div class="day-tasks">
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Revise v4 with deep-research-topics insights (measurable targets, reviewer risk)</span></div>
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Fix CI pipeline &mdash; pdflatex exit codes + poppler-utils</span></div>
-                    <div class="task-item done"><span class="task-check">&#9745;</span><span class="task-text">Publish all PDFs to GitHub Pages dashboard</span></div>
-                    <div class="day-milestone">Milestone: All 4 abstracts live on dashboard &#10003;</div>
-                </div>
-            </div>
-
-            <div class="day-block" data-date="2026-03-14" onclick="toggleDay(this)">
-                <div class="day-header">
-                    <div class="day-header-left">
-                        <span class="day-name">SAT</span>
-                        <span class="day-date">Mar 14</span>
-                        <span class="day-focus">Strategy Pivot &amp; Analysis</span>
-                    </div>
-                    <div class="day-header-right">
-                        <span class="day-progress">4/4</span>
-                        <div class="progress-bar"><div class="progress-fill complete" style="width:100%"></div></div>
-                        <span class="chevron">&#9654;</span>
-                    </div>
-                </div>
-                <div class="day-tasks">
-                    <div class="task-item done"><span class="task-check done">&#9745;</span><span class="task-text done">Analyze best-fit proposals for DOE Genesis Mission CFP vs. other initiatives</span></div>
-                    <div class="task-item done"><span class="task-check done">&#9745;</span><span class="task-text done">Devil's advocate analysis &mdash; stress-test SVF + AKG-E strategy</span></div>
-                    <div class="task-item done"><span class="task-check done">&#9745;</span><span class="task-text done">Strategy pivot: PA-AKG + AKG-E to DOE Genesis Mission, SVF to other venues</span></div>
-                    <div class="task-item done"><span class="task-check done">&#9745;</span><span class="task-text done">Update dashboard, publish analysis pages, create strategy notes</span></div>
-                    <div class="day-milestone">Milestone: Strategy revised to PA-AKG + AKG-E &#10003;</div>
-                </div>
-            </div>
-
-            <div class="day-block" data-date="2026-03-15" onclick="toggleDay(this)">
-                <div class="day-header">
-                    <div class="day-header-left">
-                        <span class="day-name">SUN</span>
-                        <span class="day-date">Mar 15</span>
-                        <span class="day-focus">Polish All 3 Abstracts</span>
-                    </div>
-                    <div class="day-header-right">
-                        <span class="day-progress">0/4</span>
-                        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-                        <span class="chevron">&#9654;</span>
-                    </div>
-                </div>
-                <div class="day-tasks">
-                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Polish PA-AKG (v2) &mdash; tighten prose, sharpen novelty claims</span></div>
-                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Polish AKG-E (v4) &mdash; consider VVUQ reframing, tighten prose</span></div>
-                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Polish SVF (v3) &mdash; address identified weaknesses, tighten prose</span></div>
-                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Verify all three abstracts fit 1 page excluding references</span></div>
-                    <div class="day-milestone">Milestone: All 3 abstracts polished and submission-ready</div>
-                </div>
-            </div>
-
-            <div class="day-block" data-date="2026-03-16" onclick="toggleDay(this)">
-                <div class="day-header">
-                    <div class="day-header-left">
-                        <span class="day-name">MON</span>
-                        <span class="day-date">Mar 16</span>
-                        <span class="day-focus">Reviewer Process &amp; Final Selection</span>
-                    </div>
-                    <div class="day-header-right">
-                        <span class="day-progress">0/5</span>
-                        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-                        <span class="chevron">&#9654;</span>
-                    </div>
-                </div>
-                <div class="day-tasks">
-                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Run reviewer process on all 3 polished abstracts</span></div>
-                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Incorporate reviewer feedback into each abstract</span></div>
-                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Final round: decide which 2 to submit to DOE Genesis Mission</span></div>
-                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Register on DOE Genesis Mission Portal (if not done)</span></div>
-                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Upload selected abstracts to portal</span></div>
-                    <div class="day-milestone">Milestone: Abstracts selected and uploaded</div>
-                </div>
-            </div>
-
-            <div class="day-block" data-date="2026-03-17" onclick="toggleDay(this)">
-                <div class="day-header">
-                    <div class="day-header-left">
-                        <span class="day-name">TUE</span>
-                        <span class="day-date">Mar 17</span>
-                        <span class="deadline-label">Deadline</span>
-                        <span class="day-focus">Submit Abstracts</span>
-                    </div>
-                    <div class="day-header-right">
-                        <span class="day-progress">0/3</span>
-                        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-                        <span class="chevron">&#9654;</span>
-                    </div>
-                </div>
-                <div class="day-tasks">
-                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Final review of submissions on portal</span></div>
-                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Submit selected abstracts via DOE Genesis Mission portal</span></div>
-                    <div class="task-item"><span class="task-check">&#9744;</span><span class="task-text">Confirm submission receipts</span></div>
-                    <div class="day-milestone">Milestone: Abstracts submitted</div>
-                </div>
-            </div>
-
-            <div class="critical-path">
-                Critical path: Mar 14 (strategy &#10003;) &#8594; Mar 15 (polish all 3) &#8594; Mar 16 (review + select + upload) &#8594; Mar 17 (submit)
-            </div>
-        </div>
-
-        <!-- (Alignment matrix is now in the Topic Analysis section above) -->
     </div>
 
-    <div class="footer">
-        DOE Genesis Mission 2026 &middot; Research Proposal
+    <!-- Focus Area Framings -->
+    <div class="section">
+        <h2>DOE Genesis Mission Focus Area Framings</h2>
+        <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:1rem;">PA-AKG is submitted under three focus areas, each with a distinct framing of how the system advances that area&rsquo;s specific scientific and technical goals.</p>
+        <div class="focus-grid">
+            <div class="focus-card">
+                <div class="topic-code">11C</div>
+                <div class="topic-name">AI-Accelerated Science: Correlation to Understanding</div>
+                <div class="topic-office">Office of Science &mdash; Basic Energy Sciences (BES)</div>
+                <div class="framing-label">PA-AKG Framing</div>
+                <p>PA-AKG implements the closed-loop discovery cycle 11C calls for: a persistent KG encodes the current scientific model; agents compare incoming evidence against KG-encoded expectations; divergences trigger structured hypothesis generation with explicit provenance chains; confirmed hypotheses update the KG, enabling cumulative scientific progression across sessions.</p>
+            </div>
+            <div class="focus-card">
+                <div class="topic-code">18E</div>
+                <div class="topic-name">Trustworthy AI for Scientific Software</div>
+                <div class="topic-office">Office of Science &mdash; ASCR</div>
+                <div class="framing-label">PA-AKG Framing</div>
+                <p>PA-AKG operationalizes the 18E requirements directly. Span-level evidence alignment and canonicalization auditing enforce provenance tracking as an architectural invariant&mdash;mandated by the Genesis Mission Executive Order. The E1&ndash;E4 evaluation framework delivers interpretable diagnostics and measurable reproducibility metrics, turning 18E&rsquo;s trustworthiness requirements into quantitative targets.</p>
+            </div>
+            <div class="focus-card">
+                <div class="topic-code">19B</div>
+                <div class="topic-name">Hypothesis Generation from Multi-Modal Data</div>
+                <div class="topic-office">Office of Science &mdash; ASCR</div>
+                <div class="framing-label">PA-AKG Framing</div>
+                <p>PA-AKG synthesizes evidence across multi-modal scientific sources through a canonical KG substrate that links claims from literature, experimental data, and simulation outputs to the same entity nodes. Graph analysis identifies under-evidenced problems representing genuine knowledge gaps; synthesis agents generate structured, traceable hypotheses with provenance chains that DOE researchers can evaluate against primary evidence.</p>
+            </div>
+        </div>
     </div>
 
-    <script>
-        function toggleDay(block) {
-            block.classList.toggle('open');
-        }
+    <!-- Alignment Matrix -->
+    <div class="section" id="alignment">
+        <h2>CFP Alignment Matrix</h2>
+        <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:0.75rem;">How PA-AKG addresses each DOE focus area (DE-FOA-0003612).</p>
+        <table class="alignment-table">
+            <tr>
+                <th style="width:30%">DOE Focus Area</th>
+                <th>PA-AKG Connection</th>
+                <th style="width:12%; text-align:center;">Fit</th>
+            </tr>
+            <tr>
+                <td>
+                    <strong>11C</strong> &mdash; AI-Accelerated Science<br>
+                    <span style="font-size:0.78rem; color:var(--text-secondary);">Closed-loop: phenomena not predicted by current models &rarr; testable hypothesis</span>
+                </td>
+                <td style="font-size:0.83rem; color:var(--text-secondary);">Persistent KG is the &ldquo;current model.&rdquo; Agents detect KG-model divergences, apply provenance constraints, and generate structured hypotheses. Confirmed hypotheses update the KG, implementing the closed discovery loop across sessions.</td>
+                <td style="text-align:center;" class="fit-strong">Strong</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>18E</strong> &mdash; Trustworthy AI for Scientific Software<br>
+                    <span style="font-size:0.78rem; color:var(--text-secondary);">Provenance tracking, reproducibility, interpretable diagnostics, UQ</span>
+                </td>
+                <td style="font-size:0.83rem; color:var(--text-secondary);">Span-level alignment and canonicalization auditing enforce provenance tracking (required by Genesis EO Sec. 3(d)(i)). Canonical KG nodes ensure cross-session reproducibility. E1&ndash;E4 evaluation framework delivers interpretable diagnostics. Architectural provenance enforcement directly addresses the trustworthiness gap identified in prior work.</td>
+                <td style="text-align:center;" class="fit-primary">Primary</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>19B</strong> &mdash; Hypothesis Generation from Multi-Modal Data<br>
+                    <span style="font-size:0.78rem; color:var(--text-secondary);">Synthesize literature, experiments, simulations &rarr; testable hypotheses</span>
+                </td>
+                <td style="font-size:0.83rem; color:var(--text-secondary);">KG canonical entities link evidence across heterogeneous source modalities. Graph gap analysis identifies under-evidenced problems. Synthesis agents generate structured hypothesis artifacts with full provenance chains. Grounded in prior SE research (Cusati &amp; Brown, ICSE-FoSE 2026) demonstrating both the need and feasibility of this approach.</td>
+                <td style="text-align:center;" class="fit-primary">Primary</td>
+            </tr>
+        </table>
+    </div>
 
-        function toggleProposal(block) {
-            block.classList.toggle('open');
-        }
+    <!-- Prior Work -->
+    <div class="section">
+        <h2>Prior Work Foundation</h2>
+        <div class="prior-work">
+            <div class="prior-work-item">
+                <span class="pw-tag basis">Basis</span>
+                <div>
+                    <div class="pw-title">Agentic AI for Autonomous Research: A Literature Survey and Research Proposal</div>
+                    <div class="pw-cite">J. Cusati. Virginia Tech Department of Computer Science. Qualifying Paper (djjay-qualifier).</div>
+                    <div class="pw-role">Source of the three-gap analysis (architectural capability, evaluation, provenance/faithfulness), three-layer PA-AKG architecture, E1&ndash;E4 evaluation axes, and validation matrix.</div>
+                </div>
+            </div>
+            <div class="prior-work-item">
+                <span class="pw-tag pub">Published</span>
+                <div>
+                    <div class="pw-title">From Papers to Progress: Rethinking Knowledge Accumulation in Software Engineering</div>
+                    <div class="pw-cite">J. Cusati and C. Brown. ICSE-FoSE 2026.</div>
+                    <div class="pw-role">Demonstrates that SE research knowledge accumulates in disconnected artifacts without persistent structured infrastructure&mdash;direct motivation for the PA-AKG KG substrate.</div>
+                </div>
+            </div>
+            <div class="prior-work-item">
+                <span class="pw-tag pub">Published</span>
+                <div>
+                    <div class="pw-title">Exploring the Evidence-Based SE Beliefs of Generative AI Tools</div>
+                    <div class="pw-cite">C. Brown and J. Cusati. ESEM 2025, pp. 386&ndash;392.</div>
+                    <div class="pw-role">Empirically demonstrates that AI tools propagate evidence inconsistently in SE contexts&mdash;establishes the practical urgency of architectural provenance enforcement.</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        // Auto-detect today and mark days accordingly
-        (function() {
-            const blocks = document.querySelectorAll('.day-block');
-            const today = new Date();
-            today.setHours(0,0,0,0);
+    <!-- Downloads -->
+    <div class="section">
+        <h2>Pre-Proposal Downloads</h2>
+        <ul class="downloads">
+            <li>
+                <a href="./abstract1.pdf">
+                    <span>📄</span>
+                    <span>PA-AKG — Focus Area 11C (AI-Accelerated Science)</span>
+                    <span class="dl-badge">abstract_11C/</span>
+                </a>
+            </li>
+            <li>
+                <a href="./abstract2.pdf">
+                    <span>📄</span>
+                    <span>PA-AKG — Focus Area 18E (Trustworthy AI)</span>
+                    <span class="dl-badge">abstract_18E/</span>
+                </a>
+            </li>
+            <li>
+                <a href="./abstract3.pdf">
+                    <span>📄</span>
+                    <span>PA-AKG — Focus Area 19B (Hypothesis Generation)</span>
+                    <span class="dl-badge">abstract_19B/</span>
+                </a>
+            </li>
+            <li>
+                <a href="../files/djjay-qualifier.pdf">
+                    <span>📋</span>
+                    <span>Qualifying Paper — Agentic AI for Autonomous Research (Cusati)</span>
+                    <span class="dl-badge">Reference</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 
-            blocks.forEach(block => {
-                const dateStr = block.getAttribute('data-date');
-                if (!dateStr) return;
-                const blockDate = new Date(dateStr + 'T00:00:00');
+    <!-- Timeline -->
+    <div class="section">
+        <h2>Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item active">
+                <div class="timeline-date">Mar 27, 2026</div>
+                <div class="timeline-label">Pre-proposal submissions due</div>
+                <div class="timeline-note">1-page abstract (excluding references) per focus area selected</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Apr 1, 2026</div>
+                <div class="timeline-label">Pre-proposal notification</div>
+                <div class="timeline-note">Invitations to submit full proposals</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Apr 13&ndash;24, 2026</div>
+                <div class="timeline-label">Full proposal writing and feedback sessions</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Apr 21, 2026</div>
+                <div class="timeline-label">Team documents and budget finalized</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Apr 28, 2026</div>
+                <div class="timeline-label">Full proposal due</div>
+                <div class="timeline-note">5 pages + references</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Jun 30, 2026</div>
+                <div class="timeline-label">Acceptance notification</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Jul 1, 2026</div>
+                <div class="timeline-label">Projects begin (1-year duration)</div>
+            </div>
+        </div>
+    </div>
 
-                // Remove static today label
-                block.classList.remove('today');
-                const existingLabel = block.querySelector('.today-label');
-                if (existingLabel) existingLabel.remove();
+</div>
 
-                if (blockDate.getTime() === today.getTime()) {
-                    block.classList.add('today', 'open');
-                    const dateSpan = block.querySelector('.day-date');
-                    const label = document.createElement('span');
-                    label.className = 'today-label';
-                    label.textContent = 'Today';
-                    dateSpan.after(label);
-                } else if (blockDate < today) {
-                    block.classList.add('past');
-                }
-            });
-        })();
-    </script>
+<div class="footer">
+    DOE Genesis Mission — DE-FOA-0003612 &nbsp;&middot;&nbsp; Virginia Tech &amp; Sandia National Labs &nbsp;&middot;&nbsp; Contact: GenesisMissionNOFO@science.doe.gov
+</div>
+
 </body>
 </html>
