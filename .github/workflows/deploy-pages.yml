@@ -50,9 +50,9 @@ jobs:
 
       - name: Publish PDFs to docs
         run: |
-          [ -f abstract_11C/main.pdf ]    && cp abstract_11C/main.pdf    docs/abstract1.pdf
-          [ -f abstract_18E/main.pdf ] && cp abstract_18E/main.pdf docs/abstract2.pdf
-          [ -f abstract_19B/main.pdf ] && cp abstract_19B/main.pdf docs/abstract3.pdf
+          [ -f abstract_11C/main*.pdf ] && cp abstract_11C/main*.pdf docs/abstract1.pdf
+          [ -f abstract_18E/main*.pdf ] && cp abstract_18E/main*.pdf docs/abstract2.pdf
+          [ -f abstract_19B/main*.pdf ] && cp abstract_19B/main*.pdf docs/abstract3.pdf
           true
 
       - name: Setup Pages
