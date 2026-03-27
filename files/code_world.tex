@@ -1,6 +1,8 @@
 \usepackage{xspace}
 \usepackage{xcolor}
 \usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage[skip=2pt]{caption}
 
 \newcommand{\todo}[1]{{\color{red}\bfseries [[TODO: #1]]}}
 
@@ -17,3 +19,11 @@
 \newcommand{\eg}{\textit{e.g.,}\xspace}
 
 \newcommand{\etal}{\textit{et al.}\xspace}
+
+\newcommand{\problem}[2]{%
+\begin{tcolorbox}[boxsep=0pt,left=2mm,right=2mm,top=1mm,bottom=1mm]
+\textbf{
+#1
+}
+\end{tcolorbox} \vspace{-5pt}
+}
