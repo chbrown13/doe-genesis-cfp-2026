@@ -1,0 +1,19 @@
+% ============================================================
+% Decision Gate Metrics — proposal_18E/decision_gate.tex
+% Reviewer concern: RF-5a (Decision Gate Metrics TODO)
+% Verified by: AC-5
+%
+% Framed as SCALING-BEHAVIOR CLAIMS (not fixed-number commitments).
+% Thresholds are discovered empirically via the calibration studies
+% in Methods §Phase 1 (AC-5b) and §Phase 2 (AC-5c).
+% ============================================================
+
+% [RF-5a] Decision Gate Metrics as scaling-behavior claims with empirically-discovered thresholds — verified by: AC-5
+
+\paragraph{AI advantage as scaling behavior.} Our primary AI advantage metric is the \textbf{monotonic improvement} of provenance completeness, reproducibility, and span-level alignment F1 as the software engineering corpus underlying PA-AKG scales from the Phase 1 small-seed calibration ($\sim$5--10 papers, Graph-Based RAG snowball seed) to the Phase 2 expanded-corpus calibration ($\sim$50+ papers). The comparison of Phase 1 against Phase 2 thresholds provides the direct empirical evidence that additional curated training and retrieval data translates into measurable improvements in the trustworthiness of PA-AKG's outputs. This directly addresses the CFP's call for ``scaling behavior which shows increasing performance as additional data, computing, and/or other resources are applied.''
+
+\paragraph{Empirically-discovered thresholds.} Rather than pre-committing to first-pass numeric targets, the Phase I go/no-go thresholds for provenance completeness, reproducibility rate, and span-level alignment F1 are \emph{discovered} through the calibration studies in \S\ref{sec:methods}. Phase 1 calibration produces an initial threshold set published at the end of Month 3; Phase 2 re-calibration re-validates and refines these against the expanded corpus. The values reported at the \textbf{Month-6 Decision Gate} are the Phase 2 calibrated thresholds, published with the gate report so that Phase II Genesis reviewers can assess whether PA-AKG has cleared its own empirically-grounded bar.
+
+\paragraph{Iterate-if-low rule.} If the Phase 1 or Phase 2 calibration study produces thresholds below a defensible trustworthiness floor---operationally, below the point at which human HPC reviewers consistently judge recommendations as auditable---the team will iterate the PA-AKG implementation (schema, extraction pipeline, or provenance inheritance rules) and re-calibrate before the Month-6 gate, rather than accepting a weak result as the project's claimed AI advantage. This rule protects the integrity of the scaling-behavior claim: improvements must come from additional curated data, not from lowering the bar.
+
+\paragraph{Supporting user-study signal.} As an early user-feedback signal supporting the scaling-behavior claim, controlled studies with HPC software developers will assess recommendation auditability, with a target of $\geq$70\% of developers rating PA-AKG recommendations as auditable, compared against baseline LLM recommendations. This is reported as a supporting metric, not as the primary trustworthiness number.
