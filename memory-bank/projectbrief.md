@@ -34,12 +34,13 @@ Proposers select one of the following categories:
 
 ## Success Criteria
 
-- [ ] Compelling research problem with clear novelty
-- [ ] Strong alignment with CFP topic area
-- [ ] Feasible methodology and timeline (1-year project)
-- [ ] Clear potential for DOE-relevant impact
-- [ ] Abstract selected for full proposal invitation
-- [ ] Full proposal funded
+- [x] Compelling research problem with clear novelty (PA-AKG architecture, three-gap analysis)
+- [x] Strong alignment with CFP topic area (18E Primary; 11C, 19B Strong)
+- [x] Feasible methodology and timeline (1-year project; Phase 1 load-relieved during v2 review)
+- [x] Clear potential for DOE-relevant impact (trustworthy AI for HPC scientific software)
+- [x] Abstract selected for full proposal invitation (18E ranked #1 of 2 by all three reviewers)
+- [ ] Full proposal submitted by 2026-04-28
+- [ ] Full proposal funded (decision ~June 2026)
 
 ## Project Constraints
 
