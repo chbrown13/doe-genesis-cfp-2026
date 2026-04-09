@@ -1,0 +1,18 @@
+\begin{center}
+    \large{\proposalEighteen} \\ \vspace{0.5pt}
+\footnotesize{PI: Chris Brown, Computer Science, Virginia Tech} \\
+\footnotesize{Co-PI: Xuan Wang, Computer Science, Virginia Tech} \\
+\footnotesize{Co-PI: Scott T. Steinmetz, Sandia National Labs} \\
+\footnotesize{GRA: Jason Cusati, Computer Science, Virginia Tech}
+\end{center}
+
+\small{\noindent\textbf{Focus Area:} 18 -- HPC Code Curation, Translation, and Development for Accelerated Scientific Discoveries} \hfill \\
+\small{\textbf{Topic:} E. Trustworthy AI for Scientific Software}
+
+\subsection*{Project Summary / Abstract}
+
+Scientific software is the backbone of DOE's research enterprise, encoding decades of expertise in numerical methods, simulation algorithms, and HPC optimizations across national laboratory facilities. Recent advances in large language models (LLMs) and generative AI have introduced powerful tools for code assistance---capable of suggesting optimizations, detecting issues, and translating legacy codebases across hardware targets. Yet AI systems assisting with HPC scientific software cannot provide the trustworthiness guarantees these applications require. They may suggest code transformations but cannot trace each recommendation to the specific performance benchmarks, numerical analyses, or validation results that justify it. Without this traceability, AI-assisted code changes cannot be audited or reproduced---and in DOE scientific software, numerically incorrect changes can silently invalidate entire simulation campaigns.
+
+To address these challenges, we will introduce \textbf{provenance-aware agentic knowledge graphs} (PA-AKG) as foundational infrastructure for trustworthy AI-assisted scientific software development. A persistent knowledge graph (KG) encodes HPC software knowledge---algorithms, numerical methods, performance benchmarks, hardware constraints, and validation results---linked by explicit semantic relations, providing an auditable substrate for AI code recommendations. As AI agents suggest transformations, an automated extraction layer produces \textit{span-level evidence alignment}, linking each recommendation to the specific benchmark, literature passage, or test outcome that supports it. Confirmed decisions are written back to the KG, accumulating an auditable development history. PA-AKG will offer a significant AI advantage over existing code assistance tools, enabling provenance tracking, reproducibility, and uncertainty quantification as architectural guarantees rather than post-hoc aspirations.
+
+The proposed work will design and implement the PA-AKG infrastructure for HPC scientific software contexts, incorporating AI directly into code curation, translation, and validation workflows. We will evaluate PA-AKG against existing approaches, investigating the provenance completeness, reproducibility, and trustworthiness of AI-assisted code development. This project will advance the foundations for trustworthy AI in scientific software by designing techniques to enforce evidence traceability at every layer of the agentic architecture. This work will produce deployable tools, including an open-source PA-AKG implementation, HPC-focused benchmarks, and empirical insights to lay the groundwork for a new generation of trustworthy AI-augmented scientific software development.

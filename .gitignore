@@ -25,3 +25,6 @@ Thumbs.db
 
 # PDF build artifacts (keep final PDFs)
 # *.pdf
+
+# Proposal build output directories
+proposal_18E/build/

@@ -1,0 +1,158 @@
+% ============================================================
+% DOE Genesis Mission CFP 2026 — Full Proposal (v2)
+% PA-AKG: Provenance-Aware Agentic Knowledge Graphs
+% Focus Area: 18E — Trustworthy AI for Scientific Software
+%
+% v2 source: construction/requirements/18E-proposal-incorporate-reviewer-feedback-v2.md
+% v1 plan:   files/full-proposal-plan-18E.md
+% Parallel:  abstract_18E/ (frozen submitted pre-proposal; do not edit)
+%
+% Every reviewer-driven edit carries an inline comment of the form:
+%   % [RF-<n>] <short reviewer concern> — verified by: AC-<m>
+% Run `grep '\[RF-' proposal_18E/main.tex` to audit traceability coverage.
+% ============================================================
+
+\documentclass{files/proposalnsf}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{wrapfig}
+
+\setlist{nosep, leftmargin=1.5em, topsep=0.2em}
+
+\titleformat*{\section}{\large\bfseries}
+\titlespacing{\section}{0pt}{6pt}{3pt}
+\titlespacing{\paragraph}{0pt}{3pt}{2pt}
+\input{files/code_world}
+
+\begin{document}
+
+\input{proposal_18E/abstract}
+
+\newpage
+\pagenumbering{arabic}
+
+\input{proposal_18E/cover_sheet}
+
+\newpage
+\pagenumbering{arabic}
+
+\begin{center}
+    \large{\proposalEighteen} \\ \vspace{0.5pt}
+\footnotesize{PI: Chris Brown, Computer Science, Virginia Tech} \\
+\footnotesize{Co-PI: Xuan Wang, Computer Science, Virginia Tech} \\
+\footnotesize{Co-PI: Scott T. Steinmetz, Sandia National Labs} \\
+\footnotesize{GRA: Jason Cusati, Computer Science, Virginia Tech}
+\end{center}\vspace{-15pt}
+
+%\subsection*{Project Narrative}
+
+% Explain the importance and relevance of the proposed work and clearly articulate which aspect of the chosen challenge will be addressed and solved. Set the proposed research in perspective to other efforts in the field. Highlight novel or unique aspects of the proposed work. Cite relevant literature.
+
+\section{Introduction}
+The DOE national laboratory system maintains some of the most complex and consequential scientific software in the world~\cite{perabytes}, encoding decades of expertise in numerical methods, simulation algorithms, and HPC architectures across facilities such as Argonne National Laboratory, Oak Ridge National Laboratory, and Sandia National Laboratories. These codebases must evolve continuously---porting to new GPU architectures, adapting to new hardware constraints, incorporating new numerical methods---while preserving the correctness and reproducibility that scientific integrity demands~\cite{keahey2025report,pouchard2019computational}. This widening \textbf{software trustworthiness gap} poses significant challenges for national research priorities: the complexity of HPC scientific software outpaces the capacity of human reviewers to manually verify every AI-assisted change, creating critical accountability risk for DOE's scientific mission.
+
+Recent advances in large language models (LLMs) and generative AI have produced tools of remarkable capability to assist with scientific software development. AI-based systems can suggest code optimizations~\cite{podduturi2025ai}, identify performance bottlenecks~\cite{polu2025ai}, and translate legacy codebases at significant scale~\cite{claude}. The potential of LLM-based agents to accelerate HPC software development is widely recognized and actively being pursued across the national laboratory system~\cite{rummler2026sandians}. However, LLMs are prone to hallucinate---generating plausible-sounding recommendations that conflate numerically distinct algorithms, suggest transformations that do not preserve correctness, or cite validation results that do not support the proposed optimization~\cite{Ji2023HallucinationSurvey}. These outcomes can corrupt production scientific software and invalidate research results. Recently, agentic systems coordinating multiple AI agents~\cite{ezzrhari2020scalable} and augmentation methods to retrieve relevant documentation~\cite{miyashita2024llm} aim to ground code recommendations in existing knowledge. However, fundamental challenges that constrain AI utility for trustworthy HPC software development remain:
+
+\textbf{Absence of persistent knowledge state.} Current AI systems treat each interaction independently, with no persistent representation of a codebase's development history, performance characteristics, or the rationale behind prior decisions. This prevents AI from reasoning about accumulated software knowledge, detecting regressions against established benchmarks, or avoiding repeated analysis of validated transformations.
+
+\textbf{Lack of traceable provenance.} Trustworthy software engineering requires that decisions be justifiable and reproducible. When an AI system recommends a code transformation, developers must be able to trace that recommendation to specific benchmarks, numerical analyses, or validation results. Current systems may surface relevant documentation but do not provide structured reasoning that connects evidence to recommendations---making AI-assisted code changes impossible to audit or reproduce independently.
+
+% [RF-1] "focus is tighter than the focus area — focusing on building software specifically rather than data moving through the models" — Reviewer 1 — verified by: AC-1
+\textbf{PA-AKG as data infrastructure for trustworthy AI learning.} Beyond assisting individual code recommendations, PA-AKG is the \emph{data infrastructure} that curates and structures the signals AI systems must learn from in HPC contexts: compiler traces, HPC performance profiles, benchmark logs, validation test outcomes, and the git history connecting them. The KG encodes these data as first-class entities with provenance links, so that AI agents trained or prompted against the KG inherit structured evidence rather than unstructured text. This directly addresses the 18E focus-area call to learn from decades of DOE codes, compiler traces, and performance data---reframing the scientific contribution not as a better code-assistance tool, but as the data substrate that makes AI learning from HPC software trustworthy and reproducible~\cite{Ji2023HallucinationSurvey}. \vspace{-5pt}
+
+
+\problem{The lack of structured and persistent knowledge about HPC software development limits AI agents' ability to provide trustworthy, reproducible assistance for DOE scientific software.}
+
+To address these challenges, this project proposes the design, implementation, and evaluation of \textbf{provenance-aware agentic knowledge graphs} (PA-AKG) for HPC scientific software development. PA-AKG is foundational infrastructure for trustworthy, AI-integrated software engineering, addressing the challenges above by providing AI agents with a persistent, structured, and auditable representation of the current state of a scientific software system in a given domain. Knowledge graphs (KGs) have been applied in software engineering and scientific computing as a mechanism for representing complex, heterogeneous information through explicit semantic relationships~\cite{karras2024organizing,kousha2023democratizing}. PA-AKG will encode HPC software knowledge (\ie algorithms, numerical methods, performance benchmarks, hardware constraints, validation results, and development decisions) as nodes representing existing knowledge, with relationships between them as directed edges. We extend these efforts by embedding agentic orchestration. As AI agents suggest code transformations, they compare proposed changes against KG-encoded performance expectations. When decisions are confirmed, they are written back to the KG with explicit provenance chains---carrying the specific benchmarks and evidence that justify each change---accumulating an auditable development history that future agents can build upon.
+
+% Provide a clear and concise statement of the specific objectives of the proposed project. Address how the objectives align with the chosen focus topic and lead to an AI advantage
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{proposal_18E/images/architecture-diagram.png}
+    \caption{PA-AKG Architecture Overview}
+    \label{fig:pa-akg}
+\end{figure}
+
+\section{Project Objectives} 
+
+Our goal is to design and implement a provenance-first agentic KG architecture with three integrated layers: knowledge representation; automation and extraction; and agentic orchestration. We will implement the PA-AKG architecture, developing infrastructure to automate the extraction and structuring of claim-evidence pairs in HPC software contexts with role-specific agents (\eg ranking agents, evaluation agents, and synthesis agents). The initial implementation will focus on the software engineering research domain in the context of HPC, following our prior work~\cite{cusati2026fose}, with secondary validation against HPC performance analysis workflows at Sandia National Laboratories. Software engineering outlines processes and methods for developing and maintaining software systems, and is also critical for technological innovation~\cite{vos2026reclaiming} and enabling the development and maintenance of applications~\cite{schmidberger2012need}. We will conduct a comprehensive evaluation of our approach, comparing PA-AKG against RAG, GraphRAG~\cite{Edge2024GraphRAG}, and static baseline approaches on provenance completeness, reproducibility, and trustworthiness of AI-generated software decisions. We will also conduct controlled user studies with HPC software developers to assess usability and utility. Key risks include extraction reliability at HPC code scale and KG schema portability across software domains; these are mitigated by the staged evaluation design and Sandia's established HPC validation corpora.
+
+% [RF-5c] infrastructure statement required within first 2 pages of Project Narrative — verified by: AC-7
+\noindent\textit{This project does not involve the construction, alteration, maintenance, and/or repair of public infrastructure in the United States.}
+
+% Provide a clear research plan for a 9-month project and describe the proposed activities and methods. Include enough technical details to evaluate the impact of the proposed activity. For each activity, indicate the responsibility of the key investigator(s) and the associated budget. If the proposed application is building on an existing, currently funded DOE project, describe how the submitted application leverages that work and is distinct from the existing funding.
+
+\section{Proposed Research and Methods}
+\label{sec:methods}
+
+Our research plan involves four main phases:
+
+\paragraph{Phase 1 (Months 1--3): Knowledge Representation Layer and Initial Calibration.}
+We will design the HPC software KG schema with entity types such as \textsc{Algorithm}, \textsc{NumericalMethod}, \textsc{CodeComponent}, \textsc{HardwareConstraint}, \textsc{Benchmark}, and \textsc{ValidationResult}---linked by semantic relations (\textsc{implements}, \textsc{requires}, \textsc{supersedes}, \textsc{validates}). A hybrid symbolic--semantic design pairs a property graph store with a vector index, supporting both structured relational queries and approximate similarity search. We will populate an initial KG from the software engineering research corpus established in prior work and validate entity extraction against manually annotated ground truth.
+% [RF-5a-b] Phase 1 small-seed calibration study — verified by: AC-5b
+\textbf{Small-seed calibration study.} Concurrently in Phase 1, we will run an initial calibration of the PA-AKG provenance pipeline against a small seed corpus of approximately 5--10 software engineering papers, beginning with Graph-Based RAG~\cite{Edge2024GraphRAG} as the canonical seed and snowballing backward through its references. The study proceeds in two modes: a \textit{discovery} mode in which the team hand-annotates claim--evidence pairs to establish baseline thresholds for provenance completeness and span-level alignment; and a \textit{calibration} mode in which those thresholds are refined to the empirical cutoff that distinguishes trustworthy from untrustworthy recommendations. Annotation is performed by team consensus (Brown, Wang, Cusati), cross-checked across members rather than relying on a single annotator. The output is a calibrated initial threshold set that feeds the Decision Gate Metrics at the Month-6 gate. The calibration depends on a populated KG, so the ordering inside Phase 1 is serial: schema $\rightarrow$ initial population $\rightarrow$ seed-corpus build $\rightarrow$ discovery $\rightarrow$ calibration.
+
+\paragraph{Phase 2 (Months 4--6): Automation, Orchestration, and Interim Evaluation.}
+% [RF-4] "Phase II proposal will be due before the evaluation phase is completed" — Reviewer 2 — verified by: AC-4
+Phase 2 restructures the pre-proposal's evaluation plan to front-load interim benchmark results by Month 6, so that the Decision Gate and any Phase II Genesis submission can be informed by concrete evidence rather than projected outcomes. We will implement the extraction and automation pipeline: structured prompting will produce claim--evidence pairs; span-level alignment will link each claim to character-level source passage spans; and canonicalization auditing will normalize, validate, and deduplicate entity references to canonical KG nodes. The agentic orchestration layer, adapting the Planning \& Control pattern~\cite{Park2023GenerativeAgents}, introduces four role-specific agent types. \textit{Ranking agents} score candidate code changes by evidence strength and risk. \textit{Continuation agents} propose follow-on validation analyses grounded in KG gaps. \textit{Evaluation agents} execute reproducible benchmark workflows and write results back to the KG as structured evidence nodes. \textit{Synthesis agents} generate recommendation artifacts with full provenance metadata. Provenance inheritance is enforced at every agent handoff.
+% [RF-5a-c] Phase 2 expanded-corpus second calibration study — verified by: AC-5c
+\textbf{Expanded-corpus second calibration and preliminary benchmark results.} By mid-Phase 2 we will expand the Phase 1 seed corpus via full snowball sampling to approximately 50 or more software engineering papers and re-run the calibration protocol against the larger corpus. The comparison of Phase 1 (small-corpus) thresholds against Phase 2 (expanded-corpus) thresholds provides the \emph{direct empirical evidence} of the scaling-behavior AI advantage claimed in the Decision Gate Metrics section (\S\ref{sec:decision-gate}). These preliminary benchmark results land at the \textbf{Month-6 Decision Gate}, providing the evidence base for the go/no-go decision and aligning with Phase II Genesis proposal preparation.
+
+\paragraph{Phase 3 (Months 7--9): Full Evaluation and Generalization.}
+% [RF-4] Phase 3 is labeled Full Evaluation, not the only evaluation phase — verified by: AC-4
+With interim benchmark results delivered at Month 6, Phase 3 conducts the full evaluation of PA-AKG. We will complete the benchmark against vector-based RAG, hybrid retrieval, and GraphRAG-style reasoning~\cite{Edge2024GraphRAG} on the human-annotated claim--evidence benchmark from Phase 1--2. We will calculate span-level alignment precision/recall, Cohen's $\kappa$ with expert-labeled canonical entity clusters, and traceability completeness. A secondary HPC validation at Sandia National Laboratories assesses cross-domain generalizability of the extraction pipeline. Our second evaluation thread assesses provenance completeness and trustworthiness of AI-assisted code recommendations through controlled user studies with HPC software practitioners, collecting quantitative task-completion metrics and qualitative feedback on recommendation auditability.
+
+\paragraph{Phase 4: Dissemination.}
+We will pursue targeted dissemination of PA-AKG research findings to academic and practitioner audiences. Academic outputs will be submitted to premier venues in software engineering, AI, and machine learning, including the International Conference on Software Engineering (ICSE), the Mining Software Repositories conference (MSR), and the Supercomputing Conference (SC). We will submit to tool, demo, and tutorial tracks at these venues to provide hands-on exposure of PA-AKG to HPC software development and software engineering research communities, lowering the barrier to adoption across DOE and academic research programs. To reach the practitioner community, we will release the PA-AKG implementation as an open-source package with comprehensive documentation, worked examples, and integration guides targeting national laboratory developers and the broader scientific computing community. We will present findings at Sandia National Laboratories and partner institutions to gather practitioner feedback, surface deployment barriers, and assess adoption pathways within active DOE HPC workflows. This phase will conclude with an impact assessment evaluating how PA-AKG changes developers' ability to audit and reproduce AI-assisted code decisions---informing the design of future trustworthy AI systems for HPC scientific software and establishing PA-AKG as a reference model for accountable AI assistance in DOE's software engineering mission.
+
+% Provide a list of clearly defined and measurable milestones of the project
+
+\section{Milestones}
+
+\input{proposal_18E/milestones}
+
+The expected outcomes include:
+\begin{itemize}
+    \item A design for provenance-aware knowledge graph architecture for trustworthy AI-assisted HPC scientific software development.
+    \item An open-source PA-AKG implementation, consisting of an automated extraction pipeline and agentic orchestration, applied to HPC software development contexts.
+    \item Benchmarking infrastructure to assess LLM-based systems for trustworthy code assistance in scientific software.
+    \item Empirical insights on the provenance completeness, reproducibility, and trustworthiness of AI-assisted HPC code decisions.
+    \item Broader scientific impact through open engagement with national laboratory and academic research communities, informing the design of next-generation trustworthy AI tools for HPC scientific software and establishing PA-AKG as a reference model for accountable AI in DOE's software mission.
+\end{itemize}
+
+% Describe which existing or new data sources will be used. Address your team’s access to the data. If applicable, indicate which AI models or frameworks will be used in your proposed project. Do not include a description of computing resources and the means by which you will secure an allocation timed to your performance period; this should be done in Appendix 2
+
+\section{Data Sources and Models}
+
+\input{proposal_18E/data_sources}
+
+% Provide specific metrics that can be used for the evaluation of Phase I go/no go decision. DOE encourages the development of metrics to identify AI advantage. One such metric could include scaling behavior which shows increasing performance as additional data, computing, and/or other resources are applied. Quantitative statements enabling transformative science and engineering through AI are preferred.
+
+\section{Decision Gate Metrics}
+\label{sec:decision-gate}
+
+\input{proposal_18E/decision_gate}
+
+\paragraph{Research Team.} This project aligns with the prior work and trajectory of the research team, and the team has an established history of collaboration.
+% [RF-3] "It is not clear from the proposal whether the team has worked together before" — Reviewer 1 — verified by: AC-3
+\textbf{Prior collaborations.} PI Brown and GRA Cusati have co-authored two prior works directly informing PA-AKG: an empirical study of how generative AI tools propagate evidence-based beliefs in software engineering~\cite{brown2025esem} and an ICSE-FoSE position paper articulating the need for structured knowledge accumulation in SE research~\cite{cusati2026fose}. The Brown--Wang VT partnership is a new cross-area collaboration within the Department of Computer Science at Virginia Tech, coordinated through weekly joint research meetings and shared data access within the PA-AKG project workspace. The VT--Sandia partnership with Co-PI Steinmetz is structured around quarterly on-site working sessions at Sandia, co-supervision of the Sandia-side validation corpus by Steinmetz and Cusati, and a shared data agreement governing access to Sandia HPC benchmarks and legacy code artifacts.
+\textbf{PI Brown} and GRA Cusati explored how LLMs propagate research-based evidence~\cite{brown2025esem} and outlined researchers' desire for structured knowledge accumulation~\cite{cusati2026fose} in software engineering contexts. For this work, Dr. Brown will lead the overall execution of the project---including the PA-AKG implementation and research plan. \textbf{Co-PI Wang} investigates LLMs in the context of science and society, with substantial experience studying the applications of LLMs (\ie~\cite{bi2024ai,srivastava2025llmthinkbench}) and agents (\ie~\cite{latimer2025hindsight,lu2024triageagent}) in scientific settings and earning an NSF CAREER award to extract patterns from research data~\cite{wang_career}. Dr. Wang will inform the design of the PA-AKG architecture, particularly focusing on knowledge retrieval and extraction, multi-agent orchestration, and knowledge persistence, and the benchmark evaluation~\cite{srivastava2025beyondbench}. \textbf{Co-PI Steinmetz} is a researcher at Sandia National Labs with expertise in human-machine teaming~\cite{chance2023towards,powell2021coordination}, generative AI~\cite{krofcheck2023overview,layton2025mstd}, and trust in AI systems~\cite{naugle2025trusted,steinmetz2025trust}. Dr. Steinmetz will inform the PA-AKG design and support validation efforts against HPC software development workflows at Sandia, leveraging his expertise in trustworthy AI systems to assess usability and accountability in practical HPC development contexts. \textbf{GRA Cusati} is a Ph.D. student in the Department of Computer Science at Virginia Tech with extensive industry experience implementing complex production software in various roles. Jason will lead the design and development of the PA-AKG infrastructure and the overall data collection and analysis efforts.
+
+% [RF-2] "There is no industry partner to help ensure that the findings are translated into practice" — Reviewer 1 — verified by: AC-2
+\paragraph{Technology Transfer and Industry Partner.}
+\todo{RF-2 (post-Sandia-meeting): after the 2026-04-09 Sandia meeting, either (Plan A) name the committed industry partner here and on the cover sheet, describing their role in providing validation corpora, deployment pathway, or engineering contribution; or (Plan B) write a commercialization paragraph describing a Phase I engagement plan with candidate partners (HPE, NVIDIA, AWS) without naming a commitment. In either case the paragraph must be $\geq$3 sentences and address Criterion 4 (Commercialization Potential).}
+
+\paragraph{Resources.} Virginia Tech's Advanced Research Computing\footnote{\url{https://arc.vt.edu/}} provides GPU cluster infrastructure for large-scale KG construction and LLM inference workloads. The Department of Computer Science is well equipped to support research in the areas described in the proposal. To facilitate wide ranging research activities, major services provided by the department include: a Computer Science Research Virtual Machine cluster (CSRVM) with flexibility to create large scale VMs; ; a secure, modern, climate-controlled server room and workspace to work directly with servers and equipment; and computing resources with cutting-edge high-performance computing and visualization resources. The team will access publicly available scientific software corpora and documentation (\eg GitHub, arXiv, IEEE Xplore) and pre-trained language models (\eg Llama, GPT-4) for extraction and orchestration. Sandia National Laboratories will contribute access to HPC performance benchmarks, legacy scientific codebases, and DOE-relevant software documentation corpora for secondary domain validation, ensuring the research addresses realistic national laboratory software development challenges.
+
+\bibliography{proposal_18E/references}
+\bibliographystyle{abbrv}
+
+
+\end{document}
