@@ -29,10 +29,10 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-latex-recommended latexmk poppler-utils > /dev/null 2>&1
 
-      - name: Build abstract PDFs
+      - name: Build pre-proposal PDFs (self-contained, compile from inside each folder)
         run: |
-          echo "## Abstract Builds" >> $GITHUB_STEP_SUMMARY
-          for dir in abstract abstract_v2 abstract_v3 abstract_v4; do
+          echo "## PDF Builds" >> $GITHUB_STEP_SUMMARY
+          for dir in abstract_11C abstract_18E abstract_19B; do
             if [ -f "${dir}/main.tex" ]; then
               cd "${dir}"
               pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 || true
@@ -41,19 +41,32 @@ jobs:
               pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 || true
               PAGES=$(pdfinfo main.pdf 2>/dev/null | grep Pages | awk '{print $2}' || echo "?")
               echo "- **${dir}**: ${PAGES} page(s)" >> $GITHUB_STEP_SUMMARY
-              if [ "$PAGES" != "1" ] && [ "$PAGES" != "2" ]; then
-                echo "::warning::${dir} is ${PAGES} pages"
-              fi
               cd ..
             fi
           done
 
+      - name: Build 18E full proposal (repo-root-relative paths, compile from repo root)
+        run: |
+          if [ -f "proposal_18E/main.tex" ]; then
+            mkdir -p proposal_18E/build
+            pdflatex -interaction=nonstopmode -output-directory=proposal_18E/build proposal_18E/main.tex > /dev/null 2>&1 || true
+            bibtex proposal_18E/build/main > /dev/null 2>&1 || true
+            pdflatex -interaction=nonstopmode -output-directory=proposal_18E/build proposal_18E/main.tex > /dev/null 2>&1 || true
+            pdflatex -interaction=nonstopmode -output-directory=proposal_18E/build proposal_18E/main.tex > /dev/null 2>&1 || true
+            PAGES=$(pdfinfo proposal_18E/build/main.pdf 2>/dev/null | grep Pages | awk '{print $2}' || echo "?")
+            echo "- **proposal_18E**: ${PAGES} page(s)" >> $GITHUB_STEP_SUMMARY
+            if [ "$PAGES" != "?" ]; then
+              BODY=$((PAGES - 2))
+              echo "  - Body pages (excl. abstract + cover): ~${BODY}" >> $GITHUB_STEP_SUMMARY
+            fi
+          fi
+
       - name: Publish PDFs to docs
         run: |
-          [ -f abstract_11C/main*.pdf ] && cp abstract_11C/main*.pdf docs/abstract1.pdf
-          [ -f abstract_18E/main*.pdf ] && cp abstract_18E/main*.pdf docs/abstract2.pdf
-          [ -f abstract_19B/main*.pdf ] && cp abstract_19B/main*.pdf docs/abstract3.pdf
-          true
+          [ -f abstract_11C/main.pdf ] && cp abstract_11C/main.pdf docs/abstract1.pdf || true
+          [ -f abstract_18E/main.pdf ] && cp abstract_18E/main.pdf docs/abstract2.pdf || true
+          [ -f abstract_19B/main.pdf ] && cp abstract_19B/main.pdf docs/abstract3.pdf || true
+          [ -f proposal_18E/build/main.pdf ] && cp proposal_18E/build/main.pdf docs/proposal-18E.pdf || true
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
