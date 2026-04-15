@@ -26,4 +26,4 @@ construction/
 - No proposal content is drafted without an approved design document
 - Every design maps to one or more CFP topic areas
 - Sprint tasks have clear acceptance criteria
-- Completed sprints are archived to `memory-bank/archive/`
+- Completed sprints are archived to `llm/memory_bank/`

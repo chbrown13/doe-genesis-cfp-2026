@@ -41,9 +41,9 @@ Check proposal content against:
 
 ### `signal-complete`
 Mark current phase as complete:
-1. Update `memory-bank/progress.md`
-2. Update `memory-bank/activeContext.md`
-3. Archive completed sprint to `memory-bank/archive/`
+1. Update `llm/memory_bank/progress.md`
+2. Update `llm/memory_bank/activeContext.md`
+3. Archive completed sprint to `llm/memory_bank/archive/`
 4. Coordinate with memory-agent for phase transition
 
 ## CFP-Specific Checks

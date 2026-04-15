@@ -9,15 +9,16 @@ with AI request for applications**. This initiative bridges academic, government
 
 This project uses a **memory-bank** documentation approach:
 
-- `memory-bank/` — Living documentation (project context, decisions, progress)
+- `llm/memory_bank/` — Living documentation (project context, decisions, progress) — 5 canonical files
+- `llm/features/` — Feature specifications (produced by `/constellize:feature:specify`)
 - `construction/` — Design-first development workspace (designs, requirements, sprints)
 - `.claude/agents/` — Specialized agent configurations
 
 ## Quick Start
 
-1. Read `memory-bank/activeContext.md` for current status
-2. Read `memory-bank/projectbrief.md` for core objectives
-3. Read `memory-bank/progress.md` for task tracking
+1. Read `llm/memory_bank/activeContext.md` for current status
+2. Read `llm/memory_bank/projectbrief.md` for core objectives
+3. Read `llm/memory_bank/progress.md` for task tracking
 4. Check `construction/` for active design work
 
 ## Key Deadlines
@@ -42,20 +43,20 @@ Proposals must advance research in one or more of:
 
 ## Submission Requirements
 
-### Abstract Phase (Current)
+### Abstract Phase (Complete)
 - 1-page maximum (excluding references)
-- Overview of research project idea
-- Statement of the project’s vision for the science and applied energy initiatives that will be pursed and a description of how and why AI will enhance the associated scientific and technical workflows.
-- Primary focus areas required
+- Submitted 2026-03-27 for 11C, 18E, 19B
+- 18E ranked #1/2 by all three reviewers; invited to full proposal
 
-### Full Proposal Phase (If Invited)
-- 5 pages plus references
-- Details TBD
+### Full Proposal Phase (Active — 18E)
+- 5 pages plus references, due 2026-04-28
+- Construction spec: `llm/features/18E-proposal-incorporate-reviewer-feedback-v2.md`
+- Active workspace: `proposal_18E/`
 
 ## Session Notes
 
 - **Started**: 2026-03-26
-- **Current Phase**: Project initialization and pre-proposal development
+- **Current Phase**: 18E full proposal development (Phase 3)
 - **Portal**: https://www.energy.gov/documents/genesis-mission-science-and-technology-challenges?utm_medium=email&utm_source=govdelivery
 - **Contact**: GenesisMissionNOFO@science.doe.gov
 
@@ -64,6 +65,7 @@ Proposals must advance research in one or more of:
 | Path | Description |
 |------|-------------|
 | `files/` | Reference materials (CFP document) |
-| `memory-bank/` | Living project documentation |
+| `llm/memory_bank/` | Living project documentation |
+| `llm/features/` | Feature specifications |
 | `construction/` | Design workspace |
 | `.claude/agents/` | Agent configurations |

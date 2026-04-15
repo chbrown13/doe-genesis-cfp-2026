@@ -23,7 +23,7 @@ jobs:
           echo "## Placeholder Scan" >> $GITHUB_STEP_SUMMARY
           PLACEHOLDERS=$(grep -rn --include="*.tex" --include="*.md" --include="*.bib" \
             -E '(TBD|TODO|FIXME|XXX|PLACEHOLDER|Lorem ipsum)' \
-            proposal/ construction/ memory-bank/ 2>/dev/null || true)
+            proposal_18E/ construction/ llm/ 2>/dev/null || true)
           if [ -n "$PLACEHOLDERS" ]; then
             echo "::warning::Placeholder text found"
             echo '```' >> $GITHUB_STEP_SUMMARY
