@@ -369,7 +369,7 @@
 
     <div class="status-banner">
         <div class="phase">Current Phase: Full Proposal Development (18E)</div>
-        <div class="detail">Pre-proposals submitted 2026-03-27. 18E ranked #1/2 by all three reviewers. Full proposal due <strong>April 28, 2026</strong>. DE-FOA-0003612.</div>
+        <div class="detail">Pre-proposals submitted 2026-03-27. 18E approved for submission. Full proposal due <strong>April 21, 2026</strong>. DE-FOA-0003612.</div>
     </div>
 
     <!-- Research System -->
@@ -379,9 +379,9 @@
             <h3>PA-AKG &mdash; Provenance-Aware Agentic Knowledge Graph Systems</h3>
             <div class="system-subtitle">A provenance-first architecture integrating persistent knowledge graphs with multi-agent orchestration for accountable, cumulative AI-assisted scientific research</div>
 
-            <p>Current agentic AI systems coordinate multiple agents and execute multi-step research workflows, but lack the infrastructure to persist, trace, and cumulatively build on their outputs. PA-AKG addresses three structural gaps identified in prior work: no existing system tightly integrates persistent structured knowledge with autonomous multi-agent workflows; no validated evaluation framework addresses AI-generated research outputs; and no generalizable mechanism enforces span-level provenance as an architectural constraint across agent operations.</p>
+            <p>Scientific software is crucial for the DOE's research, integrating decades of expertise in numerical methods and HPC optimizations. While recent advances in AI, especially large language models, offer promising code assistance tools, they lack the trustworthiness necessary for high-performance computing applications, as they don't ensure traceability of changes to performance benchmarks or validation results. To resolve these issues, we propose the development of provenance-aware agentic knowledge graphs (PA-AKG) to enhance AI-assisted scientific software development, allowing for auditable code changes and improved reproducibility by linking AI recommendations to specific evidence and maintaining a comprehensive development history.</p>
 
-            <p>The key invariant: <strong>provenance enforcement is architectural, not post-hoc</strong>. Every agent handoff carries a provenance context object requiring downstream agents to inherit and extend the accumulated evidence chain. This transforms provenance from a reporting guideline into foundational research infrastructure.</p>
+            <p>The key invariant: <strong>provenance enforcement is architectural, not post-hoc</strong>. Every agent handoff carries a provenance context object requiring downstream agents to inherit and extend the accumulated evidence chain. This transforms provenance from a reporting guideline into foundational research infrastructure, promoting trustworthy and accelerated scientific discovery powered by AI.</p>
 
             <div class="arch-layers">
                 <div class="arch-layer">
@@ -408,21 +408,21 @@
         <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:1rem;">PA-AKG is submitted under three focus areas, each with a distinct framing of how the system advances that area&rsquo;s specific scientific and technical goals.</p>
         <div class="focus-grid">
             <div class="focus-card">
-                <div class="topic-code">11C</div>
+                <div class="topic-code">[ARCHIVED] 11C</div>
                 <div class="topic-name">AI-Accelerated Science: Correlation to Understanding</div>
                 <div class="topic-office">Office of Science &mdash; Basic Energy Sciences (BES)</div>
                 <div class="framing-label">PA-AKG Framing</div>
                 <p>PA-AKG implements the closed-loop discovery cycle 11C calls for: a persistent KG encodes the current scientific model; agents compare incoming evidence against KG-encoded expectations; divergences trigger structured hypothesis generation with explicit provenance chains; confirmed hypotheses update the KG, enabling cumulative scientific progression across sessions.</p>
             </div>
             <div class="focus-card">
-                <div class="topic-code">18E</div>
+                <div class="topic-code">[SUBMITTING!] 18E</div>
                 <div class="topic-name">Trustworthy AI for Scientific Software</div>
                 <div class="topic-office">Office of Science &mdash; ASCR</div>
                 <div class="framing-label">PA-AKG Framing</div>
                 <p>PA-AKG operationalizes the 18E requirements directly. Span-level evidence alignment and canonicalization auditing enforce provenance tracking as an architectural invariant&mdash;mandated by the Genesis Mission Executive Order. The E1&ndash;E4 evaluation framework delivers interpretable diagnostics and measurable reproducibility metrics, turning 18E&rsquo;s trustworthiness requirements into quantitative targets.</p>
             </div>
             <div class="focus-card">
-                <div class="topic-code">19B</div>
+                <div class="topic-code">[ARCHIVED] 19B</div>
                 <div class="topic-name">Hypothesis Generation from Multi-Modal Data</div>
                 <div class="topic-office">Office of Science &mdash; ASCR</div>
                 <div class="framing-label">PA-AKG Framing</div>
@@ -441,14 +441,14 @@
                 <th>PA-AKG Connection</th>
                 <th style="width:12%; text-align:center;">Fit</th>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td>
                     <strong>11C</strong> &mdash; AI-Accelerated Science<br>
                     <span style="font-size:0.78rem; color:var(--text-secondary);">Closed-loop: phenomena not predicted by current models &rarr; testable hypothesis</span>
                 </td>
                 <td style="font-size:0.83rem; color:var(--text-secondary);">Persistent KG is the &ldquo;current model.&rdquo; Agents detect KG-model divergences, apply provenance constraints, and generate structured hypotheses. Confirmed hypotheses update the KG, implementing the closed discovery loop across sessions.</td>
                 <td style="text-align:center;" class="fit-strong">Strong</td>
-            </tr>
+            </tr> -->
             <tr>
                 <td>
                     <strong>18E</strong> &mdash; Trustworthy AI for Scientific Software<br>
@@ -457,14 +457,14 @@
                 <td style="font-size:0.83rem; color:var(--text-secondary);">Span-level alignment and canonicalization auditing enforce provenance tracking (required by Genesis EO Sec. 3(d)(i)). Canonical KG nodes ensure cross-session reproducibility. E1&ndash;E4 evaluation framework delivers interpretable diagnostics. Architectural provenance enforcement directly addresses the trustworthiness gap identified in prior work.</td>
                 <td style="text-align:center;" class="fit-primary">Primary</td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td>
                     <strong>19B</strong> &mdash; Hypothesis Generation from Multi-Modal Data<br>
                     <span style="font-size:0.78rem; color:var(--text-secondary);">Synthesize literature, experiments, simulations &rarr; testable hypotheses</span>
                 </td>
                 <td style="font-size:0.83rem; color:var(--text-secondary);">KG canonical entities link evidence across heterogeneous source modalities. Graph gap analysis identifies under-evidenced problems. Synthesis agents generate structured hypothesis artifacts with full provenance chains. Grounded in prior SE research (Cusati &amp; Brown, ICSE-FoSE 2026) demonstrating both the need and feasibility of this approach.</td>
                 <td style="text-align:center;" class="fit-primary">Primary</td>
-            </tr>
+            </tr> -->
         </table>
     </div>
 
@@ -571,20 +571,30 @@
             <div class="timeline-item active">
                 <div class="timeline-date">Apr 13&ndash;24, 2026</div>
                 <div class="timeline-label">Full proposal writing and feedback sessions</div>
-                <div class="timeline-note">7 of 11 reviewer concerns addressed; RF-2 and RF-5b pending Sandia outcome</div>
+                <div class="timeline-note">feedback on draft</div>
+                <div class="timeline-note">dcbrown, djjay, and Scott all at conferences</div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">Apr 21, 2026</div>
+                <div class="timeline-date">Friday, April 17, 9 AM</div>
                 <div class="timeline-label">Team documents and budget finalized</div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">Apr 28, 2026</div>
-                <div class="timeline-label">Full proposal due</div>
-                <div class="timeline-note">5 pages + references</div>
+                <div class="timeline-date">Tuesday, April 21, 9 AM</div>
+                <div class="timeline-label">all administrative documentation </div>
+                <div class="timeline-note">draft of narrative</div>
+                <div class="timeline-note">No changes to the non-technical proposal documents or proposal package</div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">Jun 30, 2026</div>
-                <div class="timeline-label">Acceptance notification</div>
+                <div class="timeline-date">Friday, April 24, 9 AM</div>
+                <div class="timeline-label"><b>final technical proposal/project narrative</b></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Monday, April 27, 9 AM</div>
+                <div class="timeline-label"><b>all corrections from OSP</b></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Tuesday, April 28, 9 AM</div>
+                <div class="timeline-label"><b>Submission date!</b></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-date">Jul 1, 2026</div>
