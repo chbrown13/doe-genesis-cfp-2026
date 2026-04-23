@@ -1,0 +1,108 @@
+The standard requirements for a DMSP may be found in Section IX of this RFA.
+In addition, the DMSP should specifically address:
+• How FAIR (Findable, Accessible, Interoperable, and Reusable) 11 principles will apply to
+the anticipated data sets, software 12, and models 13 to be developed.
+• What developed software, data sets, and models will be made available using an
+“opensource” licensing arrangement, noting the Software Package Data Exchange
+(SPDX) identifier(s) (https://spdx.org/licenses/) when possible, and where deviation in
+this arrangement is expected from The Open Source Initiative’s “Open Source
+Definition” (https://opensource.org/osd), a specific justification must be provided.
+• How best practices in scientific software development will be applied to any development
+activities. For more information on best practices, see Better Scientific Software
+(https://bssw.io/).
+
+12. How to Prepare a Data Management and Sharing Plan
+
+Data Management and Sharing Plans (DMSPs) must be provided for the proposed
+research following DOE and DOE sponsoring office guidelines. If needed, updates to the
+DMSP, through the course of the R&D, must be provided to DOE for review and approval. In
+general, a DMSP should address the following requirements:
+1. Validation and replication of results
+The DMSP should describe how scientific data generated in the course of the research
+project will be publicly shared and preserved in a timely and fair manner that enables
+validation and replication of results. If data will not be publicly shared and preserved
+
+(see "Data sharing limitations"), the DMSP should describe how results could be
+validated and replicated.
+2. Timely and fair access
+The DMSP should provide a plan for making all scientific data displayed in peer-
+reviewed scholarly publications resulting from the proposed research open, machine-
+readable, and digitally accessible to the public at the time of publication. This includes
+data that are displayed in charts, figures, images, etc. In addition, the underlying digital
+scientific data used to generate peer-reviewed scholarly publications should be made
+freely available and publicly accessible at the time of publication, in accordance with the
+principles stated above. The published article should indicate how these data can be
+accessed. The DMSP should also provide a timeline for sharing digital scientific data
+produced under the DOE funded R&D effort not associated with peer-reviewed scholarly
+publications.
+3. Data repository selection
+The DMSP should specify the use of digital repositories that align, to the extent
+practicable, with the National Science and Technology Council document entitled
+"Desirable Characteristics of Data Repositories for Federally Funded Research," by the
+Subcommittee on Open Science of the National Science and Technology Council, May
+2022. 19 In general, DOE does not endorse or require sharing in any specific repository
+and encourages researchers to select the repository that is most appropriate for their data
+type and discipline, though individual sponsoring research offices may provide specific
+guidance or designate a specific repository.
+4. Data management and sharing resources
+The DMSP should describe the data management and sharing resources that may be
+available and used in the course of the proposed research. In particular, a DMSP that
+explicitly or implicitly commit data management and sharing resources at a facility
+beyond what is conventionally made available to approved users should be accompanied
+by written approval from that facility. In determining the resources available for data
+management and sharing at DOE scientific user facilities, researchers should consult the
+published description of data management resources and practices at that facility and
+reference it in the DMSP.
+5. Data sharing limitations
+The DMSP must address any limitations of scientific data sharing to facilitate the
+protection of confidentiality, privacy, business confidential information, and/or security;
+avoid negative impact on intellectual property rights, innovation, program and
+operational improvements, and U.S. competitiveness; consider maximizing appropriate
+sharing through risk-mitigated limited access; preserve the balance between the relative
+value of long-term preservation and access and the associated cost and administrative
+burden; and otherwise be consistent with all applicable laws, regulations, and DOE orders and policies. Depending on the DOE funding agreement, a contractor or financial award
+recipient may have the right to assert copyright to or protect from public release for
+certain scientific data products. When contractors or award recipients assert copyright of
+scientific data, the DMSP should address licensing requirements and any limitations for
+sharing the copyrighted data. When contractors or award recipients assert data
+protection, the scientific data will not be shared with the public during the data protection
+period.
+To improve the discoverability of and attribution for datasets created and used in the
+course of research, DOE encourages the citation of publicly available datasets within the
+reference section of publications, including using the persistent identifiers associated with the
+dataset, such as a Digital Object Identifier (DOI).
+In addition, scientific data made publicly available through the implementation of a
+DMSP are required to be reported under any applicable reporting requirements to DOE’s Office
+of Scientific and Technical Information (OSTI). A DOI is a type of persistent identifier that may
+be assigned to a dataset prior to reporting to OSTI, e.g., by the repository hosting the data or by a publisher. When there is a DOI is assigned to a dataset, it must be provided within the metadata record submitted to OSTI. In cases where a data record does not already have an associated DOI, OSTI will assign a DOI for the data record.
+
+DMSPs will be reviewed as part of the overall SC research application merit review
+process. Applicants are encouraged to consult the SC website for further information and
+suggestions for how to structure a DMSP: https://science.osti.gov/funding-opportunities/digital-
+data-management.
+
+Suggested Elements!
+Data types, sources, and standards
+For each type of scientific data that will be used or generated, briefly provide:
+A general description of the nature and scope of the data, including its modality (e.g. text, imaging, genomic, structured, …) and aggregation (e.g. individual, aggregate, summarized, …)
+The amount of data processing and any data standards or formats used
+The anticipated amount or size of the data and timeline for production
+Key metadata and associated documentation that will facilitate data interpretation
+Related tools, software, and code         
+Describe any code, software, or specialized tools needed to make use of the data, including to support validation and replication of scientific results, and how those code, software, or tools can be accessed.
+Data access and reuse considerations
+Describe any applicable factors that limit public sharing of the used or generated scientific data. Consider opportunities to maximize appropriate sharing through risk-mitigated limited access. Applicable factors may include, but are not limited to:
+Targeted reuse cases for the scientific community or the broader public
+Protection of confidentiality, privacy, business confidential information, and/or security
+Negative impacts on intellectual property rights, innovation, program and operational improvements, and U.S. competitiveness
+Preserving the balance between the relative value of long-term preservation and access and the associated cost and administrative burden
+Consistency with all applicable laws, regulations, and DOE orders and policies
+Data security, preservation, and sharing
+Provide plans and timelines for data security, preservation, and appropriate sharing, which may include:
+A description of measures to ensure data security and integrity, such as protections against unauthorized access, corruption, or loss
+A description of the shared subset(s) or reduced elements of the total data for each data type
+Any data repositories that will be used to share the data, including a brief description of how each repository aligns with the NSTC "Desirable Characteristics of Data Repositories for Federally Funded Research" guidance
+How persistent identifiers will be used to make the data more findable and reusable
+Timelines for sharing any data not associated with a scientific publication
+Oversight of data management and sharing
+Describe how the implementation of the DMSP scope for the relevant project will be monitored and managed, including the frequency of oversight and the responsibilities of individuals or groups who participate in management.

@@ -1,0 +1,38 @@
+% ============================================================
+% Appendix IV — Data Management and Sharing Plan
+% PA-AKG: Provenance-Aware Agentic Knowledge Graphs
+% Focus Area: 18E — Trustworthy AI for Scientific Software
+% ============================================================
+
+\paragraph{Data Types, Sources, and Standards.}
+This project produces four primary data types.
+\textit{(1) Research corpus}: text data aggregated from publicly available HPC software engineering literature (arXiv, IEEE Xplore, GitHub documentation; $\sim$50--100 papers; $<$5~GB unprocessed).
+\textit{(2) Knowledge graph artifacts}: structured property-graph data encoding HPC entities, semantic relations, and provenance chains, serialized in GraphML and JSON-LD formats, augmented with FAISS/pgvector dense-index snapshots ($\sim$10--50~GB, growing through Phase~3).
+\textit{(3) Annotated benchmark datasets}: human-labeled claim--evidence pairs with character-level span alignment annotations ($\sim$500--1{,}000 instances by Month~6; CSV/JSON; inter-annotator agreement reported via Cohen's $\kappa$).
+\textit{(4) User study data}: task-completion metrics, study recordings, and qualitative feedback from controlled studies with HPC software practitioners (de-identified per Virginia Tech IRB protocol; CSV/JSON; $<$1~GB).
+All datasets will carry Dublin Core metadata and include README-level documentation sufficient for independent interpretation and replication.
+
+\paragraph{Related Tools, Software, and Code.}
+All PA-AKG source code---extraction pipeline, agentic orchestration layer, and REST API---will be released as open-source software under the \textbf{Apache License 2.0} (Software Package Data Exchange (SPDX): \texttt{Apache-2.0}) on a public GitHub repository no later than project conclusion, with intermediate releases aligned to paper submissions. Releases will include containerized runtime environments (\eg Docker), benchmarking scripts, and documented workflows necessary to reproduce all published results, consistent with Better Scientific Software (BSSw) best practices. Pre-trained models (Llama~3, CodeLlama) are accessed under their respective open-weight licenses; GPT-4 and Claude are accessed via commercial APIs and are not redistributed.
+
+\paragraph{Data Access, FAIR Principles, and Reuse.}
+All project-generated datasets and software will be made \emph{Findable, Accessible, Interoperable, and Reusable} (FAIR): datasets will receive DOIs and be indexed with community-standard metadata; the PA-AKG REST API exposes KG content in machine-readable JSON-LD; open licensing removes reuse barriers.
+Data underlying peer-reviewed publications, including figures and charts, will be made publicly available at the time of publication per DOE SC policy; publications will cite dataset DOIs.
+Data not associated with publications will be deposited within 12~months of generation.
+The primary targeted reuse case is other Genesis teams and DOE laboratory developers integrating the PA-AKG provenance layer into AI-assisted R\&D workflows via the open REST API.
+
+\paragraph{Data Sharing Limitations.}
+Sandia National Laboratories HPC validation corpora (compiler traces, legacy codebases, performance logs for Pyomo, Kokkos, Trilinos, and LAMMPS) may contain export-controlled or proprietary content governed by existing Sandia data agreements.
+Only derived, non-sensitive metrics and aggregated benchmark results from these artifacts will be released publicly; raw Sandia artifacts will be retained under controlled access at Sandia and Virginia Tech per the governing data-transfer agreement.
+User study data will be shared only in de-identified, aggregate form consistent with the approved IRB protocol.
+
+\paragraph{Data Security, Preservation, and Sharing.}
+Research data will reside on Virginia Tech ARC-managed infrastructure with role-based access controls, nightly backups, and checksummed integrity verification.
+All public datasets, annotated benchmarks, and software releases will be deposited in Zenodo, which meets the NSTC ``Desirable Characteristics of Data Repositories for Federally Funded Research'' guidance through persistent DOI assignment, open access, long-term preservation, and machine-readable metadata.
+Software releases will be mirrored on a public GitHub organization repository.
+All DOE-funded data records will be reported to DOE's Office of Scientific and Technical Information (OSTI) with associated DOIs per SC reporting requirements; where a DOI is not yet assigned, OSTI will assign one at submission.
+
+\paragraph{Oversight.}
+PI Brown will serve as data steward with quarterly reviews of data sharing and OSTI reporting status throughout the project.
+The graduate student researchers (GRAs) will maintain the running data inventory, execute repository deposits, and verify that each software release and dataset submission carries complete SPDX-compliant metadata.
+Any required updates to this plan will be submitted to DOE for review and approval in a timely manner.
