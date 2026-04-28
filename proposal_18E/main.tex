@@ -39,7 +39,7 @@
 \input{proposal_18E/abstract}
 
 \newpage
-\pagenumbering{arabic}
+\pagenumbering{}
 
 \input{proposal_18E/cover_sheet}
 
@@ -87,7 +87,7 @@ The proposed work will introduce knowledge-layer infrastructure for research and
     \label{fig:pa-akg}
 \end{wrapfigure}
 
-We will design and implement the provenance-first agentic KG architecture with three integrated layers: knowledge representation; automation and extraction; and agentic orchestration (see Fig~\ref{fig:pa-akg}). PA-AKG will be designed as a deployable knowledge-layer component, positioned between raw HPC artifacts and AI reasoning. The structured provenance KG will promote accelerated and trustworthy DOE AI-assisted R\&D workflows, scalable across the Genesis Mission portfolio. The initial implementation will focus on the software engineering research domain in HPC contexts~\cite{cusati2026fose}. Software engineering is critical for technological innovation~\cite{vos2026reclaiming} and enabling HPC application development~\cite{schmidberger2012need}. We will target \textbf{Pyomo}~\cite{hart2017pyomo}, an open-source Python-based optimization framework,\footnote{\url{https://github.com/pyomo/pyomo}} as the primary use case for our initial PA-AKG implementation---investigating usability and workflow integration in HPC performance analysis workflows at Sandia National Laboratories. 
+We will design and implement the provenance-first agentic KG architecture with three integrated layers: knowledge representation; automation and extraction; and agentic orchestration (see Fig~\ref{fig:pa-akg}). PA-AKG will be designed as a deployable knowledge-layer component, positioned between raw HPC artifacts and AI reasoning. The structured provenance KG will promote accelerated and trustworthy DOE AI-assisted R\&D workflows, scalable across the Genesis Mission portfolio. The initial implementation will focus on the software engineering research domain within HPC contexts~\cite{basili2008understanding}. Software engineering is critical for technological innovation~\cite{vos2026reclaiming} and enabling HPC applications~\cite{schmidberger2012need}, directly impacting the quality and reliability of scientific software~\cite{mundt2025pyomo}. Research scientists view software as instrumental to their work, yet find development processes inhibit scientific discovery~\cite{basili2008understanding}. Further, Pope suggests DOE workflows and teams should adhere to software engineering best practices~\cite{pope2015future}. We will target \textbf{Pyomo}~\cite{bynum2021pyomo}, an open-source optimization framework,\footnote{\url{https://github.com/pyomo/pyomo}} as the primary use case for our initial implementation---investigating PA-AKG trustworthiness and acceleration of HPC-related workflows at Sandia National Laboratories. 
 
 We will benchmark PA-AKG against RAG, GraphRAG~\cite{Edge2024GraphRAG}, and static baselines on provenance completeness, reproducibility, efficiency, and trustworthiness of AI-generated software decisions. We will also conduct pilot and controlled user studies with HPC software developers to gain insights on our approach and its applicability for HPC research and development workflows. Our project will be guided by an \textbf{advisory board} of HPC experts and researchers, who will hold regular meetings with the research team throughout the project period. Key risks, including the extraction reliability at HPC code scale and KG schema portability across domains, will be mitigated by the staged evaluation design. \textit{This project does not involve the construction, alteration, maintenance, and/or repair of public infrastructure in the United States.}
 
@@ -99,7 +99,7 @@ We will benchmark PA-AKG against RAG, GraphRAG~\cite{Edge2024GraphRAG}, and stat
 Our research plan (see Table~\ref{tab:milestones}) involves four main phases:
 
 \paragraph{Phase 1 (Months 1--3): Knowledge Representation Layer and Initial Calibration.}
-We will design the HPC software KG schema with entity types such as \textsc{Algorithm}, \textsc{NumericalMethod}, \textsc{CodeComponent}, \textsc{HardwareConstraint}, \textsc{Benchmark}, and \textsc{ValidationResult}---linked by semantic relations (\textsc{implements}, \textsc{requires}, \textsc{supersedes}, \textsc{validates}). We will hire Pyomo \emph{maintainers}, open-source \emph{contributors}, and \emph{researchers} who have authored work citing this system\footnote{\url{https://www.pyomo.org/impact}} as consultants to provide formative insights on the initial KG design and implementation---leveraging their deep knowledge of Pyomo's architecture and deployment in real-world contexts. A hybrid symbolic--semantic design pairs a property graph store with a vector index, supporting both structured relational queries and approximate similarity search. We will populate an initial KG from a software engineering HPC research corpus established in prior work~\cite{kendall2007proposed,schmidberger2012need} and validate entity extraction against manually annotated ground truth.
+We will design the HPC software KG schema with entity types such as \textsc{Algorithm}, \textsc{NumericalMethod}, \textsc{CodeComponent}, \textsc{HardwareConstraint}, \textsc{Benchmark}, and \textsc{ValidationResult}---linked by semantic relations (\textsc{implements}, \textsc{requires}, \textsc{supersedes}, \textsc{validates}). We will hire Pyomo \emph{maintainers}, open-source \emph{contributors}, and \emph{researchers} who have authored work citing this system~\cite{pyomo-forum,pyomo-who} as consultants to provide formative insights on the initial KG design and implementation---leveraging their deep knowledge of Pyomo's architecture and deployment in real-world contexts~\cite{mundt2025pyomo}. A hybrid symbolic--semantic design pairs a property graph store with a vector index, supporting both structured relational queries and approximate similarity search. We will populate an initial KG from a software engineering HPC research corpus established in prior work~\cite{kendall2007proposed,schmidberger2012need} and validate entity extraction against manually annotated ground truth.
 
 % The calibration depends on a populated KG, so the ordering inside Phase 1 is serial: schema $\rightarrow$ initial population $\rightarrow$ seed-corpus build $\rightarrow$ discovery $\rightarrow$ calibration.
 
@@ -126,7 +126,7 @@ We will design the HPC software KG schema with entity types such as \textsc{Algo
 
 \paragraph{Phase 3 (Months 7--9): Full Evaluation and Generalization.}
 % [RF-4] Phase 3 is labeled Full Evaluation, not the only evaluation phase — verified by: AC-4
-Leveraging insights from the preliminary experiments, pilot studies, and advisors, we will refine our PA-AKG implementation. \textit{Evaluation:} Phase 3 conducts the \textbf{full evaluation} of PA-AKG pipeline. We will complete the benchmark against vector-based RAG, hybrid retrieval, and GraphRAG-style reasoning~\cite{Edge2024GraphRAG} on the human-annotated claim--evidence benchmarks from Phases 1 and 2. We will calculate span-level alignment precision/recall, Cohen's $\kappa$ with expert-labeled canonical entity clusters, and traceability completeness. A secondary \textbf{case study} HPC validation at Sandia National Laboratories assesses cross-domain generalizability of the extraction pipeline, targeting open-source codebases beyond Pyomo~\cite{hart2017pyomo} with documented Sandia development history---such as Kokkos, Trilinos, and LAMMPS. Further, we will assess provenance completeness, efficiency, and trustworthiness of AI-assisted code recommendations in DOE workflows through \textbf{controlled user studies} with HPC software practitioners and researches, collecting quantitative task-completion metrics and qualitative feedback.
+Leveraging insights from the preliminary experiments, pilot studies, and advisors, we will refine our PA-AKG implementation. \textit{Evaluation:} Phase 3 conducts the \textbf{full evaluation} of PA-AKG pipeline. We will complete the benchmark against vector-based RAG, hybrid retrieval, and GraphRAG-style reasoning~\cite{Edge2024GraphRAG} on the human-annotated claim--evidence benchmarks from Phases 1 and 2. We will calculate span-level alignment precision/recall, Cohen's $\kappa$ with expert-labeled canonical entity clusters, and traceability completeness. A secondary \textbf{case study} HPC validation at Sandia National Laboratories assesses cross-domain generalizability of the extraction pipeline, targeting open-source codebases beyond Pyomo~\cite{bynum2021pyomo} with documented Sandia development history---such as Kokkos, Trilinos, and LAMMPS. Further, we will assess provenance completeness, efficiency, and trustworthiness of AI-assisted code recommendations in DOE workflows through \textbf{controlled user studies} with HPC software practitioners and researches, collecting quantitative task-completion metrics and qualitative feedback.
 
 \paragraph{Phase 4: Dissemination and Genesis Integration.}
 We will release PA-AKG as an open-source package with a documented REST API, enabling other Genesis teams, DOE laboratory developers, and the broader scientific community to integrate our approach into AI-assisted R\&D workflows. The API will expose provenance-aware KG queries so that agents and other Genesis-funded tools can ground their recommendations in validated knowledge. Generalization will follow a staged pathway for the PA-AKG schema and extraction pipeline, starting with Pyomo and exploring additional codebases. 
@@ -174,8 +174,10 @@ Our project outcomes will inform the design of next-generation trustworthy AI to
 
 
 \newpage
-
+\newpage
+\pagenumbering{}
 \section*{Appendix}
+
 \appendix
 \renewcommand{\thesection}{\Roman{section}}
 
@@ -185,6 +187,8 @@ Our project outcomes will inform the design of next-generation trustworthy AI to
 \bibliography{proposal_18E/references}
 \bibliographystyle{abbrv}
 
+\newpage
+
 \section{Facilities \& Other Resources}\label{app:feors}
 
 The Department of Computer Science (CS) at Virginia Tech, the home department of PI Brown and Co-PI Wang, provides office space, support staff, wireless and wired internet connections, and work spaces for student researchers. Virginia Tech’s CS Department (the largest CS program, in terms of majors, in Virginia) is well equipped to support research in the areas described in the proposal. To facilitate wide ranging research activities, major services provided by the department include: a Computer Science Research Virtual Machine cluster (CSRVM) with flexibility to create large scale VMs; a secure, modern, climate-controlled server room and workspace to work directly with servers and equipment, if appropriate; and computing resources. Faculty also have opportunities to teach classes relevant to their research interests, in order to advance the teaching and research missions of Virginia Tech and the CS Department.
@@ -192,6 +196,9 @@ The Department of Computer Science (CS) at Virginia Tech, the home department of
 The Advanced Research Computing (ARC) in the Division of Information Technology at Virginia Tech with cutting-edge high-performance computing and visualization resources. University and departmental policies ensure faculty have access to laptop and/or desktop computers for educational purposes. ARC employs 15 full-time employees and 4 GRAs to support the infrastructure and provide user support. ARC provides services to accelerate discovery and enhance the use of these systems. ARC has a staff of computational scientists who are available to consult with researchers to provide expert advice on the selection of systems for their workloads, optimizing workflows and code bases, and actively engaging in collaborative research. Daily office hours are hosted by a team of graduate assistants who also provide most of the support for system usage via ARC Helpdesk tickets. ARC also offers various workshops to provide orientation to new users and training to groups.
 
 
+Sandia National Laboratories’ Center for Computing Research (CCR) creates technology and solutions for many of our nation’s most demanding national security challenges. The Center’s portfolio spans the spectrum from fundamental research to state of the art applications. CCR work includes: computer system architecture (both hardware and software); enabling technology for modeling physical and engineering systems; and research in discrete mathematics, data analytics, cognitive modeling, and decision support materials. CCR researchers are primarily housed in the Computer Science Research Institute (CSRI), located in the Sandia Science and Technology Park just outside Kirtland Air Force Base. The 34,500-square foot CSRI building combined with other offices distributed throughout the base contain space for nearly 300 researchers, staff, and visitors and include several conference rooms and collaborative workspaces. These facilities contain local computing resources and have high-bandwidth network connections to Sandia’s high-performance computing platforms, several of which are provided at no cost to individual projects.
+
+\newpage 
 \section{Equipment}
 
 Virginia Tech’s Advanced Research Computing (ARC) is a unit within the Division of Information Technology. ARC offers centralized research computing resources which are available to Virginia Tech researchers, capable of supporting the proposed DOE Genesis Mission project. ARC provides cutting-edge high-performance computing and operates 5 clusters with 570 compute nodes, 58,784 CPU cores, 272 TB RAM, 497 GPUs, and over 11 PB of storage. Currently available HPC systems include: 
@@ -207,7 +214,7 @@ Centralized storage provides over 11 PB of long-term bulk “project” storage,
 
 
  
-
+\newpage
 \section{Data Management and Sharing Plan}
 
 \input{proposal_18E/data-management}
@@ -222,8 +229,7 @@ Centralized storage provides over 11 PB of long-term bulk “project” storage,
 
 \item Proposal reviewer for NSF SATC as service to the scientific and engineering community outside of my immediate organization.
 
-\item As an invited speaker for the Consortium for the Advancement of Scientific Software (CASS) User-Developer Experience, I presented my research on designing for development tools for research software engineers to an
-audience of software practitioners at the practitioner-focused working group.
+\item As an invited speaker for the Consortium for the Advancement of Scientific Software (CASS) User-Developer Experience, I presented my research on designing for development tools for research software engineers to an audience of software practitioners at the practitioner-focused working group.
 
 \item As an organizer for the International Workshop on Large Language Model-Oriented Empirical Research (LLanMER 2025), I helped promote our workshop to the software engineering and large language model (LLM) research community, maintain the event website, reviewed workshop submissions, and facilitated the in-person workshop to engage with researchers and discuss cutting edge topics related to empirical software engineering (SE) research with LLMs.
 
@@ -259,19 +265,28 @@ audience of software practitioners at the practitioner-focused working group.
     \item Throughout his time at Sandia National Laboratories, has mentored several summer and year-round interns. Most recently Abhinav Chinta, now a graduate student at Stanford, who helped develop a LLM pipeline for generating semantic agreement measures between text documents.
 \end{enumerate} 
 
+\newpage
+
+
 \section{Transparency of Foreign Connections}
 
 \includepdf[scale=1.0,offset=1in -1in,pages=-,width=8in]{letters/transparency.pdf}
 
 \section{Other Attachments}
 
-\normalsize{\subsection{Letters of Commitment and Letters of Collaboration}\label{app:letters}}
+\subsubsection*{Letters of Commitment and Letters of Collaboration}\label{app:letters}}
 
-\todo{VT letter}
+\includepdf[scale=1.0,offset=1in -1in,pages=-,width=8in]{letters/sandia_commit.pdf}
 
-\todo{advisory board letters?}
+\includepdf[scale=1.0,offset=1in -1in,pages=-,width=8in]{letters/vt.pdf}
+
+\includepdf[scale=1.0,offset=1in -1in,pages=-,width=8in]{letters/dsn.pdf}
+
+\includepdf[scale=1.0,offset=1in -1in,pages=-,width=8in]{letters/cohoon_Collaboration.pdf}
 
 \includepdf[scale=1.0,offset=1in -1in,pages=-,width=8in]{letters/sandia.pdf}
+
+
 
 
 
